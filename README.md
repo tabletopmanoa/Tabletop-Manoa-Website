@@ -1,1 +1,2 @@
-# final-project-mockup2
+# bowfolios
+Portfolios and networking for the University of Hawaii commnity.
