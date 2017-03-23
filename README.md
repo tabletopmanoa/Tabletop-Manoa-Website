@@ -11,6 +11,9 @@ Organizing games for the University of Hawaii commnity.
 ## Manage Games
 ![image](https://cloud.githubusercontent.com/assets/17040099/24226056/5495f69c-0f08-11e7-9989-e366ff088c8d.png)
 
+## Coordinate a Game
+![image](https://cloud.githubusercontent.com/assets/17040099/24228240/1dede488-0f17-11e7-80b6-c50428641ee7.png)
+
 ## Browse Games - select categories
 ![image](https://cloud.githubusercontent.com/assets/17040099/24188752/b0379b86-0e86-11e7-97c6-a474ef6de772.png)
 
