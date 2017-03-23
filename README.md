@@ -8,6 +8,9 @@ Organizing games for the University of Hawaii commnity.
 ## Login Page
 ![image](https://cloud.githubusercontent.com/assets/17040099/24215014/7f8513f6-0edb-11e7-9885-ae784b995aca.png)
 
+## Manage Games
+![image](https://cloud.githubusercontent.com/assets/17040099/24226056/5495f69c-0f08-11e7-9989-e366ff088c8d.png)
+
 ## Browse Games - select categories
 ![image](https://cloud.githubusercontent.com/assets/17040099/24188752/b0379b86-0e86-11e7-97c6-a474ef6de772.png)
 
