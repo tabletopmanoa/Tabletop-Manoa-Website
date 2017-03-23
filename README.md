@@ -29,8 +29,8 @@ Allows a student to set up their own games. Would like the 'meeting date' to be 
 
 
 ## Browse Games 
-Four main categories of the games allows users to select all. Games that are active (not past their play date) in the selected categories should pop up. Selecting the game will give detailed information on the game (the information filled out from coordinate game)
-![image](https://cloud.githubusercontent.com/assets/17040099/24237846/22be215a-0f4c-11e7-9426-47d34986443d.png)
+Four main categories of the games allows users to select all. Games that are active (not past their play date) in the selected categories should pop up. Selecting the game will give detailed information on the game (the information filled out from coordinate game) and the user can save the game (which will allow for an email push)
+![image](https://cloud.githubusercontent.com/assets/17040099/24240006/2e40b102-0f54-11e7-8423-ce54706622f7.png)
 
 
 ## Calendar
