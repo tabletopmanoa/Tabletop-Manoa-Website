@@ -1,0 +1,41 @@
+.landing-section-1 {
+  padding: 10px 10px 30px 10px;
+  background-color: #631306;
+  color: #E5F9E7;
+}
+
+body {
+  padding: 20px 10px 20px 10px;
+  background-color: #631306;
+  color: #f9e0ba;
+  background-image: url('/images/rider2.jpg');
+  background-size: inherit;
+  font-family: Times New Roman, serif;
+  font-style: inherit;
+}
+
+
+.landing-section-3 {
+  padding: 20px 10px 30px 30px;
+  background-color: #631306;
+  color: #E5F9E7;
+}
+
+.landing-section-5 {
+  padding: 20px 10px 20px 10px;
+  background-color: #1F1A17;
+  color: #631306;
+}
+
+
+.landing-section-1-welcome {
+  font-family: 'Times New Roman', serif;
+  font-weight: 900;
+  font-size: 72px;
+}
+
+.landing-section-header {
+  font-family: 'Times New Roman', serif;
+  font-weight: 900;
+  font-size: 36px;
+}
