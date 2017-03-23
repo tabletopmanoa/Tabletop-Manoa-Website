@@ -60,6 +60,14 @@ userRoutes.route('/games', {
   },
 });
 
+export const welcomePageRouteName = 'Welcome_Page';
+userRoutes.route('/welcome', {
+  name: welcomePageRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: welcomePageRouteName });
+  },
+});
+
 export const managePageRouteName = 'Manage_Page';
 userRoutes.route('/manage', {
   name: managePageRouteName,
@@ -73,6 +81,14 @@ userRoutes.route('/newGame', {
   name: newgamePageRouteName,
   action() {
     BlazeLayout.render('User_Layout', { main: newgamePageRouteName });
+  },
+});
+
+export const calendarPageRouteName = 'Calendar_Page';
+userRoutes.route('/calendar', {
+  name: calendarPageRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: calendarPageRouteName });
   },
 });
 

@@ -3,11 +3,11 @@
   <div class="ui borderless menu">
     <div class="ui container" style="height: 70px;">
       <div class="item" ><h1>You have no Games on file!</h1></div>
-      <div class="ui container">
-        <a class="{{isActiveRoute " Games_Page"}} item" href="{{pathFor "Games_Page" username=routeUserName}}">Browse
-        Games</a>
-        <a class="{{isActiveRoute " NewGame_Page"}} item" href="{{pathFor "NewGame_Page"
-        username=routeUserName}}">Coordinate a Game!</a>
+      <div class=" item">
+        <button class="ui button" > <a class="{{isActiveRoute "Games_Page"}} item" href="{{pathFor "Games_Page" username=routeUserName}}">Browse Games</a></button>
+      </div>
+      <div class=" item">
+        <button class="ui button"> <a class="{{isActiveRoute "NewGame_Page"}} item" href="{{pathFor "NewGame_Page" username=routeUserName}}">Coordinate a Game!</a></button>
       </div>
     </div>
   </div>

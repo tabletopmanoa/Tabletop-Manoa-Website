@@ -1,21 +1,19 @@
 <template name="Games_Page">
-  {{#if Template.subscriptionsReady}}
-    <div style="margin-top: 10px" class="ui container">
 
-      <form class="ui equal width form filter-data-form">
-        <div class="field">
-          {{> Checkbox_Form_Control label="Choose from the game Categories" checkboxes=categories }}
+  {{#if Template.subscriptionsReady}}
+    <div style="margin-top: 10px" class="ui menu">
+
+      <form class="ui equal width form games-data-form">
+        <div class="field" style="align-content: center; color: black; font-size: large"> Choose from the game Categories
+          {{> Checkbox_Form_Control label="" checkboxes=categories
+          }}
         </div>
-        <button class="ui orange circular button" type="submit">Filter</button>
+        <button class="ui black circular button" type="submit">Filter</button>
       </form>
 
       {{> Games_Page_Directory games=games }}
-
-    </div>
+  </div>
   {{/if}}
-
-
-
 
 
 </template>
