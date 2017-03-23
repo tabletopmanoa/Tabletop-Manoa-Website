@@ -20,7 +20,7 @@ Welcome for users and instructions
 
 ## Manage Games
 If users are following a game, the link will be here. Also would be the information on games they are in charge of.
-![image](https://cloud.githubusercontent.com/assets/17040099/24237148/3309346c-0f49-11e7-9ee7-928edd1457b3.png)
+![image](https://cloud.githubusercontent.com/assets/17040099/24240744/c5a59060-0f56-11e7-842e-3eb2284f0af9.png)
 
 
 ## Coordinate a Game
