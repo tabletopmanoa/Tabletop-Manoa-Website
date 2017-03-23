@@ -1,7 +1,8 @@
 # UH TableTop Games
-This purpose of this site is for students to be able to join others in tabletop games
+This purpose of this site is for students of UH Manoa to be able to join others in tabletop games
 
 ## Landing Platform
+Login required
 ![image](https://cloud.githubusercontent.com/assets/17040099/24214896/0526bccc-0edb-11e7-9813-a874a2da758d.png)
 ![image](https://cloud.githubusercontent.com/assets/17040099/24214955/401aecc2-0edb-11e7-87b9-d633ad610d30.png)
 
@@ -10,7 +11,7 @@ Access granted only to students. Allows students comfort in knowing the general 
 ![image](https://cloud.githubusercontent.com/assets/17040099/24215014/7f8513f6-0edb-11e7-9885-ae784b995aca.png)
 
 ## Manage Games
-If users are following a game, the link will be here. Also would be the information on games are are in charge of.
+If users are following a game, the link will be here. Also would be the information on games they are in charge of.
 ![image](https://cloud.githubusercontent.com/assets/17040099/24226056/5495f69c-0f08-11e7-9989-e366ff088c8d.png)
 
 ## Coordinate a Game
