@@ -24,7 +24,7 @@ If users are following a game, the link will be here. Also would be the informat
 
 
 ## Coordinate a Game
-Allows a student to set up their own games. Would like the date to be similiar to the scheduling app on Google Calender
+Allows a student to set up their own games. Would like the 'meeting date' to be similiar to the scheduling app on Google Calender (calendar dropdown, recurrance option with day of week, clock selection)
 ![image](https://cloud.githubusercontent.com/assets/17040099/24237220/79f1e7fc-0f49-11e7-8559-762d89b1ab2c.png)
 
 
