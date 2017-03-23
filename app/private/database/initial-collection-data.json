@@ -5,81 +5,22 @@
       "name": "InterestCollection",
       "contents": [
         {
-          "name": "Software Engineering",
-          "description": "Techniques for development of high quality systems"
+          "name": "Role Playing Game",
+          "description": "Dice and Papers"
         },
         {
-          "name": "Algorithms",
+          "name": "Card Games",
           "description": "A set of rules to be followed in computation"
         },
         {
-          "name": "Mobile Networks",
-          "description": "Networks created using mobile devices."
+          "name": "Board Games",
+          "description": "A set of rules to be followed in computation"
         },
         {
-          "name": "Sailing",
-          "description": ""
-        },
-        {
-          "name": "Mars",
-          "description": ""
-        },
-        {
-          "name": "Imu Cooking",
-          "description": "Hawaiian practice of cooking in a pit."
-        },
-        {
-          "name": "Scuba",
-          "description": ""
-        },
-        {
-          "name": "Photography",
-          "description": ""
-        },
-        {
-          "name": "Wind surfing",
-          "description": ""
-        },
-        {
-          "name": "Psychology",
-          "description": ""
-        },
-        {
-          "name": "Motorcycling",
-          "description": ""
-        },
-        {
-          "name": "Accreditation",
-          "description": ""
-        },
-        {
-          "name": "Paddling",
-          "description": ""
-        },
-        {
-          "name": "Crossfit",
-          "description": ""
-        },
-        {
-          "name": "Cybersecurity",
-          "description": ""
-        },
-        {
-          "name": "Surfing",
-          "description": ""
-        },
-        {
-          "name": "Computer Vision",
-          "description": ""
-        },
-        {
-          "name": "Martial Arts",
-          "description": ""
-        },
-        {
-          "name": "Evolutionary Computation",
-          "description": ""
+          "name": "Miniatures Games",
+          "description": "A set of rules to be followed in computation"
         }
+
       ]
     },
     {
@@ -91,7 +32,7 @@
           "username": "altenber",
           "bio": "I am an Associate Professor of Information and Computer Sciences at the University of Hawaii.",
           "interests": [
-            "Evolutionary Computation"
+            "Board Games"
           ],
           "title": "Associate Professor, Information and Computer Sciences",
           "picture": "/images/altenberg.jpg"
@@ -102,7 +43,7 @@
           "username": "baek",
           "bio": "I am an Associate Professor of Information and Computer Sciences at the University of Hawaii.",
           "interests": [
-            "Computer Vision"
+            "Role-Playing"
           ],
           "title": "Associate Professor, Information and Computer Sciences",
           "picture": "/images/baek.jpg"
@@ -113,7 +54,7 @@
           "username": "esb",
           "bio": "I am an Associate Professor of Information and Computer Sciences at the University of Hawaii.",
           "interests": [
-            "Mobile Networks",
+            "Card Games",
             "Sailing"
           ],
           "title": "Associate Professor, Information and Computer Sciences",

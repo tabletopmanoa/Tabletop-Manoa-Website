@@ -6,6 +6,8 @@ import { Categories } from '/imports/api/categories/CategoryCollection';
 
 const selectedCategoriesKey = 'selectedCategories';
 
+export const categoryList = ['Role Playing', 'Card Games', 'Board Games', 'Miniatures'];
+
 Template.Games_Page.onCreated(function onCreated() {
   this.subscribe(Games.getPublicationName());
   this.subscribe(Categories.getPublicationName());
@@ -22,25 +24,28 @@ Template.Games_Page.helpers({
     // Find all games with the currently selected interests.
     const allGames = Games.findAll();
     const selectedCategories = Template.instance().messageFlags.get(selectedCategoriesKey);
-    return _.games(allGames, games => _.intersection(games.category, selectedCategories).length > 0);
+    return _.filter(allGames, games => _.intersection(games.category, selectedCategories).length > 0);
   },
 
   categories() {
-    return _.map(Categories.findAll(),
-        function makeCategoriesObject(category) {
+    return _.map(categoryList,
+        function setCategory(category) {
           return {
-            label: category.name,
-            selected: _.contains(Template.instance().messageFlags.get(selectedCategoriesKey), category.name),
-          };
+            label: category };
         });
   },
 });
 
 Template.Games_Page.events({
-  'submit .games-data-form'(event, instance) {
+  'submit .filter-data-form'(event, instance) {
     event.preventDefault();
-    const selectedOptions = _.games(event.target.Categories.selectedOptions, (option) => option.selected);
-    instance.messageFlags.set(selectedCategoriesKey, _.map(selectedOptions, (option) => option.value));
+    const selectedCategories = [];
+    _.each(categoryList, function setCategories (category){
+      if (event.target[category].checked) {
+        selectedCategories.push(event.target[category].value)
+      }
+    });
+    instance.messageFlags.set(selectedCategoriesKey, _.map(selectedCategories, (option) => option.value));
   },
 });
 

@@ -1,0 +1,16 @@
+<template name="Manage_Page" xmlns="http://www.w3.org/1999/html">
+  <img class="ui floated image" style="height: 70px; padding-bottom: -20px" src="/images/dices.jpg">
+  <div class="ui borderless menu">
+    <div class="ui container" style="height: 70px;">
+      <div class="item" ><h1>You have no Games on file!</h1></div>
+      <div class="ui container">
+        <a class="{{isActiveRoute " Games_Page"}} item" href="{{pathFor "Games_Page" username=routeUserName}}">Browse
+        Games</a>
+        <a class="{{isActiveRoute " Profile_Page"}} item" href="{{pathFor "Profile_Page"
+        username=routeUserName}}">Coordinate a Game!</a>
+      </div>
+    </div>
+  </div>
+
+
+</template>
