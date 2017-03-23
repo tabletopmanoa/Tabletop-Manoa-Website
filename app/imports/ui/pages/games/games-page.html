@@ -4,13 +4,18 @@
 
       <form class="ui equal width form filter-data-form">
         <div class="field">
-          {{> Select_Form_Control label="Categories" options=categories multiple=true }}
+          {{> Checkbox_Form_Control label="Choose from the game Categories" checkboxes=categories }}
         </div>
-        <button class="ui teal button" type="submit">Filter</button>
+        <button class="ui orange circular button" type="submit">Filter</button>
       </form>
 
       {{> Games_Page_Directory games=games }}
 
     </div>
   {{/if}}
+
+
+
+
+
 </template>

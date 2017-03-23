@@ -60,6 +60,14 @@ userRoutes.route('/games', {
   },
 });
 
+export const managePageRouteName = 'Manage_Page';
+userRoutes.route('/manage', {
+  name: managePageRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: managePageRouteName });
+  },
+});
+
 export const profilePageRouteName = 'Profile_Page';
 userRoutes.route('/profile', {
   name: profilePageRouteName,

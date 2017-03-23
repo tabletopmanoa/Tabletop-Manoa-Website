@@ -18,7 +18,6 @@ class CategoryCollection extends BaseCollection {
   constructor() {
     super('Categories', new SimpleSchema({
       name: { type: String },
-      description: { type: String, optional: true },
     }));
   }
 
@@ -33,13 +32,12 @@ class CategoryCollection extends BaseCollection {
    * @throws {Meteor.Error} If the interest definition includes a defined name.
    * @returns The newly created docID.
    */
-  define({ name, description }) {
+  define({ name }) {
     check(name, String);
-    check(description, String);
     if (this.find({ name }).count() > 0) {
       throw new Meteor.Error(`${name} is previously defined in another Interest`);
     }
-    return this._collection.insert({ name, description });
+    return this._collection.insert({ name });
   }
 
   /**

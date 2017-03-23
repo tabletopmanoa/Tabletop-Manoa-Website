@@ -1,0 +1,33 @@
+<template name="Directory_Games">
+
+  <div class="card">
+    <div class="content">
+      <img class="right floated mini ui image" src="{{ games.picture }}">
+      <div class="header">
+        {{ games.gameName }}
+      </div>
+      <div style="margin-top: 10px">
+        {{#each categories in games.categories}}
+        <a style="margin-bottom: 2px" class="ui teal tag small label">{{categories}}</a>
+        {{/each}}
+      </div>
+      <div class="meta">
+        {{ games.maxPlayers}}
+      </div>
+      <div class="description">
+        {{ games.about }}
+      </div>
+
+
+    </div>
+    <div class="extra content">
+      <div class="ui equal width center aligned grid">
+        <div class="column"><a href="mailto: games.contact"><i class="big mail icon"></i></a></div>
+        {{#if games.sources }}
+          <div class="column"><a href="games.sources"><i class="big book icon"></i></a></div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+</template>
