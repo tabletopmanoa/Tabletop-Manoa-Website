@@ -24,7 +24,7 @@ If users are following a game, the link will be here. Also would be the informat
 
 
 ## Coordinate a Game
-Allows a student to set up their own games. Would like the 'meeting date' to be similiar to the scheduling app on Google Calender (calendar dropdown, recurrance option with day of week, clock selection)
+Allows a student to set up their own games. Would like the 'meeting date' to be similar to the scheduling app on Google Calendar (calendar dropdown, recurrence option with day of week, clock selection)
 ![image](https://cloud.githubusercontent.com/assets/17040099/24237220/79f1e7fc-0f49-11e7-8559-762d89b1ab2c.png)
 
 
@@ -33,7 +33,8 @@ Four main categories of the games allows users to select all. Games that are act
 ![image](https://cloud.githubusercontent.com/assets/17040099/24237243/972ed000-0f49-11e7-9ef7-c1a85a3337d9.png)
 
 
-## Calender
-Calender shows all games planned in the month. Allows user to browse by date. If overcrowding of events occur, calender will be seperated by category and then game. Initially all games should be shown to prevent the site from looking too 'empty'.
+## Calendar
+Calendar shows all games planned in the month. Allows user to browse by date. If overcrowding of events occur, calendar will be separated by category and then game. Initially all games should be shown to prevent the site from looking too 'empty'.
 ![image](https://cloud.githubusercontent.com/assets/17040099/24237273/b6eb2cc2-0f49-11e7-8501-43e835ac8ca2.png)
+
 
