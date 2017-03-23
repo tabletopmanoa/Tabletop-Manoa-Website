@@ -30,8 +30,7 @@ Allows a student to set up their own games. Would like the 'meeting date' to be 
 
 ## Browse Games 
 Four main categories of the games allows users to select all. Games that are active (not past their play date) in the selected categories should pop up. Selecting the game will give detailed information on the game (the information filled out from coordinate game) and the user can save the game (which will allow for an email push)
-![image](https://cloud.githubusercontent.com/assets/17040099/24240006/2e40b102-0f54-11e7-8423-ce54706622f7.png)
-
+![image](https://cloud.githubusercontent.com/assets/17040099/24240183/d02f91c2-0f54-11e7-94f3-9daff2ded72d.png)
 
 ## Calendar
 Calendar shows all games planned in the month. Allows user to browse by date. If overcrowding of events occur, calendar will be separated by category and then game. Initially all games should be shown to prevent the site from looking too 'empty'.
