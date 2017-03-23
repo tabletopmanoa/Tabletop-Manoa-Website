@@ -24,16 +24,17 @@ If users are following a game, the link will be here. Also would be the informat
 
 
 ## Coordinate a Game
-Allows a student to set up their own games. Would like the date to be similiar to the scheduling app on Google Calender
+Allows a student to set up their own games. Would like the 'meeting date' to be similar to the scheduling app on Google Calendar (calendar dropdown, recurrence option with day of week, clock selection)
 ![image](https://cloud.githubusercontent.com/assets/17040099/24237220/79f1e7fc-0f49-11e7-8559-762d89b1ab2c.png)
 
 
 ## Browse Games 
-Four main categories of the games allows users to select all. Games that are active (not past their play date) in the selected categories should pop up. Selecting the game will give detailed information on the game (the information filled out from coordinate game)
-![image](https://cloud.githubusercontent.com/assets/17040099/24237243/972ed000-0f49-11e7-9ef7-c1a85a3337d9.png)
+Four main categories of the games allows users to select all. Games that are active (not past their play date) in the selected categories should pop up. Selecting the game will give detailed information on the game (the information filled out from coordinate game) and the user can save the game (which will allow for an email push)
+![image](https://cloud.githubusercontent.com/assets/17040099/24240006/2e40b102-0f54-11e7-8423-ce54706622f7.png)
 
 
-## Calender
-Calender shows all games planned in the month. Allows user to browse by date. If overcrowding of events occur, calender will be seperated by category and then game. Initially all games should be shown to prevent the site from looking too 'empty'.
+## Calendar
+Calendar shows all games planned in the month. Allows user to browse by date. If overcrowding of events occur, calendar will be separated by category and then game. Initially all games should be shown to prevent the site from looking too 'empty'.
 ![image](https://cloud.githubusercontent.com/assets/17040099/24237273/b6eb2cc2-0f49-11e7-8501-43e835ac8ca2.png)
+
 
