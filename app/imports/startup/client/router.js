@@ -68,6 +68,14 @@ userRoutes.route('/manage', {
   },
 });
 
+export const newgamePageRouteName = 'NewGame_Page';
+userRoutes.route('/newGame', {
+  name: newgamePageRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: newgamePageRouteName });
+  },
+});
+
 export const profilePageRouteName = 'Profile_Page';
 userRoutes.route('/profile', {
   name: profilePageRouteName,

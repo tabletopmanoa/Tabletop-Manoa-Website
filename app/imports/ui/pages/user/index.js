@@ -1,4 +1,6 @@
 import './manage-page.html';
-import './manage-page';
+import './manage-page.js';
+import './newgame-page.html';
+import './newgame-page.js';
 import './profile-page.html';
-import './profile-page';
+import './profile-page.js';

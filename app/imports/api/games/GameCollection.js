@@ -21,6 +21,8 @@ class GameCollection extends BaseCollection {
       category: { type: [String], optional: true },
       maxPlayers: { type: Number, optional: true },
       gameLength: { type: String, optional: true },
+      location: { type: String, optional: true },
+
       about: { type: String, optional: true },
 
       picture: { type: SimpleSchema.RegEx.Url, optional: true },
@@ -29,15 +31,15 @@ class GameCollection extends BaseCollection {
     }));
   }
 
-  define({ gameName = '', category,  maxPlayers = '', gameLength = '', about = '', picture = '', contact = '', resources = ''})
+  define({ gameName = '', category,  maxPlayers = '', gameLength = '', location='', about = '', picture = '', contact = '', resources = ''})
   {
-    const checkPattern = { gameName: String, maxPlayers: Number, gameLength: String, about: String, picture: String,
+    const checkPattern = { gameName: String, maxPlayers: Number, gameLength: String, about: String, location:String, picture: String,
       contact: String };
-    check({ gameName, category, maxPlayers, gameLength, about, picture, contact, resources }, checkPattern);
+    check({ gameName, category, maxPlayers, location, gameLength, about, picture, contact, resources }, checkPattern);
 
     // Throw an error if any of the passed Categories names are not defined.
     Categories.assertNames(category);
-    return this._collection.insert({ gameName, category, maxPlayers, gameLength, about, picture, contact, resources });
+    return this._collection.insert({ gameName, category, location, maxPlayers, gameLength, about, picture, contact, resources });
   }
 
   /**
@@ -51,11 +53,12 @@ class GameCollection extends BaseCollection {
     const category = doc.category;
     const maxPlayers = doc.maxPlayers;
     const gameLength = doc.gameLength;
+    const location = doc.location;
     const about = doc.about;
     const picture = doc.picture;
     const contact = doc.contact;
     const resources = doc.resources;
-    return { gameName, category, maxPlayers, gameLength, about, picture, contact, resources };
+    return { gameName, category, maxPlayers, gameLength, location, about, picture, contact, resources };
   }
 }
 

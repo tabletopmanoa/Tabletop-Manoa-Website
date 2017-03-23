@@ -1,0 +1,77 @@
+<template name="NewGame_Page">
+
+{{#if Template.subscriptionsReady}}
+
+  <div class="ui text container segment">
+    <div class="ui dividing header">
+      Create own game group
+    </div>
+    <form class="ui equal width form profile-data-form {{ successClass }} {{ errorClass }}">
+
+      <div class="fields">
+        {{> Text_Form_Control label="Name of Game" placeholder="Pathfinder 3.0" value=profile.firstName errorMessage=(fieldError "firstName")}}
+        {{> Text_Form_Control label="Max number of players" placeholder="12" value=profile.title errorMessage=(fieldError "title")}}
+
+      </div>
+
+      <div class="field">
+        {{> Text_Form_Control label="Length of Game" placeholder="4 hours every other week" value=profile.title errorMessage=(fieldError "title")}}
+        {{> Text_Form_Control label="Location" placeholder="Hale Hino Study Hall" value=profile.picture errorMessage=(fieldError "picture")}}
+      </div>
+
+      <div class="field">
+        <fieldset class="form-group">
+          <legend>Game Category</legend>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="Roleplaying" id="optionsRadios1" value="Roleplaying">
+              Roleplaying
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="Card Game" id="optionsRadios2" value="option2">
+              Card Game
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="Board Game" id="optionsRadios3" value="option3">
+              Board Game
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="Miniatures" id="optionsRadios4" value="option4">
+              Miniatures
+            </label>
+          </div>
+        </fieldset>
+        <!--{{> Radio_Form_Control label="Category" options=categories errorMessage=(fieldError "categories") multiple=true }}-->
+        {{> Text_Form_Control label="Meeting Date" options=interests placeholder="04/07/2017 6:00pm repeat:every other week" errorMessage=(fieldError "days") multiple=true }}
+
+      </div>
+
+      <div class="fields">
+
+        {{> Social_Network_Form_Control label="Contact" icon="person" placeholder="iamDM@hawaii.edu" value=profile.github errorMessage=(fieldError "github")}}
+        {{> Text_Form_Control label="resources" placeholder="http://www.d20pfsrd.com/" errorMessage=(fieldError "resources") multiple=true }}
+
+      </div>
+
+      {{> TextArea_Form_Control label="About" value=profile.bio placeholder="Short statement about gameplay for those who never heard of game: Roleplaying game in which you play in a high-fantasy environment slaying monsters and solving puzzles. Required to bring: pencil. Optional: D20 dice set and $5.00 for pizza" errorMessage=(fieldError "about")}}
+
+
+      <button class="ui primary button" type="submit">Submit</button>
+
+      {{#if displaySuccessMessage}}
+        <div class="ui success message">
+          <p>Profile data successfully updated.</p>
+        </div>
+      {{/if}}
+    </form>
+  </div>
+
+  {{/if}}
+
+</template>
