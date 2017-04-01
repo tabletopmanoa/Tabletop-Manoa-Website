@@ -31,7 +31,7 @@ class GameCollection extends BaseCollection {
     }));
   }
 
-  define({ gameName = '', category,  maxPlayers = '', gameLength = '', location='', about = '', picture = '', contact = '', resources = ''})
+    define({ gameName = '', category,  maxPlayers = '', gameLength = '', location='', about = '', picture = '', contact = '', resources = ''})
   {
     const checkPattern = { gameName: String, maxPlayers: Number, gameLength: String, about: String, location:String, picture: String,
       contact: String };

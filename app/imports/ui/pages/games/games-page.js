@@ -29,7 +29,7 @@ Template.Games_Page.helpers({
 
   categories() {
     return _.map(categoryList,
-        function setCategory(category) {
+        function setCategory (category) {
           return {
             label: category };
         });
@@ -48,4 +48,3 @@ Template.Games_Page.events({
     instance.messageFlags.set(selectedCategoriesKey, _.map(selectedCategories, (option) => option.value));
   },
 });
-
