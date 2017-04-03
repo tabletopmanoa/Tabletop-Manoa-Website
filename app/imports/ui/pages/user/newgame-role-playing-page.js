@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
-import { Games } from '/imports/api/games/GameCollection';
+import { Listings } from '/imports/api/listings/ListCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
 
 const displaySuccessMessage = 'displaySuccessMessage';
@@ -36,11 +36,11 @@ export const reoccurringList = ['Reoccurring'];
 
 Template.NewGame_Role_Playing_Page.onCreated(function onCreated() {
   this.subscribe(Categories.getPublicationName());
-  this.subscribe(Games.getPublicationName());
+  this.subscribe(Listings.getPublicationName());
   this.messageFlags = new ReactiveDict();
   this.messageFlags.set(displaySuccessMessage, false);
   this.messageFlags.set(displayErrorMessages, false);
-  this.context = Games.getSchema().namedContext('Game_Page');
+  this.context = Listings.getSchema().namedContext('NewGame_Role_Playing_Page');
 });
 
 Template.NewGame_Role_Playing_Page.helpers({
@@ -59,7 +59,7 @@ Template.NewGame_Role_Playing_Page.helpers({
     return errorObject && Template.instance().context.keyErrorMessage(errorObject.name);
   },
   game() {
-    return Games.findDoc(FlowRouter.getParam('username'));
+    return Listings.findDoc(FlowRouter.getParam('username'));
   },
   games() {
     return gameObjects;
@@ -77,7 +77,7 @@ Template.NewGame_Role_Playing_Page.helpers({
     return _.map(reoccurringList, function makeReoccurringObject(reoccurring) { return { label: reoccurring }; });
   },
   categories() {
-    const game = Games.findDoc(FlowRouter.getParam('username'));
+    const game = Listings.findDoc(FlowRouter.getParam('username'));
     const selectedCategories = game.categories;
     return game && _.map(Categories.findAll(),
             function makeInterestObject(category) {
@@ -89,31 +89,23 @@ Template.NewGame_Role_Playing_Page.helpers({
 Template.NewGame_Role_Playing_Page.events({
   'submit .game-data-form'(event, instance) {
     event.preventDefault();
-    const selectedCategories = _.filter(event.target.Categories.selectedOptions, (option) => option.selected);
+    const category = 'Role Playing Games';
     const gameName = event.target.gameName.value;
     const maxPlayers = event.target.maxPlayers.value;
-    const username = FlowRouter.getParam('username'); // schema requires username.
-    const gameLength = event.target.gameLength.value;
-    const location = event.target.location.value;
-    const about = event.target.about.value;
-    const contact = event.target.contact.value;
-    const resources = event.target.resources.value;
-    const category = _.map(selectedCategories, (option) => option.value);
-    const updatedGameData = { gameName, category, maxPlayers, gameLength, location, about, contact, resources,
-    username };
-
+    const updatedGameData = { category, gameName, maxPlayers };
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that updatedProfileData reflects what will be inserted.
-    Games.getSchema().clean(updatedGameData);
+    Listings.getSchema().clean(updatedGameData);
     // Determine validity.
     instance.context.validate(updatedGameData);
 
     if (instance.context.isValid()) {
-      const docID = Games.findDoc(FlowRouter.getParam('username'))._id;
-      const id = Games.update(docID, { $set: updatedGameData });
+      const docID = Listings.findDoc(FlowRouter.getParam('username'))._id;
+      const id = Listings.update(docID, { $set: updatedGameData });
       instance.messageFlags.set(displaySuccessMessage, id);
       instance.messageFlags.set(displayErrorMessages, false);
+      FlowRouter.go('Browse_Page');
     } else {
       instance.messageFlags.set(displaySuccessMessage, false);
       instance.messageFlags.set(displayErrorMessages, true);

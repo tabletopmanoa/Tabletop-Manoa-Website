@@ -19,3 +19,4 @@ import '/imports/api/profile';
 import '/imports/api/interest';
 import '/imports/api/games';
 import '/imports/api/categories';
+import '/imports/api/listings';

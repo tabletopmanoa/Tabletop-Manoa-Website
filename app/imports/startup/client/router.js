@@ -116,6 +116,14 @@ userRoutes.route('/newGameMini', {
   },
 });
 
+export const browsePageRouteName = 'Browse_Page';
+userRoutes.route('/browse', {
+  name: browsePageRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: browsePageRouteName });
+  },
+});
+
 export const calendarPageRouteName = 'Calendar_Page';
 userRoutes.route('/calendar', {
   name: calendarPageRouteName,
