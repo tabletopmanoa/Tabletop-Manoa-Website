@@ -8,9 +8,31 @@ import { Categories } from '/imports/api/categories/CategoryCollection';
 const displaySuccessMessage = 'displaySuccessMessage';
 const displayErrorMessages = 'displayErrorMessages';
 
-export const categoryList = ['Role Playing Games', 'Card Games', 'Board Games', 'Miniatures'];
+export const gameObjects = [{ label: 'Star Wars: X-Wing', value: '1' },
+  { label: 'War Machine', value: '2' },
+  { label: 'Hordes', value: '3' },
+  { label: 'War Hammer', value: '4' },
+  { label: 'Other', value: '5' }];
 
-Template.NewGame_Page.onCreated(function onCreated() {
+export const maxPlayerObjects = [{ label: '2 players', value: '2' },
+  { label: '3 players', value: '3' },
+  { label: '4 players', value: '4' },
+  { label: '5 players', value: '5' },
+  { label: '6 players', value: '6' },
+  { label: '7 players', value: '7' },
+  { label: '8 players', value: '8' },
+  { label: '9 players', value: '9' },
+  { label: '10+ players', value: '10' }];
+
+export const lengthObjects = [{ label: '1 hour', value: '1' },
+  { label: '2 hours', value: '2' },
+  { label: '3 hours', value: '3' },
+  { label: '4+ hours', value: '4' }];
+
+export const smokingList = ['Allowed'];
+export const reoccurringList = ['Reoccurring'];
+
+Template.NewGame_Miniatures_Games_Page.onCreated(function onCreated() {
   this.subscribe(Categories.getPublicationName());
   this.subscribe(Games.getPublicationName());
   this.messageFlags = new ReactiveDict();
@@ -19,7 +41,7 @@ Template.NewGame_Page.onCreated(function onCreated() {
   this.context = Games.getSchema().namedContext('Game_Page');
 });
 
-Template.NewGame_Page.helpers({
+Template.NewGame_Miniatures_Games_Page.helpers({
   successClass() {
     return Template.instance().messageFlags.get(displaySuccessMessage) ? 'success' : '';
   },
@@ -37,14 +59,32 @@ Template.NewGame_Page.helpers({
   game() {
     return Games.findDoc(FlowRouter.getParam('username'));
   },
+  games() {
+    return gameObjects;
+  },
+  players() {
+    return maxPlayerObjects;
+  },
+  gameLength() {
+    return lengthObjects;
+  },
+  smoking() {
+    return _.map(smokingList, function makeSmokingObject(smoking) { return { label: smoking }; });
+  },
+  reoccurring() {
+    return _.map(reoccurringList, function makeReoccurringObject(reoccurring) { return { label: reoccurring }; });
+  },
   categories() {
-    return _.map(categoryList, function makeCategoryObject(category) {
-      return { label: category };
-    });
+    const game = Games.findDoc(FlowRouter.getParam('username'));
+    const selectedCategories = game.categories;
+    return game && _.map(Categories.findAll(),
+            function makeInterestObject(category) {
+              return { label: category.name, selected: _.contains(selectedCategories, category.name) };
+            });
   },
 });
 
-Template.NewGame_Page.events({
+Template.NewGame_Miniatures_Games_Page.events({
   'submit .game-data-form'(event, instance) {
     event.preventDefault();
     const selectedCategories = _.filter(event.target.Categories.selectedOptions, (option) => option.selected);
@@ -58,7 +98,7 @@ Template.NewGame_Page.events({
     const resources = event.target.resources.value;
     const category = _.map(selectedCategories, (option) => option.value);
     const updatedGameData = { gameName, category, maxPlayers, gameLength, location, about, contact, resources,
-      username };
+    username };
 
     // Clear out any old validation errors.
     instance.context.resetValidation();
@@ -78,3 +118,4 @@ Template.NewGame_Page.events({
     }
   },
 });
+
