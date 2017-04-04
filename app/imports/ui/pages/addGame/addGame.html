@@ -1,121 +1,43 @@
 <template name="AddGame_Page">
-  <div class="ui raised very padded inverted container segment" style="color: black; font-size: large">
-
-    {{#if Template.subscriptionsReady}}
-    <div style="margin-top: 10px" class="ui menu">
-
-      <form class="ui equal width form games-data-form">
-        <div class="field" style="align-content: center; color: black; font-size: large"> Choose from the game
-          Categories
-          {{> Checkbox_Form_Control label="" checkboxes=categories
-          }}
-        </div>
-        <button class="ui black circular button" type="submit">Filter</button>
-      </form>
-
-      <!--{{> Games_Page_Directory games=games }}-->
+  {{#if Template.subscriptionsReady}}
+  <div class="ui text container segment">
+    <div class="ui dividing header">
+      Create Your Own Board Game Group - Step 2
     </div>
-    <div style="margin-top: 10px" class="ui menu">
+    <form class="ui equal width form profile-data-form {{ successClass }} {{ errorClass }}">
+      <div class="fields">
+        {{> Select_Form_Control label="Game Name" required=true options=games errorMessage=(fieldError "games") }}
+        {{> Select_Form_Control label="Max players" required=true options=players errorMessage=(fieldError "players") }}
+      </div>
+      <div class="field">
+        {{> Select_Form_Control label="Approx. Length of Game (in Hours)" required=optional options=gameLength errorMessage=(fieldError "gameLength") }}
+        {{> Text_Form_Control label="Location" placeholder="Hale Hino Study Hall" required=true value=profile.picture errorMessage=(fieldError "picture")}}
+      </div>
+      <div class="field">
+        {{> Checkbox_Form_Control label="Are Smoking and Alcohol Permitted?" checkboxes=smoking }}
+      </div>
+      <div class="fields">
+        {{> Text_Form_Control label="Meeting Date" required=true options=interests placeholder="04/07/2017" errorMessage=(fieldError "days") multiple=true }}
+        {{> Text_Form_Control label="Meeting Time" required=true options=interests placeholder="6:00pm" errorMessage=(fieldError "time") multiple=true }}
+      </div>
+      <div class="field">
+        {{> Checkbox_Form_Control label="Is this Meeting reoccuring?" checkboxes=reoccurring }}
+      </div>
+      <div class="fields">
+        {{> Social_Network_Form_Control label="Contact" required=true icon="person" placeholder="iamDM@hawaii.edu" value=profile.github errorMessage=(fieldError "github")}}
+        {{> Text_Form_Control label="Resources" placeholder="http://www.d20pfsrd.com/" errorMessage=(fieldError "resources") multiple=true }}
+      </div>
 
-      <form class="ui equal width form games-data-form">
-        <div class="field" style="align-content: center; color: black; font-size: large"> Choose from the available
-          card
-          games
-          <div class="ui checkbox">
-            <input type="checkbox" name="example1">
-            <label>Magic the Gathering</label>
-          </div>
-          <div class="ui checkbox">
-            <input type="checkbox" name="example2">
-            <label>Exploding Kittens</label>
-          </div>
-          <div class="ui checkbox">
-            <input type="checkbox" name="example3">
-            <label>Spades</label>
-          </div>
-        </div>
-        <button class="ui black circular button" type="submit">Filter</button>
-      </form>
+      {{> TextArea_Form_Control label="About" value=profile.bio placeholder="Short statement about gameplay for those who never heard of game: Roleplaying game in which you play in a high-fantasy environment slaying monsters and solving puzzles. Required to bring: pencil. Optional: D20 dice set and $5.00 for pizza" errorMessage=(fieldError "about")}}
 
-    </div>
+      <button class="ui primary button" type="submit">Submit</button>
 
-    <div style="margin-top: 10px" class="ui menu">
-
-      <form class="ui equal width form games-data-form">
-        <div class="field" style="align-content: center; color: black; font-size: large">
-          <div class="ui four column doubling stackable grid container">
-            <div class="column">
-              Exploding Kittens
-              <img class="ui small image" style="padding: 5px" src="/images/exkitten.png">
-              <button class="ui orange circular button" type="submit">Save Game</button>
-            </div>
-            <div class="column">
-              <div class="ui list">
-                <div class="item">
-                  <img class="ui avatar image" src="/images/johnson.jpg">
-                  <div class="content">
-                    <div class="header">max players</div>
-                    5
-                  </div>
-                </div>
-                <div class="item">
-                  <img class="ui avatar image" src="/images/clock.png">
-                  <div class="content">
-                    <div class="header">Game length</div>
-                    30 min
-                  </div>
-                </div>
-                <div class="item">
-                  <img class="ui avatar image" src="/images/bldg.png">
-                  <div class="content">
-                    <div class="header">Location</div>
-                    ICSpace - POST Bldg rm308
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="column">
-              <div class="ui list">
-                <div class="item">
-                  <img class="ui avatar image" src="/images/smile.jpg">
-                  <div class="content">
-                    <div class="header">Contact</div>
-                    kodayv@hawaii.edu
-                  </div>
-                </div>
-                <div class="item">
-                  <img class="ui avatar image" src="/images/comp.jpg">
-                  <div class="content">
-                    <div class="header">resources</div>
-                    <a href="https://www.explodingkittens.com/">explodingkittens.com</a>
-                  </div>
-                </div>
-                <div class="item">
-                  <img class="ui avatar image" src="/images/calendar.jpg">
-                  <div class="content">
-                    <div class="header">When</div>
-                    05/01/2017 2:00 pm
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="column">
-              <div class="ui list">
-                <div class="item">
-                  <div class="content">
-                    <div class="header">About</div>
-                    Come play a quick card game that is crazy and fun! It is really easy to learn and lots of laughs
-                    to be had! See sources for more details!
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-
-    </div>
-    {{/if}}
-
+      {{#if displaySuccessMessage}}
+      <div class="ui success message">
+        <p>Profile data successfully updated.</p>
+      </div>
+      {{/if}}
+    </form>
   </div>
+  {{/if}}
 </template>
