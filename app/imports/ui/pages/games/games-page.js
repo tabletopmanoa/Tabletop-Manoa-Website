@@ -3,6 +3,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { _ } from 'meteor/underscore';
 import { Games } from '/imports/api/games/GameCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
+import { Listings } from '/imports/api/listings/ListCollection';
 
 const selectedCategoriesKey = 'selectedCategories';
 
@@ -42,7 +43,7 @@ Template.Games_Page.events({
     const selectedCategories = [];
     _.each(categoryList, function setCategories (category){
       if (event.target[category].checked) {
-        selectedCategories.push(event.target[category].value)
+        selectedCategories.push(event.target[category].value);
       }
     });
     instance.messageFlags.set(selectedCategoriesKey, _.map(selectedCategories, (option) => option.value));
