@@ -7,6 +7,7 @@ import { Meteor } from 'meteor/meteor';
 import { expect } from 'chai';
 import { removeAllEntities } from '/imports/api/base/BaseUtilities';
 
+
 if (Meteor.isServer) {
   describe('GameCollection', function testSuite() {
     const categoryName = 'roleplaying'
