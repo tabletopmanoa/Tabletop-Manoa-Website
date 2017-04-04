@@ -1,4 +1,12 @@
 <template name="Calendar_Page">
+  <script type='javascript' src='fullcalendar-3.3.1/gcal.js'>
+    $('#calendar').fullCalendar('changeView', 'listWeek');
+  </script>
+  <div style="margin-top: 10px" class="ui container">
+    {{> fullcalendar options id="calendar"}}
 
-  {{> fullcalendar }}
+    <!--<iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;bgcolor=%23666666&amp;src=hawaii.edu_je2p1nmo99jntmelkgsh8m5vjo%40group.calendar.google.com&amp;ctz=Pacific/Honolulu" style="border: 20px" width="900" height="700" frameborder="20px" scrolling="no"></iframe>-->
+
+  </div>
+
 </template>

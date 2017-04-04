@@ -1,2 +1,10 @@
 import './calendar-page.html';
 import './calendar-page.css';
+import './calendar-page.js';
+// import './fullcalendar-3.3.1/fullcalendar.js';
+// import './fullcalendar-3.3.1/fullcalendar.css';
+// import './fullcalendar-3.3.1/fullcalendar.min';
+// import './fullcalendar-3.3.1/fullcalendar.print.css';
+// import './fullcalendar-3.3.1/fullcalendar.print.min.css';
+// import './fullcalendar-3.3.1/gcal.js';
+// import './fullcalendar-3.3.1/gcal.min';
