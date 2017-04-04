@@ -17,5 +17,5 @@ import './newgame-mini-page.js';
 import './profile-page.html';
 import './profile-page.js';
 
-import './browse-page.html';
-import './browse-page.js';
+// import './browse-page.html';
+// import './browse-page.js';
