@@ -6,6 +6,7 @@ import { removeAllEntities } from '/imports/api/base/BaseUtilities';
 /* eslint prefer-arrow-callback: "off", no-unused-expressions: "off" */
 /* eslint-env mocha */
 
+
 if (Meteor.isServer) {
   describe('InterestCollection', function testSuite() {
     const name = 'Software Engineering';

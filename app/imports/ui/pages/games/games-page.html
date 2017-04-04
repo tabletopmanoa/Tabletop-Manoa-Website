@@ -1,6 +1,5 @@
 <template name="Games_Page" style="padding: 15%">
 
-  <div class="ui raised very padded inverted container segment" style="color: black; font-size: large">
 
     {{#if Template.subscriptionsReady}}
       <div style="margin-top: 10px" class="ui menu">
@@ -42,7 +41,8 @@
 
       <div style="margin-top: 10px" class="ui menu">
 
-        <form class="ui equal width form games-data-form">
+
+        <form class="ui card games-data-form centered" style=" padding-top:5px;width:95%;">
           <div class="field" style="align-content: center; color: black; font-size: large">
             <div class="ui four column doubling stackable grid container">
               <div class="column">
@@ -52,20 +52,27 @@
               </div>
               <div class="column">
                 <div class="ui list">
+                  <!-- Max Players -->
                   <div class="item">
-                    <img class="ui avatar image" src="/images/johnson.jpg">
+                    <i class="ui circular user inverted big icon avatar image" ></i>
                     <div class="content">
                       <div class="header">max players</div>
                       5
                     </div>
                   </div>
+                  <!-- End Max Players -->
+
+                  <!-- Game Length -->
                   <div class="item">
-                    <img class="ui avatar image" src="/images/clock.png">
+                    <i class="ui circular hourglass empty inverted big icon avatar image" ></i>
                     <div class="content">
                       <div class="header">Game length</div>
                       30 min
                     </div>
                   </div>
+                  <!-- End Game Length -->
+
+                  <!-- Location -->
                   <div class="item">
                     <img class="ui avatar image" src="/images/bldg.png">
                     <div class="content">
@@ -73,6 +80,7 @@
                       ICSpace - POST Bldg rm308
                     </div>
                   </div>
+                  <!-- End Location -->
                 </div>
               </div>
               <div class="column">
@@ -102,12 +110,14 @@
               </div>
               <div class="column">
                 <div class="ui list">
+                  <br>
                   <div class="item">
-                    <div class="content">
-                      <div class="header">About</div>
-                      Come play a quick card game that is crazy and fun! It is really easy to learn and lots of laughs
-                      to be had! See sources for more details!
-                    </div>
+
+                    <button class="ui button blue"> Join Us!</button>
+                  </div>
+                  <br>
+                  <div class="item">
+                    <button class="ui button blue"> More Information</button>
                   </div>
                 </div>
               </div>
@@ -115,8 +125,9 @@
           </div>
         </form>
 
+
       </div>
     {{/if}}
 
-  </div>
+
 </template>

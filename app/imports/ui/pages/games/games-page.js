@@ -4,6 +4,7 @@ import { _ } from 'meteor/underscore';
 import { Games } from '/imports/api/games/GameCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
 
+
 const selectedCategoriesKey = 'selectedCategories';
 
 export const categoryList = ['Role Playing', 'Card Games', 'Board Games', 'Miniatures'];

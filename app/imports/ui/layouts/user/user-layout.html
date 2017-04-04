@@ -1,7 +1,11 @@
 <template name="User_Layout">
   {{#If_Authorized}}
     {{> User_Header}}
+  <div class="ui raised padded container white" style="color: black; font-size: large;padding:10px; background-color:white;margin-top:20px;margin-bottom:20px;padding-top:30px;padding-bottom:50px;border-radius:5px;">
     {{>Template.dynamic template=main}}
+
+
+  </div>
     {{> User_Footer}}
   {{/If_Authorized}}
 </template>
