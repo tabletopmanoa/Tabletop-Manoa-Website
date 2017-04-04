@@ -1,7 +1,10 @@
 <template name="User_Layout">
   {{#If_Authorized}}
     {{> User_Header}}
+  <!-- This is the universal container around all main pages, the height is set to send ia little passed the bottom to make the page feel complete -->
+    <div class="ui container raised very padded" style="background-color:white; min-height:90vh;padding:30px; color: black; font-size: large">
     {{>Template.dynamic template=main}}
+    </div>
     {{> User_Footer}}
   {{/If_Authorized}}
 </template>
