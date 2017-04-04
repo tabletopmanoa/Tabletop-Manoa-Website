@@ -1,20 +1,20 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
-import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
-import { Listings } from '/imports/api/listings/ListCollection';
+import { GameTemplate, GameSchema } from '../../../api/template/template.js';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { Meteor } from 'meteor/meteor';
+import { Games } from '/imports/api/games/GameCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
 
 const displaySuccessMessage = 'displaySuccessMessage';
 const displayErrorMessages = 'displayErrorMessages';
 
-export const gameObjects = [{ label: 'Dungeons & Dragons', value: '1' },
-  { label: 'Shadowrun', value: '2' },
-  { label: 'Call of Cthulhu', value: '3' },
-  { label: 'Vampire: The Masquerade', value: '4' },
-  { label: 'Star Wars The Roleplaying Game', value: '5' },
-  { label: 'Pathfinder Roleplaying Game', value: '6' },
-  { label: 'Other', value: '7' }];
+export const gameObjects = [{ label: 'Chess', value: '1' },
+  { label: 'Monopoly', value: '2' },
+  { label: 'Scrabble', value: '3' },
+  { label: 'Backgammon', value: '4' },
+  { label: 'Other', value: '5' }];
 
 export const maxPlayerObjects = [{ label: '2 players', value: '2' },
   { label: '3 players', value: '3' },
@@ -34,22 +34,16 @@ export const lengthObjects = [{ label: '1 hour', value: '1' },
 export const smokingList = ['Allowed'];
 export const reoccurringList = ['Reoccurring'];
 
-Template.NewGame_Role_Playing_Page.onCreated(function onCreated() {
+
+Template.AddGame_Page.onCreated(function onCreated() {
   this.subscribe(Categories.getPublicationName());
-  this.subscribe(Listings.getPublicationName());
+  this.subscribe(Games.getPublicationName());
   this.messageFlags = new ReactiveDict();
-  this.messageFlags.set(displaySuccessMessage, false);
   this.messageFlags.set(displayErrorMessages, false);
-  this.context = Listings.getSchema().namedContext('NewGame_Role_Playing_Page');
+  this.context = GameSchema.namedContext('AddGame_Page');
 });
 
-Template.NewGame_Role_Playing_Page.helpers({
-  successClass() {
-    return Template.instance().messageFlags.get(displaySuccessMessage) ? 'success' : '';
-  },
-  displaySuccessMessage() {
-    return Template.instance().messageFlags.get(displaySuccessMessage);
-  },
+Template.AddGame_Page.helpers({
   errorClass() {
     return Template.instance().messageFlags.get(displayErrorMessages) ? 'error' : '';
   },
@@ -59,7 +53,7 @@ Template.NewGame_Role_Playing_Page.helpers({
     return errorObject && Template.instance().context.keyErrorMessage(errorObject.name);
   },
   game() {
-    return Listings.findDoc(FlowRouter.getParam('username'));
+    return Games.findDoc(FlowRouter.getParam('username'));
   },
   games() {
     return gameObjects;
@@ -77,7 +71,7 @@ Template.NewGame_Role_Playing_Page.helpers({
     return _.map(reoccurringList, function makeReoccurringObject(reoccurring) { return { label: reoccurring }; });
   },
   categories() {
-    const game = Listings.findDoc(FlowRouter.getParam('username'));
+    const game = Games.findDoc(FlowRouter.getParam('username'));
     const selectedCategories = game.categories;
     return game && _.map(Categories.findAll(),
             function makeInterestObject(category) {
@@ -86,28 +80,34 @@ Template.NewGame_Role_Playing_Page.helpers({
   },
 });
 
-Template.NewGame_Role_Playing_Page.events({
-  'submit .game-data-form'(event, instance) {
+
+Template.AddGame_Page.events({
+  'submit .contact-data-form'(event, instance) {
     event.preventDefault();
-    const category = 'Role Playing Games';
-    const gameName = event.target.gameName.value;
-    const maxPlayers = event.target.maxPlayers.value;
-    const updatedGameData = { category, gameName, maxPlayers };
+    // Get name (text field)
+    const gameName = event.target.GameName.value;
+    const category = event.target.Category.value;
+    const maxPlayers = event.target.MaxPlayers.value;
+    const gameLength = event.target.GameLength.value;
+    const location = event.target.Location.value;
+    const about = event.target.About.value;
+    const picture = event.target.Picture.value;
+    const contact = event.target.Contact.value;
+    const resources = event.target.Resources.value;
+
+    const newContactData = { gameName, category, maxPlayers, gameLength, location, about, picture, contact, resources };
     // Clear out any old validation errors.
     instance.context.resetValidation();
-    // Invoke clean so that updatedProfileData reflects what will be inserted.
-    Listings.getSchema().clean(updatedGameData);
+    // Invoke clean so that newContactData reflects what will be inserted.
+   GameSchema.clean(newContactData);
     // Determine validity.
-    instance.context.validate(updatedGameData);
-
+    instance.context.validate(newContactData);
     if (instance.context.isValid()) {
-      const docID = Listings.findDoc(FlowRouter.getParam('username'))._id;
-      const id = Listings.update(docID, { $set: updatedGameData });
-      instance.messageFlags.set(displaySuccessMessage, id);
+      GameTemplate.insert(newContactData);
       instance.messageFlags.set(displayErrorMessages, false);
-      FlowRouter.go('Browse_Page');
+      const username = Meteor.user().profile.name;
+      FlowRouter.go(`/${username}/template`);
     } else {
-      instance.messageFlags.set(displaySuccessMessage, false);
       instance.messageFlags.set(displayErrorMessages, true);
     }
   },

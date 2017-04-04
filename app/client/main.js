@@ -13,9 +13,14 @@ import '/imports/ui/pages/games';
 import '/imports/ui/pages/landing';
 import '/imports/ui/pages/user';
 import '/imports/ui/pages/calendar';
+import '/imports/ui/pages/browseGames';
+import '/imports/ui/pages/addGame';
 import '/imports/ui/stylesheets/style.css';
 import '/imports/api/base';
 import '/imports/api/profile';
 import '/imports/api/interest';
 import '/imports/api/games';
 import '/imports/api/categories';
+import '/imports/api/listings';
+import '/imports/api/template';
+

@@ -6,7 +6,11 @@
     <form class="ui equal width form profile-data-form {{ successClass }} {{ errorClass }}">
 
       {{> Radio_Form_Control label="Category" name="Category" required=true radios=categories errorMessage=(fieldError "category") }}
-      <button class="ui primary button" type="submit">Submit</button>
+
+
+      <button class="ui button"> <a class="{{isActiveRoute "NewGame_Role_Playing_Page"}} item" href="{{pathFor "NewGame_Role_Playing_Page" username=routeUserName}}">Submit</a></button>
+
+
       {{#if displaySuccessMessage}}
         <div class="ui success message">
           <p>Data successful</p>
