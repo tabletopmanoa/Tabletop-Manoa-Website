@@ -6,8 +6,8 @@
     </div>
     <form class="ui equal width form profile-data-form {{ successClass }} {{ errorClass }}">
       <div class="fields">
-        {{> Select_Form_Control label="Game Name" required=true options=games errorMessage=(fieldError "games") }}
-        {{> Select_Form_Control label="Max players" required=true options=players errorMessage=(fieldError "players") }}
+        {{> Select_Form_Control label="GameName" required=true options=games errorMessage=(fieldError "games") }}
+        {{> Select_Form_Control label="Maxplayers" required=true options=players errorMessage=(fieldError "players") }}
       </div>
       <div class="field">
         {{> Select_Form_Control label="Approx. Length of Game (in Hours)" required=optional options=gameLength errorMessage=(fieldError "gameLength") }}
