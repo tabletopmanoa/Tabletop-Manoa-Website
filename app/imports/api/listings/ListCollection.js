@@ -23,7 +23,7 @@ class ListCollection extends BaseCollection {
     }));
   }
 
-    define({ category = '', gameName = '',  maxPlayers = '' })
+    define({ category = '', gameName = '', maxPlayers = '' })
   {
     const checkPattern = { category: String, gameName: String, maxPlayers: Number };
     check({ category, gameName, maxPlayers });
