@@ -1,15 +1,11 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Mongo } from 'meteor/mongo';
 
-export const Listing = new Mongo.Collection('listing');
+export const Listings = new Mongo.Collection('Listings');
 /**
  *  Creating the schema for GameData
  */
-export const GameDataSchema = new SimpleSchema({
-  username: {
-    label: 'User name',
-    type: String,
-  },
+export const ListingsSchema = new SimpleSchema({
   category: {
     label: 'Category',
     type: String,
@@ -24,4 +20,4 @@ export const GameDataSchema = new SimpleSchema({
   },
 });
 
-Listing.attachSchema(GameDataSchema);
+Listings.attachSchema(ListingsSchema);

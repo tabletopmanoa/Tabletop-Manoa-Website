@@ -6,7 +6,7 @@ Template.Browse_Page.helpers({
   /**
    * @returns {*} All of the listings documents.
    */
-  ListingsList() {
+  listingsList() {
     return Listings.find();
   },
 });

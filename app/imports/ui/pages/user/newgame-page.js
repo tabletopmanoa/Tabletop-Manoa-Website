@@ -4,9 +4,8 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { Games } from '/imports/api/games/GameCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
-import { Listings } from '/imports/api/listings/ListCollection';
+import { Listings, ListingsSchema } from '/imports/api/listings/ListCollection';
 
-const displaySuccessMessage = 'displaySuccessMessage';
 const displayErrorMessages = 'displayErrorMessages';
 
 export const categoryList = ['Role Playing Games', 'Card Games', 'Board Games', 'Miniatures'];
@@ -54,18 +53,11 @@ Template.NewGame_Page.onCreated(function onCreated() {
   this.subscribe(Categories.getPublicationName());
   this.subscribe(Games.getPublicationName());
   this.messageFlags = new ReactiveDict();
-  this.messageFlags.set(displaySuccessMessage, false);
   this.messageFlags.set(displayErrorMessages, false);
-  this.context = Games.getSchema().namedContext('NewGame_Page');
+  this.context = ListingsSchema.namedContext('NewGame_Page');
 });
 
 Template.NewGame_Page.helpers({
-  successClass() {
-    return Template.instance().messageFlags.get(displaySuccessMessage) ? 'success' : '';
-  },
-  displaySuccessMessage() {
-    return Template.instance().messageFlags.get(displaySuccessMessage);
-  },
   errorClass() {
     return Template.instance().messageFlags.get(displayErrorMessages) ? 'error' : '';
   },
@@ -122,9 +114,9 @@ Template.NewGame_Page.events({
   'submit .game-data-form'(event, instance) {
     event.preventDefault();
     const username = FlowRouter.getParam('username'); // schema requires username.
-    const category = event.target.cat.value;
-    const gameName = event.target.gameName.value;
-    const maxPlayers = event.target.maxPlayers.value;
+    const category = event.target.Category.value;
+    const gameName = event.target.Game.value;
+    const maxPlayers = event.target.Maxplayers.value;
     const gameLength = event.target.gameLength.value;
     const location = event.target.location.value;
     const smoking = event.target.smoking.value;
@@ -135,23 +127,21 @@ Template.NewGame_Page.events({
     const recurring = event.target.reocurring.value;
     const contact = event.target.contact.value;
     const resources = event.target.resources.value;
-    const updatedGameData = { username, category, gameName, maxPlayers };
 
+    const updatedGameData = { category, gameName, maxPlayers };
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that updatedProfileData reflects what will be inserted.
-    Listings.getSchema().clean(updatedGameData);
+    ListingsSchema.clean(updatedGameData);
     // Determine validity.
     instance.context.validate(updatedGameData);
 
     if (instance.context.isValid()) {
-      const docID = Games.findDoc(FlowRouter.getParam('username'))._id;
-      const id = Games.update(docID, { $set: updatedGameData });
-      instance.messageFlags.set(displaySuccessMessage, id);
+
+      Listings.insert(updatedGameData);
       instance.messageFlags.set(displayErrorMessages, false);
       FlowRouter.go('Browse_Page');
     } else {
-      instance.messageFlags.set(displaySuccessMessage, false);
       instance.messageFlags.set(displayErrorMessages, true);
     }
   },
