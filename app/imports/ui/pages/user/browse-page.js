@@ -7,10 +7,10 @@ Template.Browse_Page.helpers({
    * @returns {*} All of the listings documents.
    */
   ListingsList() {
-    return Listing.find();
+    return Listings.find();
   },
 });
 
 Template.Browse_Page.onCreated(function onCreated() {
-  this.subscribe('Listing');
+  this.subscribe('Listings');
 });

@@ -4,19 +4,19 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { Games } from '/imports/api/games/GameCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
-import { Listings } from '/imports/api/listings/listCollections';
+import { Listings } from '/imports/api/listings/ListCollection';
 
 const displaySuccessMessage = 'displaySuccessMessage';
 const displayErrorMessages = 'displayErrorMessages';
 
 export const categoryList = ['Role Playing Games', 'Card Games', 'Board Games', 'Miniatures'];
-export const gamerpgObjects = [{ label: 'Dungeons & Dragons', value: '1' },
-  { label: 'Shadowrun', value: '2' },
-  { label: 'Call of Cthulhu', value: '3' },
-  { label: 'Vampire: The Masquerade', value: '4' },
-  { label: 'Star Wars The Roleplaying Game', value: '5' },
-  { label: 'Pathfinder Roleplaying Game', value: '6' },
-  { label: 'Other', value: '7' }];
+export const gamerpgObjects = [{ label: 'Dungeons & Dragons', value: 'Dungeons & Dragons' },
+  { label: 'Shadowrun', value: 'Shadowrun' },
+  { label: 'Call of Cthulhu', value: 'Call of Cthulhu' },
+  { label: 'Vampire: The Masquerade', value: 'Vampire: The Masquerade' },
+  { label: 'Star Wars The Roleplaying Game', value: 'Star Wars The Roleplaying Game' },
+  { label: 'Pathfinder Roleplaying Game', value: 'Pathfinder Roleplaying Game' },
+  { label: 'Other', value: 'Other' }];
 export const gamecardObjects = [{ label: 'Poker', value: '1' },
   { label: 'Rummy', value: '2' },
   { label: 'Cribbage', value: '3' },
@@ -48,7 +48,7 @@ export const lengthObjects = [{ label: '1 hour', value: '1' },
   { label: '4+ hours', value: '4' }];
 export const smokingList = ['Allowed'];
 export const alcoholList = ['Allowed'];
-export const reoccurringList = ['Reoccurring'];
+export const recurringList = ['Recurring'];
 
 Template.NewGame_Page.onCreated(function onCreated() {
   this.subscribe(Categories.getPublicationName());
@@ -56,7 +56,7 @@ Template.NewGame_Page.onCreated(function onCreated() {
   this.messageFlags = new ReactiveDict();
   this.messageFlags.set(displaySuccessMessage, false);
   this.messageFlags.set(displayErrorMessages, false);
-  this.context = Games.getSchema().namedContext('NewGame_Role_Playing_Page');
+  this.context = Games.getSchema().namedContext('NewGame_Page');
 });
 
 Template.NewGame_Page.helpers({
@@ -111,9 +111,9 @@ Template.NewGame_Page.helpers({
       return { label: alcohol };
     });
   },
-  reoccurring() {
-    return _.map(reoccurringList, function makeReoccurringObject(reoccurring) {
-      return { label: reoccurring };
+  recurring() {
+    return _.map(recurringList, function makeRecurringObject(recurring) {
+      return { label: recurring };
     });
   },
 });
@@ -132,7 +132,7 @@ Template.NewGame_Page.events({
     const about = event.target.about.value;
     const date = event.target.date.value;
     const time = event.target.date.value;
-    const recurring = event.target.recurring.value;
+    const recurring = event.target.reocurring.value;
     const contact = event.target.contact.value;
     const resources = event.target.resources.value;
     const updatedGameData = { username, category, gameName, maxPlayers };
@@ -149,6 +149,7 @@ Template.NewGame_Page.events({
       const id = Games.update(docID, { $set: updatedGameData });
       instance.messageFlags.set(displaySuccessMessage, id);
       instance.messageFlags.set(displayErrorMessages, false);
+      FlowRouter.go('Browse_Page');
     } else {
       instance.messageFlags.set(displaySuccessMessage, false);
       instance.messageFlags.set(displayErrorMessages, true);
