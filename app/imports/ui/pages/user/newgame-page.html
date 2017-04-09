@@ -3,7 +3,7 @@
     <div class="ui dividing header">
       Create your own game group
     </div>
-    <form class="ui equal width form game-data-form {{ successClass }} {{ errorClass }}">
+    <form class="ui equal width form game-data-form {{ errorClass }}">
       <label>Category</label>
       <hr/>
       <form id='category-id'>
@@ -14,29 +14,29 @@
       </form>
       <div id='rpg' style='display:none'>
         <div class="fields">
-          {{> Select_Form_Control label="Role Playing Game Name" required=true options=gamesrpg errorMessage=(fieldError "gamesrpg") }}
+          {{> Select_Form_Control label="Role Playing Game Name" required=true options=gamesrpg errorMessage=(fieldError "game") }}
           {{> Select_Form_Control label="Max players" required=true options=players errorMessage=(fieldError "players") }}
         </div>
       </div>
       <div id='card' style='display:none'>
         <div class="fields">
-          {{> Select_Form_Control label="Card Game Name" required=true options=gamescard errorMessage=(fieldError "gamescard") }}
+          {{> Select_Form_Control label="Card Game Name" required=true options=gamescard errorMessage=(fieldError "game") }}
           {{> Select_Form_Control label="Max players" required=true options=players errorMessage=(fieldError "players") }}
         </div>
       </div>
       <div id='board' style='display:none'>
         <div class="fields">
-          {{> Select_Form_Control label="Board Game Name" required=true options=gamesboard errorMessage=(fieldError "gamesboard") }}
+          {{> Select_Form_Control label="Board Game Name" required=true options=gamesboard errorMessage=(fieldError "game") }}
           {{> Select_Form_Control label="Max players" required=true options=players errorMessage=(fieldError "players") }}
         </div>
       </div>
       <div id='mini' style='display:none'>
         <div class="fields">
-          {{> Select_Form_Control label="Miniatures Game Name" required=true options=gamesmini errorMessage=(fieldError "gamesmini") }}
+          {{> Select_Form_Control label="Miniatures Game Name" required=true options=gamesmini errorMessage=(fieldError "game") }}
           {{> Select_Form_Control label="Max players" required=true options=players errorMessage=(fieldError "players") }}
         </div>
       </div>
-      <div id='dataFields' style='display:none'>
+      <div id='dataFields' style='display:none' {{ errorClass }}>
         <div class="field">
           {{> Select_Form_Control label="Approx. Length of Game (in Hours)" required=optional options=gameLength errorMessage=(fieldError "gameLength") }}
           {{> Text_Form_Control label="Location" placeholder="Hale Hino Study Hall" required=true value=profile.picture errorMessage=(fieldError "picture")}}
@@ -56,10 +56,8 @@
         </div>
 
         {{> TextArea_Form_Control label="About" value=profile.bio placeholder="Short statement about gameplay for those who never heard of game: Roleplaying game in which you play in a high-fantasy environment slaying monsters and solving puzzles. Required to bring: pencil. Optional: D20 dice set and $5.00 for pizza" errorMessage=(fieldError "about")}}
-      </div>
-      <div id='submitBtnRPG' style='display:none'>
         <br/>
-        <button class="ui primary button" type="submit">Submit</button>
+        <button class="ui large primary button" type="submit">Submit</button>
         {{#if displaySuccessMessage}}
           <div class="ui success message">
             <p>Profile data successfully updated.</p>
@@ -74,7 +72,7 @@
         if ($(this).attr('id') == 'RPG') {
           $('#rpg').show();
           $('#dataFields').show();
-          $('#submitBtnRPG').show();
+        //  $('#submitBtnRPG').show();
           $('#card').hide();
           $('#board').hide();
           $('#mini').hide();
@@ -82,7 +80,7 @@
         else if ($(this).attr('id') == 'Card') {
           $('#card').show();
           $('#dataFields').show();
-          $('#submitBtnRPG').hide();
+          //$('#submitBtnRPG').hide();
           //$('#submitbtn').show();
           $('#rpg').hide();
           $('#board').hide();
@@ -91,7 +89,7 @@
         else if ($(this).attr('id') == 'Board') {
             $('#board').show();
             $('#dataFields').show();
-            $('#submitBtnRPG').hide();
+            //$('#submitBtnRPG').hide();
             //$('#submitBtnRPG').show();
             $('#rpg').hide();
             $('#card').hide();
@@ -100,7 +98,7 @@
         else {
             $('#mini').show();
             $('#dataFields').show();
-            $('#submitBtnRPG').hide();
+            //$('#submitBtnRPG').hide();
             //$('#submitBtnRPG').show();
             $('#rpg').hide();
             $('#card').hide();

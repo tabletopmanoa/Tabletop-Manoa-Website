@@ -1,52 +1,27 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import BaseCollection from '/imports/api/base/BaseCollection';
-import { Categories } from '/imports/api/categories/CategoryCollection';
-import { check } from 'meteor/check';
-import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
 
-/** @module Profile */
-
+export const Listing = new Mongo.Collection('listing');
 /**
- * Profiles provide portfolio data for a user.
- * @extends module:Base~BaseCollection
+ *  Creating the schema for GameData
  */
-class ListCollection extends BaseCollection {
+export const GameDataSchema = new SimpleSchema({
+  username: {
+    label: 'User name',
+    type: String,
+  },
+  category: {
+    label: 'Category',
+    type: String,
+  },
+  gameName: {
+    label: 'Title',
+    type: String,
+  },
+  maxPlayers: {
+    label: 'Maximum Players',
+    type: String,
+  },
+});
 
-  /**
-   * Creates the Listings collection.
-   */
-  constructor() {
-    super('Listings', new SimpleSchema({
-      gameName: { type: String },
-      category: { type: [String], optional: true },
-      maxPlayers: { type: Number, optional: true },
-    }));
-  }
-
-    define({ category = '', gameName = '', maxPlayers = '' })
-  {
-    const checkPattern = { category: String, gameName: String, maxPlayers: Number };
-    check({ category, gameName, maxPlayers });
-    return this._collection.insert({ category, gameName, maxPlayers });
-  }
-
-  /**
-   * Returns an object representing the Profile docID in a format acceptable to define().
-   * @param docID The docID of a Profile.
-   * @returns { Object } An object representing the definition of docID.
-   */
-  dumpOne(docID) {
-    const doc = this.findDoc(docID);
-    const gameName = doc.gameName;
-    const category = doc.category;
-    const maxPlayers = doc.maxPlayers;
-
-    return { category, gameName, maxPlayers };
-  }
-}
-
-/**
- * Provides the singleton instance of this class to all other entities.
- */
-export const Listings = new ListCollection();
-Listing = new Mongo.Collection('listing');
+Listing.attachSchema(GameDataSchema);

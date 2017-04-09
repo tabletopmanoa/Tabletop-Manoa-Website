@@ -4,18 +4,19 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { Games } from '/imports/api/games/GameCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
+import { Listings } from '/imports/api/listings/listCollections';
 
 const displaySuccessMessage = 'displaySuccessMessage';
 const displayErrorMessages = 'displayErrorMessages';
 
 export const categoryList = ['Role Playing Games', 'Card Games', 'Board Games', 'Miniatures'];
-export const gamerpgObjects = [{ label: 'Dungeons & Dragons', value: '1' },
-  { label: 'Shadowrun', value: '2' },
-  { label: 'Call of Cthulhu', value: '3' },
-  { label: 'Vampire: The Masquerade', value: '4' },
-  { label: 'Star Wars The Roleplaying Game', value: '5' },
-  { label: 'Pathfinder Roleplaying Game', value: '6' },
-  { label: 'Other', value: '7' }];
+export const gamerpgObjects = [{ label: 'Dungeons & Dragons', value: 'Dungeons & Dragons' },
+  { label: 'Shadowrun', value: 'Shadowrun' },
+  { label: 'Call of Cthulhu', value: 'Call of Cthulhu' },
+  { label: 'Vampire: The Masquerade', value: 'Vampire: The Masquerade' },
+  { label: 'Star Wars The Roleplaying Game', value: 'Star Wars The Roleplaying Game' },
+  { label: 'Pathfinder Roleplaying Game', value: 'Pathfinder Roleplaying Game' },
+  { label: 'Other', value: 'Other' }];
 export const gamecardObjects = [{ label: 'Poker', value: '1' },
   { label: 'Rummy', value: '2' },
   { label: 'Cribbage', value: '3' },
@@ -121,7 +122,7 @@ Template.NewGame_Page.events({
   'submit .game-data-form'(event, instance) {
     event.preventDefault();
     const username = FlowRouter.getParam('username'); // schema requires username.
-// category
+    const category = event.target.cat.value;
     const gameName = event.target.gameName.value;
     const maxPlayers = event.target.maxPlayers.value;
     const gameLength = event.target.gameLength.value;
@@ -129,20 +130,17 @@ Template.NewGame_Page.events({
     const smoking = event.target.smoking.value;
     const alcohol = event.target.alchohol.value;
     const about = event.target.about.value;
-    //date
-    //time
-    const reoccurring = event.target.reoccurring.value;
+    const date = event.target.date.value;
+    const time = event.target.date.value;
+    const recurring = event.target.recurring.value;
     const contact = event.target.contact.value;
     const resources = event.target.resources.value;
-    //const category = _.map(selectedCategories, (option) => option.value);
-    //
-    // const updatedGameData = { gameName, category, maxPlayers, gameLength, location, about, contact, resources ,username };
-    const updatedGameData = { username, gameName, maxPlayers, gameLength, location, smoking, alcohol, about, reoccurring, contact, resources };
+    const updatedGameData = { username, category, gameName, maxPlayers };
 
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that updatedProfileData reflects what will be inserted.
-    Games.getSchema().clean(updatedGameData);
+    Listings.getSchema().clean(updatedGameData);
     // Determine validity.
     instance.context.validate(updatedGameData);
 
