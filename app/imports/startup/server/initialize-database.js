@@ -3,6 +3,7 @@ import { Profiles } from '/imports/api/profile/ProfileCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
 import { Games } from '/imports/api/games/GameCollection';
+import { Listings } from '/imports/api/listings/ListCollection';
 
 import { _ } from 'meteor/underscore';
 

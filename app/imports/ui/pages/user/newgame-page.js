@@ -10,13 +10,13 @@ const displaySuccessMessage = 'displaySuccessMessage';
 const displayErrorMessages = 'displayErrorMessages';
 
 export const categoryList = ['Role Playing Games', 'Card Games', 'Board Games', 'Miniatures'];
-export const gamerpgObjects = [{ label: 'Dungeons & Dragons', value: 'Dungeons & Dragons' },
-  { label: 'Shadowrun', value: 'Shadowrun' },
-  { label: 'Call of Cthulhu', value: 'Call of Cthulhu' },
-  { label: 'Vampire: The Masquerade', value: 'Vampire: The Masquerade' },
-  { label: 'Star Wars The Roleplaying Game', value: 'Star Wars The Roleplaying Game' },
-  { label: 'Pathfinder Roleplaying Game', value: 'Pathfinder Roleplaying Game' },
-  { label: 'Other', value: 'Other' }];
+export const gamerpgObjects = [{ label: 'Dungeons & Dragons', value: '1' },
+  { label: 'Shadowrun', value: '2' },
+  { label: 'Call of Cthulhu', value: '3' },
+  { label: 'Vampire: The Masquerade', value: '4' },
+  { label: 'Star Wars The Roleplaying Game', value: '5' },
+  { label: 'Pathfinder Roleplaying Game', value: '6' },
+  { label: 'Other', value: '7' }];
 export const gamecardObjects = [{ label: 'Poker', value: '1' },
   { label: 'Rummy', value: '2' },
   { label: 'Cribbage', value: '3' },
