@@ -14,3 +14,4 @@ Template.Browse_Page.helpers({
 Template.Browse_Page.onCreated(function onCreated() {
   this.subscribe('Listings');
 });
+

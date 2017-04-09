@@ -6,17 +6,24 @@ export const Listings = new Mongo.Collection('Listings');
  *  Creating the schema for GameData
  */
 export const ListingsSchema = new SimpleSchema({
+
   category: {
     label: 'Category',
     type: String,
+    optional: false,
+    max: 100,
   },
   gameName: {
-    label: 'Title',
+    label: 'Game',
     type: String,
+    optional: false,
+    max: 100,
   },
   maxPlayers: {
-    label: 'Maximum Players',
+    label: 'Maxplayers',
     type: String,
+    optional: true,
+    max: 100,
   },
 });
 
