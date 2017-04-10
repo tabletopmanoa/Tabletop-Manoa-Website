@@ -1,1 +1,1 @@
-import './ListCollection.js';
+import './listings.js';

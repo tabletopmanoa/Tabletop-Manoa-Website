@@ -1,6 +1,8 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Mongo } from 'meteor/mongo';
 
+/* eslint-disable object-shorthand */
+
 export const Listings = new Mongo.Collection('Listings');
 /**
  *  Creating the schema for GameData

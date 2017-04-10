@@ -1,7 +1,9 @@
 import './manage-page.html';
 import './manage-page.js';
+
 import './welcome-page.html';
 import './welcome-page.js';
+
 import './newgame-page.html';
 import './newgame-page.js';
 

@@ -4,9 +4,11 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { Games } from '/imports/api/games/GameCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
-import { Listings, ListingsSchema } from '/imports/api/listings/ListCollection';
+import { Listings, ListingsSchema } from '../../../api/listings/listings.js';
 
 const displayErrorMessages = 'displayErrorMessages';
+
+/* eslint-disable no-param-reassign */
 
 export const categoryList = ['Role Playing Games', 'Card Games', 'Board Games', 'Miniatures'];
 export const gamerpgObjects = [{ label: 'Dungeons & Dragons', value: 'Dungeons & Dragons' },

@@ -1,4 +1,4 @@
-import { Listings } from '../../api/listings/ListCollection.js';
+import { Listings } from '../../api/listings/listings.js';
 import { _ } from 'meteor/underscore';
 
 /**
