@@ -4,13 +4,12 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { Games } from '/imports/api/games/GameCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
-import { Listings, ListingsSchema } from '../../../api/listings/listings.js';
+import { Listings, ListingsSchema } from '/imports/api/listings/listings.js';
 
 const displayErrorMessages = 'displayErrorMessages';
 
 /* eslint-disable no-param-reassign */
 
-export const categoryList = ['Role Playing Games', 'Card Games', 'Board Games', 'Miniatures'];
 export const gamerpgObjects = [{ label: 'Dungeons & Dragons', value: 'Dungeons & Dragons' },
   { label: 'Shadowrun', value: 'Shadowrun' },
   { label: 'Call of Cthulhu', value: 'Call of Cthulhu' },
@@ -115,32 +114,38 @@ Template.NewGame_Page.helpers({
 Template.NewGame_Page.events({
   'submit .game-data-form'(event, instance) {
     event.preventDefault();
-    const username = FlowRouter.getParam('username'); // schema requires username.
-    const category = event.target.Category.value;
-    const gameName = event.target.Game.value;
+    // const username = FlowRouter.getParam('username'); // schema requires username.
+    // const category = event.target.Category.value;
+    const gameName = event.target.Name.value;
+    console.log(gameName);
     const maxPlayers = event.target.Maxplayers.value;
-    const gameLength = event.target.gameLength.value;
-    const location = event.target.location.value;
-    const smoking = event.target.smoking.value;
-    const alcohol = event.target.alchohol.value;
+    console.log(maxPlayers);
+
+    // const gameLength = event.target.gameLength.value;
+
+    const location = event.target.Location.value;
+    console.log(location);
+
+    /*  const smoking = event.target.smoking.value;
+    const alcohol = event.target.alcohol.value;
     const about = event.target.about.value;
     const date = event.target.date.value;
-    const time = event.target.date.value;
-    const recurring = event.target.reocurring.value;
+    const time = event.target.time.value;
+    const recurring = event.target.recurring.value;
     const contact = event.target.contact.value;
     const resources = event.target.resources.value;
+     */
 
-    const updatedGameData = { category, gameName, maxPlayers };
+    const newGameData = { gameName, maxPlayers };
     // Clear out any old validation errors.
     instance.context.resetValidation();
-    // Invoke clean so that updatedProfileData reflects what will be inserted.
-    ListingsSchema.clean(updatedGameData);
+    // Invoke clean so that newGameData reflects what will be inserted.
+    ListingsSchema.clean(newGameData);
     // Determine validity.
-    instance.context.validate(updatedGameData);
+    instance.context.validate(newGameData);
 
     if (instance.context.isValid()) {
-
-      Listings.insert(updatedGameData);
+      Listings.insert(newGameData);
       instance.messageFlags.set(displayErrorMessages, false);
       FlowRouter.go('Browse_Page');
     } else {

@@ -7,12 +7,10 @@ import { _ } from 'meteor/underscore';
  */
 const listingSeeds = [
   {
-    category: 'Card',
     gameName: 'Omaha',
     maxPlayers: '20',
   },
   {
-    category: 'Card',
     gameName: 'Blackjack',
     maxPlayers: '25',
   },

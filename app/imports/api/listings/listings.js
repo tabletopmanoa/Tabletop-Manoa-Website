@@ -1,5 +1,5 @@
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Mongo } from 'meteor/mongo';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 /* eslint-disable object-shorthand */
 
@@ -9,12 +9,6 @@ export const Listings = new Mongo.Collection('Listings');
  */
 export const ListingsSchema = new SimpleSchema({
 
-  category: {
-    label: 'Category',
-    type: String,
-    optional: false,
-    max: 100,
-  },
   gameName: {
     label: 'Game',
     type: String,

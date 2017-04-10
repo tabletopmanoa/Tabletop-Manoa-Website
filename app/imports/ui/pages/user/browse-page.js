@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating';
-import { Listings } from '../../../api/listings/listings.js';
+import { Listings } from '../../../api/listings/listings';
 
 Template.Browse_Page.helpers({
 
