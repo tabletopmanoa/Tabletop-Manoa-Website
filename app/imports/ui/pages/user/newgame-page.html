@@ -1,55 +1,107 @@
 <template name="NewGame_Page">
   <div class="ui text container segment">
-    <div class="ui dividing header">
+    <h1 class="ui dividing header">
       Create your own game group
-    </div>
+    </h1>
     <form class="ui equal width form game-data-form {{ errorClass }}">
-      <label style="color:black">Category</label>
-      <hr/>
-      <form id='category-id' style='color:black'>
-        <input id='RPG' label='Category' type='radio' name='cat'/> Role Playing Games<br/>
-        <input id='Card' label='Category' type='radio' name='cat'/> Card Games<br/>
-        <input id='Board' label='Category' type='radio' name='cat'/> Board Games<br/>
-        <input id='Mini' label='Category' type='radio' name='cat'/> Miniatures<br/><br/>
-      </form>
-      <div id='rpg' style='display:none'>
+      <a class="ui red ribbon label">Category</a>
+      <div class="ui divider"></div>
+
+      <div class="grouped fields">
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" onclick="javascript:handleClick();" id="RPG" name="category">
+            <label>Role Playing Games</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" id="Card" name="category">
+            <label>Card Games</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" id="Board" name="category">
+            <label>Board Games</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" id="Mini" name="category">
+            <label>Miniatures</label>
+          </div>
+        </div>
+      </div>
+      <div id="rpg" style="display:none">
+        <a class="ui teal ribbon label">Game Information</a>
+        <div class="ui divider"></div>
         <div class="fields">
-          {{> Select_Form_Control label="Name" required=true options=gamesrpg value='Name' errorMessage=(fieldError "gameName") }}
-          {{> Select_Form_Control label="Maximum players" required=true options=players errorMessage=(fieldError "maxPlayers") }}
+          <div class="eight wide field">
+          {{> Select_Form_Control label="Game Name" required=true options=gamesrpg value='Name' errorMessage=(fieldError "gameName") }}
+          </div>
+          <div class="four wide field">
+          {{> Select_Form_Control label="Maximum Players" required=true options=players errorMessage=(fieldError "maxPlayers") }}
+          </div>
         </div>
       </div>
       <div id='card' style='display:none'>
         <div class="fields">
-          {{> Select_Form_Control label="Name" required=true options=gamescard errorMessage=(fieldError "gameName") }}
-          {{> Select_Form_Control label="Maxplayers" required=true options=players errorMessage=(fieldError "maxPlayers") }}
+          <div class="eight wide field">
+          {{> Select_Form_Control label="Game Name" required=true options=gamescard errorMessage=(fieldError "gameName") }}
+          </div>
+          <div class="four wide field">
+          {{> Select_Form_Control label="Maximum Players" required=true options=players errorMessage=(fieldError "maxPlayers") }}
+          </div>
         </div>
       </div>
       <div id='board' style='display:none'>
         <div class="fields">
-          {{> Select_Form_Control label="Name" required=true options=gamesboard errorMessage=(fieldError "gameName") }}
-          {{> Select_Form_Control label="Maxplayers" required=true options=players errorMessage=(fieldError "maxplayers") }}
+          <div class="eight wide field">
+          {{> Select_Form_Control label="Game Name" required=true options=gamesboard errorMessage=(fieldError "gameName") }}
+          </div>
+          <div class="four wide field">
+          {{> Select_Form_Control label="Maximum Players" required=true options=players errorMessage=(fieldError "maxplayers") }}
+          </div>
         </div>
       </div>
       <div id='mini' style='display:none'>
         <div class="fields">
-          {{> Select_Form_Control label="Name" required=true options=gamesmini errorMessage=(fieldError "gameName") }}
-          {{> Select_Form_Control label="Maxplayers" required=true options=players errorMessage=(fieldError "maxPlayers") }}
+          <div class="eight wide field">
+          {{> Select_Form_Control label="Game Name" required=true options=gamesmini errorMessage=(fieldError "gameName") }}
+          </div>
+          <div class="four wide field">
+          {{> Select_Form_Control label="Maximum Players" required=true options=players errorMessage=(fieldError "maxPlayers") }}
+          </div>
         </div>
       </div>
       <div id='dataFields' style='display:none'>
-        <div class="fields">
-          {{> Select_Form_Control label="Approx. Length of Game (in Hours)" required=optional options=gameLength errorMessage=(fieldError "gameLength") }}
-          {{> Text_Form_Control label="Location" placeholder="Hale Hino Study Hall" value="My house" required=optional errorMessage=(fieldError "picture")}}
+        <div class="ui divider"></div>
+         <a class="ui orange ribbon label">Meeting Information</a>
+          <div class="ui divider"></div>
+
+          <label style="color: black">Approx. Length of Game (in Hours) </label>
+          <div class="ui selection dropdown">
+            <input type="hidden" name="gender">
+            <i class="dropdown icon"></i>
+            <div class="default text">Game Length</div>
+            <div class="menu">
+              <div class="item" data-value="1">1 hour</div>
+              <div class="item" data-value="2">2 hours</div>
+              <div class="item" data-value="3">3 hours</div>
+              <div class="item" data-value="4">4 hours+</div>
+            </div>
+          </div>
+        <div class="field">
+          {{> Text_Form_Control label="Location" placeholder="Hale Hino Study Hall" required=optional errorMessage=(fieldError "picture")}}
         </div>
-        <div class="fields">
-          {{> Checkbox_Form_Control label="Is Smoking Permitted?" checkboxes=smoking errorMessage=(fieldError "smoking") }}
-          {{> Checkbox_Form_Control label="Is Alcohol Permitted?" checkboxes=alcohol errorMessage=(fieldError "alcohol") }}
-        </div>
+        {{> Checkbox_Form_Control label="Is Smoking Permitted?" checkboxes=smoking errorMessage=(fieldError "smoking") }}
+        {{> Checkbox_Form_Control label="Is Alcohol Permitted?" checkboxes=alcohol errorMessage=(fieldError "alcohol") }}
         <div class="fields">
           {{> Text_Form_Control label="Meeting Date" required=false options=interests placeholder="04/07/2017" errorMessage=(fieldError "days") multiple=true }}
           {{> Text_Form_Control label="Meeting Time" required=false options=interests placeholder="6:00pm" errorMessage=(fieldError "time") multiple=true }}
         </div>
-        <div class="field">
+        <div class="fields">
           {{> Checkbox_Form_Control label="Is this Meeting recurring?" checkboxes=recurring errorMessage=(fieldError "recurring") }}
         </div>
         <div class="fields">
@@ -57,54 +109,49 @@
           {{> Text_Form_Control label="Resources" placeholder="http://www.d20pfsrd.com/" errorMessage=(fieldError "resources") multiple=true }}
         </div>
         <div class="field">
-        {{> TextArea_Form_Control label="About" value=profile.bio placeholder="Short statement about gameplay for those who never heard of game: Roleplaying game in which you play in a high-fantasy environment slaying monsters and solving puzzles. Required to bring: pencil. Optional: D20 dice set and $5.00 for pizza" errorMessage=(fieldError "about")}}
+          {{> TextArea_Form_Control label="About" value=profile.bio placeholder="Short statement about gameplay for those who never heard of game: Roleplaying game in which you play in a high-fantasy environment slaying monsters and solving puzzles. Required to bring: pencil. Optional: D20 dice set and $5.00 for pizza" errorMessage=(fieldError "about")}}
+        </div>
+        <br/>
+        <button class="ui primary button" type="submit">Submit</button>
       </div>
-      <br/>
-      <button class="ui primary button" type="submit">Submit</button>
-  </div>
-  </form>
-  <script>
-    $(document).ready(function () {
-      $('input[type="radio"]').click(function () {
-        if ($(this).attr('id') == 'RPG') {
-          $('#rpg').show();
-          $('#dataFields').show();
-          //$('#submitBtnRPG').show();
-          $('#card').hide();
-          $('#board').hide();
-          $('#mini').hide();
-        }
-        else
-          if ($(this).attr('id') == 'Card') {
-            $('#card').show();
-            $('#dataFields').show();
-            //$('#submitBtnRPG').hide();
-            //$('#submitbtn').show();
-            $('#rpg').hide();
-            $('#board').hide();
-            $('#mini').hide();
-          }
-          else
-            if ($(this).attr('id') == 'Board') {
-              $('#board').show();
-              $('#dataFields').show();
-              //$('#submitBtnRPG').hide();
-              //$('#submitBtnRPG').show();
-              $('#rpg').hide();
-              $('#card').hide();
-              $('#mini').hide();
+    </form>
+    <script>
+      $('.ui.radio.checkbox')
+          .checkbox({
+            onChecked: function () {
+              if ($(this).attr('id') == 'RPG') {
+                $('#rpg').show();
+                $('#dataFields').show();
+                $('#card').hide();
+                $('#board').hide();
+                $('#mini').hide();
+              }
+              else
+                if ($(this).attr('id') == 'Card') {
+                  $('#card').show();
+                  $('#dataFields').show();
+                  $('#rpg').hide();
+                  $('#board').hide();
+                  $('#mini').hide();
+                }
+                else
+                  if ($(this).attr('id') == 'Board') {
+                    $('#board').show();
+                    $('#dataFields').show();
+                    $('#rpg').hide();
+                    $('#card').hide();
+                    $('#mini').hide();
+                  }
+                  else {
+                    $('#mini').show();
+                    $('#dataFields').show();
+                    $('#rpg').hide();
+                    $('#card').hide();
+                    $('#board').hide();
+                  }
             }
-            else {
-              $('#mini').show();
-              $('#dataFields').show();
-              //$('#submitBtnRPG').hide();
-              //$('#submitBtnRPG').show();
-              $('#rpg').hide();
-              $('#card').hide();
-              $('#board').hide();
-            }
-      });
-    });
-  </script>
+          });
+      $('.dropdown').dropdown({transition: 'drop' }).dropdown({ on: 'hover' });
+    </script>
   </div>
 </template>

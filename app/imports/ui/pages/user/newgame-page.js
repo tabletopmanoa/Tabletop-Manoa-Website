@@ -3,8 +3,10 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { Games } from '/imports/api/games/GameCollection';
-import { Categories } from '/imports/api/categories/CategoryCollection';
+// import { Categories } from '/imports/api/categories/CategoryCollection';
 import { Listings, ListingsSchema } from '/imports/api/listings/listings.js';
+
+
 
 const displayErrorMessages = 'displayErrorMessages';
 
@@ -45,14 +47,14 @@ export const maxPlayerObjects = [{ label: '2 players', value: '2' },
 export const lengthObjects = [{ label: '1 hour', value: '1' },
   { label: '2 hours', value: '2' },
   { label: '3 hours', value: '3' },
-  { label: '4+ hours', value: '4' }];
+  { label: '4 hours+', value: '4' }];
 export const smokingList = ['Allowed'];
 export const alcoholList = ['Allowed'];
 export const recurringList = ['Recurring'];
 
 Template.NewGame_Page.onCreated(function onCreated() {
-  this.subscribe(Categories.getPublicationName());
-  this.subscribe(Games.getPublicationName());
+  // this.subscribe(Categories.getPublicationName());
+  // this.subscribe(Games.getPublicationName());
   this.messageFlags = new ReactiveDict();
   this.messageFlags.set(displayErrorMessages, false);
   this.context = ListingsSchema.namedContext('NewGame_Page');
@@ -67,11 +69,12 @@ Template.NewGame_Page.helpers({
     const errorObject = _.find(invalidKeys, (keyObj) => keyObj.name === fieldName);
     return errorObject && Template.instance().context.keyErrorMessage(errorObject.name);
   },
-  categories() {
+/*  categories() {
     return _.map(categoryList, function makeCategoryObject(category) {
       return { label: category };
     });
   },
+  */
   // Not sure what this does
   game() {
     return Games.findDoc(FlowRouter.getParam('username'));
