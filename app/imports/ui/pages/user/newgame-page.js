@@ -6,22 +6,20 @@ import { Games } from '/imports/api/games/GameCollection';
 // import { Categories } from '/imports/api/categories/CategoryCollection';
 import { Listings, ListingsSchema } from '/imports/api/listings/listings.js';
 
-
-
 const displayErrorMessages = 'displayErrorMessages';
 
 /* eslint-disable no-param-reassign */
 
-export const gamerpgObjects = [{ label: 'Dungeons & Dragons', value: 'Dungeons & Dragons' },
-  { label: 'Shadowrun', value: 'Shadowrun' },
-  { label: 'Call of Cthulhu', value: 'Call of Cthulhu' },
-  { label: 'Vampire: The Masquerade', value: 'Vampire: The Masquerade' },
-  { label: 'Star Wars The Roleplaying Game', value: 'Star Wars The Roleplaying Game' },
-  { label: 'Pathfinder Roleplaying Game', value: 'Pathfinder Roleplaying Game' },
-  { label: 'Other', value: 'Other' }];
-export const gamecardObjects = [{ label: 'Poker', value: '1' },
-  { label: 'Rummy', value: '2' },
-  { label: 'Cribbage', value: '3' },
+export const gamerpgObjects = [{ label: 'Dungeons & Dragons', value: 'Du' },
+  { label: 'Shadowrun', value: 'Sh' },
+  { label: 'Call of Cthulhu', value: 'Ct' },
+  { label: 'Vampire: The Masquerade', value: 'Va' },
+  { label: 'Star Wars The Roleplaying Game', value: 'St' },
+  { label: 'Pathfinder Roleplaying Game', value: 'Pa' },
+  { label: 'Other', value: 'Ot' }];
+export const gamecardObjects = [{ label: 'Poker', value: 'Poker' },
+  { label: 'Rummy', value: 'Rummy' },
+  { label: 'Cribbage', value: 'Cribbage' },
   { label: 'Spades', value: '4' },
   { label: 'Mahjong', value: '5' },
   { label: 'Other', value: '6' }];
@@ -35,8 +33,8 @@ export const gameminiObjects = [{ label: 'Star Wars: X-Wing', value: '1' },
   { label: 'Hordes', value: '3' },
   { label: 'War Hammer', value: '4' },
   { label: 'Other', value: '5' }];
-export const maxPlayerObjects = [{ label: '2 players', value: '2' },
-  { label: '3 players', value: '3' },
+export const maxPlayerObjects = [{ label: '2 players', value: '2 players' },
+  { label: '3 players', value: '3 players' },
   { label: '4 players', value: '4' },
   { label: '5 players', value: '5' },
   { label: '6 players', value: '6' },
@@ -61,6 +59,9 @@ Template.NewGame_Page.onCreated(function onCreated() {
 });
 
 Template.NewGame_Page.helpers({
+  routeUserName() {
+    return FlowRouter.getParam('username');
+  },
   errorClass() {
     return Template.instance().messageFlags.get(displayErrorMessages) ? 'error' : '';
   },
@@ -117,17 +118,20 @@ Template.NewGame_Page.helpers({
 Template.NewGame_Page.events({
   'submit .game-data-form'(event, instance) {
     event.preventDefault();
-    // const username = FlowRouter.getParam('username'); // schema requires username.
+    const username = FlowRouter.getParam('username'); // schema requires username.
+    console.log(username);
     // const category = event.target.Category.value;
-    const gameName = event.target.Name.value;
+    const gameName = 'Texas';
     console.log(gameName);
+    const gameName2 = event.target.Game.value;
+    console.log(gameName2);
     const maxPlayers = event.target.Maxplayers.value;
     console.log(maxPlayers);
 
     // const gameLength = event.target.gameLength.value;
 
-    const location = event.target.Location.value;
-    console.log(location);
+    // const location = event.target.Location.value;
+    // console.log(location);
 
     /*  const smoking = event.target.smoking.value;
     const alcohol = event.target.alcohol.value;
@@ -150,7 +154,7 @@ Template.NewGame_Page.events({
     if (instance.context.isValid()) {
       Listings.insert(newGameData);
       instance.messageFlags.set(displayErrorMessages, false);
-      FlowRouter.go('Browse_Page');
+      FlowRouter.go(FlowRouter.path('Browse_Page', FlowRouter.current().params));
     } else {
       instance.messageFlags.set(displayErrorMessages, true);
     }

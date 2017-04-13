@@ -1,16 +1,15 @@
 <template name="NewGame_Page">
-  <div class="ui text container segment">
+  <div class="ui fluid text container segment">
     <h1 class="ui dividing header">
       Create your own game group
     </h1>
     <form class="ui equal width form game-data-form {{ errorClass }}">
       <a class="ui red ribbon label">Category</a>
       <div class="ui divider"></div>
-
       <div class="grouped fields">
         <div class="field">
           <div class="ui radio checkbox">
-            <input type="radio" onclick="javascript:handleClick();" id="RPG" name="category">
+            <input type="radio" id="RPG" name="category">
             <label>Role Playing Games</label>
           </div>
         </div>
@@ -38,17 +37,17 @@
         <div class="ui divider"></div>
         <div class="fields">
           <div class="eight wide field">
-          {{> Select_Form_Control label="Game Name" required=true options=gamesrpg value='Name' errorMessage=(fieldError "gameName") }}
+          {{> Select_Form_Control label="Game" required=true options=gamesrpg errorMessage=(fieldError "gameName") }}
           </div>
           <div class="four wide field">
-          {{> Select_Form_Control label="Maximum Players" required=true options=players errorMessage=(fieldError "maxPlayers") }}
+          {{> Select_Form_Control label="Maxplayers" required=true options=players errorMessage=(fieldError "maxPlayers") }}
           </div>
         </div>
       </div>
       <div id='card' style='display:none'>
         <div class="fields">
           <div class="eight wide field">
-          {{> Select_Form_Control label="Game Name" required=true options=gamescard errorMessage=(fieldError "gameName") }}
+          {{> Select_Form_Control label="Game" required=true options=gamescard errorMessage=(fieldError "gameName") }}
           </div>
           <div class="four wide field">
           {{> Select_Form_Control label="Maximum Players" required=true options=players errorMessage=(fieldError "maxPlayers") }}
