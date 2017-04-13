@@ -1,7 +1,7 @@
 /* eslint prefer-arrow-callback: "off", no-unused-expressions: "off" */
 /* eslint-env mocha */
 
-// import { Games } from 'GameCollection.js';
+import { Games } from './template.js';
 import { Categories } from '/imports/api/categories/CategoryCollection';
 import { Meteor } from 'meteor/meteor';
 import { expect } from 'chai';
@@ -9,14 +9,14 @@ import { removeAllEntities } from '/imports/api/base/BaseUtilities';
 
 
 if (Meteor.isServer) {
-  describe('GameCollection', function testSuite() {
-    const categoryName = 'roleplaying'
-    const gameName = 'Pathfinder';
+  describe('template', function testSuite() {
+    const categoryName = 'boardgame';
+    const gameName = 'monopoly';
     const category = [categoryName];
     const maxPlayers = 10;
     const gameLength = '4 hours';
     const location = 'Hale Wina Lounge';
-    const about = 'This game is very cool';
+    const about = 'cool';
     const picture = 'http://www.levelupgamesmn.com/uploads/2/4/7/7/24777638/2796519_orig.png';
     const contact = 'kodayv@hawaii.edu';
     const resources = 'http://www.d20pfsrd.com/';
@@ -24,8 +24,7 @@ if (Meteor.isServer) {
 
     before(function setup() {
       removeAllEntities();
-      // Define a sample interest.
-      Categories.define({ name: categoryName });
+
     });
 
     after(function teardown() {
@@ -46,8 +45,6 @@ if (Meteor.isServer) {
       expect(doc.picture).to.equal(picture);
       expect(doc.contact).to.equal(contact);
       expect(doc.resources).to.equal(resources);
-      // Check that multiple definitions with the same email address fail
-      expect(function foo() { Games.define(defineObject); }).to.throw(Error);
       // Check that we can dump and restore a Profile.
       const dumpObject = Games.dumpOne(docID);
       Games.removeIt(docID);
