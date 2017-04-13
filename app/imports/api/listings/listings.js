@@ -16,11 +16,54 @@ export const ListingsSchema = new SimpleSchema({
     max: 100,
   },
   maxPlayers: {
-    label: 'Maxplayers',
+    label: 'Players',
     type: String,
     optional: true,
     max: 100,
   },
+  gameLength: {
+    label: 'Length',
+    type: String,
+    optional: true,
+    max: 100,
+  },
+  location: {
+    label: 'Location',
+    type: String,
+    optional: true,
+    max: 100,
+  },
+  date: {
+    label: 'Date',
+    type: String,
+    optional: true,
+    max: 100,
+  },
+  time: {
+    label: 'Time',
+    type: String,
+    optional: true,
+    max: 100,
+  },
+  contact: {
+    label: 'Contact',
+    type: String,
+    optional: true,
+    max: 100,
+  },
+  resources: {
+    label: 'Resources',
+    type: String,
+    optional: true,
+    max: 100,
+  },
+  about: {
+    label: 'About',
+    type: String,
+    optional: true,
+    max: 300,
+  },
+
 });
 
 Listings.attachSchema(ListingsSchema);

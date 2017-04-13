@@ -10,46 +10,6 @@ const displayErrorMessages = 'displayErrorMessages';
 
 /* eslint-disable no-param-reassign */
 
-export const gamerpgObjects = [{ label: 'Dungeons & Dragons', value: 'Du' },
-  { label: 'Shadowrun', value: 'Sh' },
-  { label: 'Call of Cthulhu', value: 'Ct' },
-  { label: 'Vampire: The Masquerade', value: 'Va' },
-  { label: 'Star Wars The Roleplaying Game', value: 'St' },
-  { label: 'Pathfinder Roleplaying Game', value: 'Pa' },
-  { label: 'Other', value: 'Ot' }];
-export const gamecardObjects = [{ label: 'Poker', value: 'Poker' },
-  { label: 'Rummy', value: 'Rummy' },
-  { label: 'Cribbage', value: 'Cribbage' },
-  { label: 'Spades', value: '4' },
-  { label: 'Mahjong', value: '5' },
-  { label: 'Other', value: '6' }];
-export const gameboardObjects = [{ label: 'Chess', value: '1' },
-  { label: 'Monopoly', value: '2' },
-  { label: 'Scrabble', value: '3' },
-  { label: 'Backgammon', value: '4' },
-  { label: 'Other', value: '5' }];
-export const gameminiObjects = [{ label: 'Star Wars: X-Wing', value: '1' },
-  { label: 'War Machine', value: '2' },
-  { label: 'Hordes', value: '3' },
-  { label: 'War Hammer', value: '4' },
-  { label: 'Other', value: '5' }];
-export const maxPlayerObjects = [{ label: '2 players', value: '2 players' },
-  { label: '3 players', value: '3 players' },
-  { label: '4 players', value: '4' },
-  { label: '5 players', value: '5' },
-  { label: '6 players', value: '6' },
-  { label: '7 players', value: '7' },
-  { label: '8 players', value: '8' },
-  { label: '9 players', value: '9' },
-  { label: '10+ players', value: '10' }];
-export const lengthObjects = [{ label: '1 hour', value: '1' },
-  { label: '2 hours', value: '2' },
-  { label: '3 hours', value: '3' },
-  { label: '4 hours+', value: '4' }];
-export const smokingList = ['Allowed'];
-export const alcoholList = ['Allowed'];
-export const recurringList = ['Recurring'];
-
 Template.NewGame_Page.onCreated(function onCreated() {
   // this.subscribe(Categories.getPublicationName());
   // this.subscribe(Games.getPublicationName());
@@ -80,39 +40,6 @@ Template.NewGame_Page.helpers({
   game() {
     return Games.findDoc(FlowRouter.getParam('username'));
   },
-  gamesrpg() {
-    return gamerpgObjects;
-  },
-  gamescard() {
-    return gamecardObjects;
-  },
-  gamesboard() {
-    return gameboardObjects;
-  },
-  gamesmini() {
-    return gameminiObjects;
-  },
-  players() {
-    return maxPlayerObjects;
-  },
-  gameLength() {
-    return lengthObjects;
-  },
-  smoking() {
-    return _.map(smokingList, function makeSmokingObject(smoking) {
-      return { label: smoking };
-    });
-  },
-  alcohol() {
-    return _.map(alcoholList, function makeAlcoholObject(alcohol) {
-      return { label: alcohol };
-    });
-  },
-  recurring() {
-    return _.map(recurringList, function makeRecurringObject(recurring) {
-      return { label: recurring };
-    });
-  },
 });
 
 Template.NewGame_Page.events({
@@ -121,29 +48,46 @@ Template.NewGame_Page.events({
     const username = FlowRouter.getParam('username'); // schema requires username.
     console.log(username);
     // const category = event.target.Category.value;
-    const gameName = 'Texas';
+    const rpgGameId = document.getElementById('gameRPG');
+    const cardGameId = document.getElementById('gameCARD');
+    const boardGameId = document.getElementById('gameBOARD');
+    const miniGameId = document.getElementById('gameMINI');
+    let gameName = '';
+    if (rpgGameId.options[rpgGameId.selectedIndex].value > 0) {
+      gameName = rpgGameId.options[rpgGameId.selectedIndex].text;
+    } else if (cardGameId.options[cardGameId.selectedIndex].value > 0) {
+      gameName = cardGameId.options[cardGameId.selectedIndex].text;
+    } else if (boardGameId.options[boardGameId.selectedIndex].value > 0) {
+      gameName = boardGameId.options[boardGameId.selectedIndex].text;
+    } else {
+      gameName = miniGameId.options[miniGameId.selectedIndex].text;
+    }
     console.log(gameName);
-    const gameName2 = event.target.Game.value;
-    console.log(gameName2);
-    const maxPlayers = event.target.Maxplayers.value;
+    const mp = document.getElementById('Players');
+    const maxPlayers = mp.options[mp.selectedIndex].text;
     console.log(maxPlayers);
+    const le = document.getElementById('Length');
+    const gameLength = le.options[le.selectedIndex].text;
+    console.log(gameLength);
+    const location = event.target.Location.value;
+    console.log(location);
+    // const smoking = event.target.smoking.value;
+    // const alcohol = event.target.alcohol.value;
 
-    // const gameLength = event.target.gameLength.value;
-
-    // const location = event.target.Location.value;
-    // console.log(location);
-
-    /*  const smoking = event.target.smoking.value;
-    const alcohol = event.target.alcohol.value;
-    const about = event.target.about.value;
     const date = event.target.date.value;
+    console.log(date);
     const time = event.target.time.value;
-    const recurring = event.target.recurring.value;
-    const contact = event.target.contact.value;
-    const resources = event.target.resources.value;
-     */
+    console.log(time);
 
-    const newGameData = { gameName, maxPlayers };
+    // const recurring = event.target.recurring.value;
+    const contact = event.target.contact.value;
+    console.log(contact);
+    const resources = event.target.resources.value;
+    console.log(resources);
+    const about = event.target.about.value;
+    console.log(about);
+
+    const newGameData = { gameName, maxPlayers, gameLength, location, date, time, contact, resources, about };
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that newGameData reflects what will be inserted.

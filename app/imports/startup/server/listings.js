@@ -7,12 +7,26 @@ import { _ } from 'meteor/underscore';
  */
 const listingSeeds = [
   {
-    gameName: 'Omaha',
-    maxPlayers: '20',
+    gameName: 'Poker',
+    maxPlayers: '10+ players',
+    gameLength: '4+ Hours ',
+    location: 'Campus Center',
+    date: '12/25/2017',
+    time: '1:00 pm',
+    contact: 'help@WSOP.com',
+    resources: 'WSOP.com',
+    about: '45 man tournament.  Free to enter.  1st place: Las Vegas trip.  Trip provided by Aria Hotel and Casino',
   },
   {
-    gameName: 'Blackjack',
-    maxPlayers: '25',
+    gameName: 'Chess',
+    maxPlayers: '4 players',
+    gameLength: '4+ Hours ',
+    location: 'Campus Center',
+    date: '7/4/2017',
+    time: '6:00 pm',
+    contact: 'chess@hawaii.edu',
+    resources: 'chess.com',
+    about: 'Inviting experienced Chess players to a nice friendly game.  Food and drinks will be provided.',
   },
 ];
 
