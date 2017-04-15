@@ -1,5 +1,5 @@
 <template name="Manage_Page" xmlns="http://www.w3.org/1999/html">
-  <div class="ui raised very padded inverted container segment" style="color: black; font-size: large">
+
   <div class="ui borderless menu">
     <div class="ui container" style="height: 70px;">
       <div class="item" ><h1>Manage Your Games!</h1></div>
@@ -14,30 +14,37 @@
 
     <div style="margin-top: 10px" class="ui menu">
 
-      <form class="ui equal width form games-data-form">
+
+      <form class="ui card games-data-form centered" style=" padding-top:5px;width:95%;">
         <div class="field" style="align-content: center; color: black; font-size: large">
           <div class="ui four column doubling stackable grid container">
             <div class="column">
               Exploding Kittens
               <img class="ui small image" style="padding: 5px" src="/images/exkitten.png">
-              <button class="ui red circular button" type="submit">Remove Game</button>
             </div>
             <div class="column">
               <div class="ui list">
+                <!-- Max Players -->
                 <div class="item">
-                  <img class="ui avatar image" src="/images/johnson.jpg">
+                  <i class="ui circular user inverted big icon avatar image" ></i>
                   <div class="content">
                     <div class="header">max players</div>
                     5
                   </div>
                 </div>
+                <!-- End Max Players -->
+
+                <!-- Game Length -->
                 <div class="item">
-                  <img class="ui avatar image" src="/images/clock.png">
+                  <i class="ui circular hourglass empty inverted big icon avatar image" ></i>
                   <div class="content">
                     <div class="header">Game length</div>
                     30 min
                   </div>
                 </div>
+                <!-- End Game Length -->
+
+                <!-- Location -->
                 <div class="item">
                   <img class="ui avatar image" src="/images/bldg.png">
                   <div class="content">
@@ -45,26 +52,27 @@
                     ICSpace - POST Bldg rm308
                   </div>
                 </div>
+                <!-- End Location -->
               </div>
             </div>
             <div class="column">
               <div class="ui list">
                 <div class="item">
-                  <img class="ui avatar image" src="/images/smile.jpg">
+                  <i class="ui circular mail inverted big icon avatar image" ></i>
                   <div class="content">
                     <div class="header">Contact</div>
                     kodayv@hawaii.edu
                   </div>
                 </div>
                 <div class="item">
-                  <img class="ui avatar image" src="/images/comp.jpg">
+                  <i class="ui circular newspaper inverted big icon avatar image" ></i>
                   <div class="content">
                     <div class="header">resources</div>
                     <a href="https://www.explodingkittens.com/">explodingkittens.com</a>
                   </div>
                 </div>
                 <div class="item">
-                  <img class="ui avatar image" src="/images/calendar.jpg">
+                  <i class="ui circular calender inverted big icon avatar image" ></i>
                   <div class="content">
                     <div class="header">When</div>
                     05/01/2017 2:00 pm
@@ -74,11 +82,12 @@
             </div>
             <div class="column">
               <div class="ui list">
+                <br>
                 <div class="item">
-                  <div class="content">
-                    <div class="header">About</div>
-                    Come play a quick card game that is crazy and fun! It is really easy to learn and lots of laughs to be had! See sources for more details!
-                  </div>
+                </div>
+                <br>
+                <div class="item">
+                  <button class="ui button blue"> More Information</button>
                 </div>
               </div>
             </div>
@@ -86,7 +95,19 @@
         </div>
       </form>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
-  </div>
 
 </template>

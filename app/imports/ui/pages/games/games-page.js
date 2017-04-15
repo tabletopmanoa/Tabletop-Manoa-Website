@@ -5,6 +5,7 @@ import { Games } from '/imports/api/games/GameCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
 import { Listings } from '/imports/api/listings/listings.js';
 
+
 const selectedCategoriesKey = 'selectedCategories';
 
 export const categoryList = ['Role Playing', 'Card Games', 'Board Games', 'Miniatures'];

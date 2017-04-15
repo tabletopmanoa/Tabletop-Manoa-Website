@@ -21,7 +21,7 @@ function getDefinitions(restoreJSON, collection) {
 }
 
 /**
- * Given a collection and the restoreJSON structure, looks up the definitions and invokes define() on them.
+ * Given a collection and the \restoreJSON structure, looks up the definitions and invokes define() on them.
  * @param collection The collection to be restored.
  * @param restoreJSON The structure containing all of the definitions.
  */
@@ -33,7 +33,7 @@ function restoreCollection(collection, restoreJSON) {
 
 Meteor.startup(() => {
   /** Only initialize database if it's empty. */
-  const collectionList = [Interests, Profiles];
+  const collectionList = [Categories, Profiles];
   const totalDocuments = _.reduce(collectionList, function reducer(memo, collection) {
     return memo + collection.count();
   }, 0);
