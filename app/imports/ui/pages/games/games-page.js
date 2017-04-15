@@ -1,7 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { _ } from 'meteor/underscore';
-import { Games } from '/imports/api/games/GameCollection';
+import { Games } from '/imports/api/template/template';
 import { Categories } from '/imports/api/categories/CategoryCollection';
 import { Listings } from '/imports/api/listings/ListCollection';
 

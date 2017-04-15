@@ -119,5 +119,5 @@ class GameSchema extends BaseCollection {
 }
 
 export const Games = new GameSchema();
-//GameTemplate.attachSchema(GameSchema);
+GameTemplate.attachSchema(GameSchema);
 
