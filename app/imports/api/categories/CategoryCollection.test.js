@@ -8,7 +8,7 @@ import { removeAllEntities } from '/imports/api/base/BaseUtilities';
 
 if (Meteor.isServer) {
   describe('InterestCollection', function testSuite() {
-    const name = 'Role Playing';
+    const name = 'Roleplaying';
     const description = 'Tools and techniques for team-based development of high quality software systems';
     const defineObject = { name, description };
 
@@ -48,3 +48,4 @@ if (Meteor.isServer) {
     });
   });
 }
+
