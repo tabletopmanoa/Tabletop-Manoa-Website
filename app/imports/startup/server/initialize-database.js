@@ -20,7 +20,7 @@ function getDefinitions(restoreJSON, collection) {
 }
 
 /**
- * Given a collection and the \restoreJSON structure, looks up the definitions and invokes define() on them.
+ * Given a collection and the restoreJSON structure, looks up the definitions and invokes define() on them.
  * @param collection The collection to be restored.
  * @param restoreJSON The structure containing all of the definitions.
  */
