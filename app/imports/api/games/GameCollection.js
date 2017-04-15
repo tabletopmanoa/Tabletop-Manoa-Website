@@ -1,45 +1,108 @@
+/**
+ * Created by koday on 3/5/2017.
+ */
+import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import BaseCollection from '/imports/api/base/BaseCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
 import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
+import BaseCollection from '/imports/api/base/BaseCollection';
 
-/** @module Profile */
+/* eslint-disable object-shorthand */
 
-/**
- * Profiles provide portfolio data for a user.
- * @extends module:Base~BaseCollection
- */
-class GameCollection extends BaseCollection {
+export const GameTemplate = new Mongo.Collection('GameTemplate');
+
+class GameSchema extends BaseCollection {
 
   /**
-   * Creates the Game collection.
+   * Create the schema for contacts
    */
   constructor() {
     super('Games', new SimpleSchema({
-      gameName: { type: String },
-      category: { type: [String], optional: true },
-      maxPlayers: { type: Number, optional: true },
-      gameLength: { type: String, optional: true },
-      location: { type: String, optional: true },
-
-      about: { type: String, optional: true },
-
-      picture: { type: SimpleSchema.RegEx.Url, optional: true },
-      contact: { type: SimpleSchema.RegEx.Url, optional: true },
-      resources: { type: SimpleSchema.RegEx.Url, optional: true },
+      gameName: {
+        label: 'Name of Game',
+        type: String,
+        optional: false,
+        max: 200,
+      },
+      category: {
+        label: 'category',
+        type: [String],
+        optional: false,
+        max: 200,
+      },
+      maxPlayers: {
+        label: 'maxPlayers',
+        type: Number,
+        optional: false,
+        max: 200,
+      },
+      gameLength: {
+        label: 'gameLength',
+        type: String,
+        optional: false,
+        max: 200,
+      },
+      date: {
+        label: 'date',
+        type: String,
+        optional: false,
+        max: 200,
+      },
+      location: {
+        label: 'location',
+        type: String,
+        optional: false,
+        max: 200,
+      },
+      about: {
+        label: 'about',
+        type: String,
+        optional: false,
+        max: 200,
+      },
+      picture: {
+        label: 'picture',
+        type: String,
+        optional: false,
+        max: 200,
+      },
+      contact: {
+        label: 'contact',
+        type: String,
+        optional: false,
+        max: 200,
+      },
+      resources: {
+        label: 'resources',
+        type: String,
+        optional: false,
+        max: 200,
+      },
     }));
   }
 
-    define({ gameName = '', category,  maxPlayers = '', gameLength = '', location='', about = '', picture = '', contact = '', resources = ''})
-  {
-    const checkPattern = { gameName: String, maxPlayers: Number, gameLength: String, about: String, location: String, picture: String,
-      contact: String };
-    check({ gameName, category, maxPlayers, location, gameLength, about, picture, contact, resources }, checkPattern);
+  define({ gameName = '', category, maxPlayers = '', gameLength = '', date = '', location = '', about = '', picture = '', contact = '', resources = '' }) {
+    const checkPattern = {
+      gameName: String, maxPlayers: Number, gameLength: String, about: String, date: String, location: String, picture: String,
+      contact: String
+    };
+    check({ gameName, maxPlayers, location, gameLength, date, about, picture, contact }, checkPattern);
 
     // Throw an error if any of the passed Categories names are not defined.
     Categories.assertNames(category);
-    return this._collection.insert({ gameName, category, location, maxPlayers, gameLength, about, picture, contact, resources });
+    return this._collection.insert({
+      gameName,
+      category,
+      location,
+      maxPlayers,
+      gameLength,
+      date,
+      about,
+      picture,
+      contact,
+      resources
+    });
   }
 
   /**
@@ -53,16 +116,16 @@ class GameCollection extends BaseCollection {
     const category = doc.category;
     const maxPlayers = doc.maxPlayers;
     const gameLength = doc.gameLength;
+    const date = doc.date;
     const location = doc.location;
     const about = doc.about;
     const picture = doc.picture;
     const contact = doc.contact;
     const resources = doc.resources;
-    return { gameName, category, maxPlayers, gameLength, location, about, picture, contact, resources };
+    return { gameName, category, maxPlayers, gameLength, date, location, about, picture, contact, resources };
   }
 }
 
-/**
- * Provides the singleton instance of this class to all other entities.
- */
-export const Games = new GameCollection();
+export const Games = new GameSchema();
+GameTemplate.attachSchema(GameSchema);
+
