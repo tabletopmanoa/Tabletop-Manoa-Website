@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import {GameTemplate} from '../../../api/template/template.js'
 import {ReactiveDict } from 'meteor/reactive-dict';
 
+
 Template.Games_Page.onCreated(
   function bodyOnCreated(){
     this.state=new ReactiveDict();

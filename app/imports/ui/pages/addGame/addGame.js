@@ -7,8 +7,6 @@ import { Meteor } from 'meteor/meteor';
 import { Games } from '/imports/api/games/GameCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
 
-const displaySuccessMessage = 'displaySuccessMessage';
-const displayErrorMessages = 'displayErrorMessages';
 
 export const gameObjects = [{ label: 'Chess', value: '1' },
   { label: 'Monopoly', value: '2' },
@@ -34,10 +32,11 @@ export const lengthObjects = [{ label: '1 hour', value: '1' },
 export const smokingList = ['Allowed'];
 export const reoccurringList = ['Reoccurring'];
 
+const displayErrorMessages = 'displayErrorMessages';
 
 Template.AddGame_Page.onCreated(function onCreated() {
-  this.subscribe(Categories.getPublicationName());
-  this.subscribe(Games.getPublicationName());
+  // this.subscribe(Categories.getPublicationName());
+  // this.subscribe(Games.getPublicationName());
   this.messageFlags = new ReactiveDict();
   this.messageFlags.set(displayErrorMessages, false);
   this.context = GameSchema.namedContext('AddGame_Page');
@@ -95,15 +94,16 @@ Template.AddGame_Page.events({
     const contact = event.target.Contact.value;
     const resources = event.target.Resources.value;
 
-    const newContactData = { gameName, category, maxPlayers, gameLength, location, about, picture, contact, resources };
+    const newGameData = { gameName, category, maxPlayers, gameLength, location, about, picture, contact, resources };
     // Clear out any old validation errors.
     instance.context.resetValidation();
-    // Invoke clean so that newContactData reflects what will be inserted.
-   GameSchema.clean(newContactData);
+    // Invoke clean so that newGameData reflects what will be inserted.
+   GameSchema.clean(newGameData);
     // Determine validity.
-    instance.context.validate(newContactData);
+    instance.context.validate(newGameData);
+
     if (instance.context.isValid()) {
-      GameTemplate.insert(newContactData);
+      GameTemplate.insert(newGameData);
       instance.messageFlags.set(displayErrorMessages, false);
       const username = Meteor.user().profile.name;
       FlowRouter.go(`/${username}/template`);

@@ -1,31 +1,53 @@
 <template name="Browse_Page">
-  <div class="ui container">
-    {{#if Template.subscriptionsReady}}
-      <table style="margin-top: 20px" class="ui celled table">
-        <thead>
-        <tr>
-          <th>Category</th>
-          <th>Game Title</th>
-          <th>Max Players</th>
-
-          <th>Edit</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        {{#each listing in ListingsList}}
+  {{#If_Logged_In}}
+    <div class="ui fluid container">
+      {{#if Template.subscriptionsReady}}
+        <table style="margin-top: 20px" class="ui celled table">
+          <thead>
           <tr>
-            <td>{{listing.category}}</td>
-            <td>{{listing.gameName}}</td>
-            <td>{{listing.maxPlayers}}</td>
+            <th>Category</th>
+            <th>Game Title</th>
+            <th>Max Players</th>
+            <th>Game Length</th>
+            <th>Location</th>
+            <th>smoking</th>
+            <th>alcohol</th>
+            <th>date</th>
+            <th>time</th>
+            <th>recurring</th>
+            <th>contact</th>
+            <th>resources</th>
+            <th>about</th>
 
 
+
+            <th>Edit</th>
           </tr>
-        {{/each}}
-        </tbody>
-      </table>
-    {{else}}
-      {{> Loading}}
-    {{/if}}
-  </div>
+          </thead>
+
+          <tbody>
+          {{#each listing in listingsList}}
+            <tr>
+              <td>cat</td>
+              <td>{{listing.gameName}}</td>
+              <td>{{listing.maxPlayers}}</td>
+              <td>{{listing.gameLength}}</td>
+              <td>{{listing.location}}</td>
+              <td>smoking</td>
+              <td>alcohol</td>
+              <td>{{listing.date}}</td>
+              <td>{{listing.time}}</td>
+              <td>recurring</td>
+              <td>{{listing.contact}}</td>
+              <td>{{listing.resources}}</td>
+              <td>{{listing.about}}</td>
+            </tr>
+          {{/each}}
+          </tbody>
+        </table>
+      {{else}}
+        {{> Loading}}
+      {{/if}}
+    </div>
+  {{/If_Logged_In}}
 </template>

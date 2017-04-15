@@ -3,6 +3,7 @@ import { Profiles } from '/imports/api/profile/ProfileCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
 import { Games } from '/imports/api/games/GameCollection';
+import { Listings, ListingsSchema } from '/imports/api/listings/listings.js';
 
 import { _ } from 'meteor/underscore';
 
@@ -20,7 +21,7 @@ function getDefinitions(restoreJSON, collection) {
 }
 
 /**
- * Given a collection and the restoreJSON structure, looks up the definitions and invokes define() on them.
+ * Given a collection and the \restoreJSON structure, looks up the definitions and invokes define() on them.
  * @param collection The collection to be restored.
  * @param restoreJSON The structure containing all of the definitions.
  */
