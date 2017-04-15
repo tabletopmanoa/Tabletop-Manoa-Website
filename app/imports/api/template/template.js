@@ -13,7 +13,7 @@ export const GameTemplate = new Mongo.Collection('GameTemplate');
  */
 export const GameSchema = new SimpleSchema({
   gameName: {
-    label: 'Name of Game',
+    label: 'gameName',
     type: String,
     optional: false,
     max: 200,
@@ -26,7 +26,7 @@ export const GameSchema = new SimpleSchema({
   },
   maxPlayers: {
     label: 'maxPlayers',
-    type: String,
+    type: Number,
     optional: false,
     max: 200,
   },
@@ -42,11 +42,16 @@ export const GameSchema = new SimpleSchema({
     optional: false,
     max: 200,
   },
+  date:{
+    label:'date',
+    type: Date,
+    optional: false,
+  },
   about: {
     label: 'about',
     type: String,
     optional: false,
-    max: 200,
+    max: 500,
   },
   picture: {
     label: 'picture',
