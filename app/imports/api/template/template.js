@@ -6,7 +6,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 /* eslint-disable object-shorthand */
 
-export const GameTemplate = new Mongo.Collection('GameTemplate');
+export const somethingElse = new Mongo.Collection('somethingElse');
 
 /**
  * Create the schema for contacts
@@ -73,4 +73,4 @@ export const GameSchema = new SimpleSchema({
   },
 });
 
-GameTemplate.attachSchema(GameSchema);
+somethingElse.attachSchema(GameSchema);
