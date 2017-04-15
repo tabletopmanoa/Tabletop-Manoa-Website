@@ -101,45 +101,13 @@ userRoutes.route('/newGame', {
   },
 });
 
-export const newRolePlayingGamePageRouteName = 'NewGame_Role_Playing_Page';
-userRoutes.route('/newGameRPG', {
-  name: newRolePlayingGamePageRouteName,
+export const browsePageRouteName = 'Browse_Page';
+userRoutes.route('/browse', {
+  name: browsePageRouteName,
   action() {
-    BlazeLayout.render('User_Layout', { main: newRolePlayingGamePageRouteName });
+    BlazeLayout.render('User_Layout', { main: browsePageRouteName });
   },
 });
-
-export const newCardGamesPageRouteName = 'NewGame_Card_Games_Page';
-userRoutes.route('/newGameCards', {
-  name: newCardGamesPageRouteName,
-  action() {
-    BlazeLayout.render('User_Layout', { main: newCardGamesPageRouteName });
-  },
-});
-
-export const newBoardGamesPageRouteName = 'NewGame_Board_Games_Page';
-userRoutes.route('/newGameBoard', {
-  name: newBoardGamesPageRouteName,
-  action() {
-    BlazeLayout.render('User_Layout', { main: newBoardGamesPageRouteName });
-  },
-});
-
-export const newMiniaturesGamesPageRouteName = 'NewGame_Miniatures_Games_Page';
-userRoutes.route('/newGameMini', {
-  name: newMiniaturesGamesPageRouteName,
-  action() {
-    BlazeLayout.render('User_Layout', { main: newMiniaturesGamesPageRouteName });
-  },
-});
-
-// export const browsePageRouteName = 'Browse_Page';
-// userRoutes.route('/browse', {
-//   name: browsePageRouteName,
-//   action() {
-//     BlazeLayout.render('User_Layout', { main: browsePageRouteName });
-//   },
-// });
 
 export const calendarPageRouteName = 'Calendar_Page';
 userRoutes.route('/calendar', {

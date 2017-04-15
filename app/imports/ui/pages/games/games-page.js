@@ -3,7 +3,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { _ } from 'meteor/underscore';
 import { Games } from '/imports/api/games/GameCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
-import { Listings } from '/imports/api/listings/ListCollection';
+import { Listings } from '/imports/api/listings/listings.js';
 
 
 const selectedCategoriesKey = 'selectedCategories';
