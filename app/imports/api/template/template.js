@@ -42,8 +42,8 @@ export const GameSchema = new SimpleSchema({
     optional: false,
     max: 200,
   },
-  date:{
-    label:'date',
+  date: {
+    label: 'date',
     type: Date,
     optional: false,
   },
