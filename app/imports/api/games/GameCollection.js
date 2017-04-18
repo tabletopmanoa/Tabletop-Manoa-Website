@@ -8,8 +8,6 @@ import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
 import BaseCollection from '/imports/api/base/BaseCollection';
 
-/* eslint-disable object-shorthand */
-
 export const GameTemplate = new Mongo.Collection('GameTemplate');
 
 class GameSchema extends BaseCollection {
@@ -45,9 +43,8 @@ class GameSchema extends BaseCollection {
       },
       date: {
         label: 'date',
-        type: String,
+        type: Date,
         optional: false,
-        max: 200,
       },
       location: {
         label: 'location',
@@ -84,13 +81,12 @@ class GameSchema extends BaseCollection {
 
   define({ gameName = '', category, maxPlayers = '', gameLength = '', date = '', location = '', about = '', picture = '', contact = '', resources = '' }) {
     const checkPattern = {
-      gameName: String, maxPlayers: Number, gameLength: String, about: String, date: String, location: String, picture: String,
+      gameName: String, maxPlayers: Number, gameLength: String, about: String, date: Date, location: String, picture: String,
       contact: String
     };
     check({ gameName, maxPlayers, location, gameLength, date, about, picture, contact }, checkPattern);
 
     // Throw an error if any of the passed Categories names are not defined.
-    Categories.assertNames(category);
     return this._collection.insert({
       gameName,
       category,
