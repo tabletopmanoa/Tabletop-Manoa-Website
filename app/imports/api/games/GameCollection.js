@@ -8,8 +8,6 @@ import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
 import BaseCollection from '/imports/api/base/BaseCollection';
 
-/* eslint-disable object-shorthand */
-
 export const GameTemplate = new Mongo.Collection('GameTemplate');
 
 class GameSchema extends BaseCollection {
