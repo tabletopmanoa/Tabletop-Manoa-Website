@@ -21,24 +21,6 @@ class CategoryCollection extends BaseCollection {
     }));
   }
 
-  /**
-   * Defines a new Interest.
-   * @example
-   * Interests.define({ name: 'Software Engineering',
-   *                    description: 'Methods for group development of large, high quality software systems' });
-   * @param { Object } description Object with keys name and description.
-   * Name must be previously undefined. Description is optional.
-   * Creates a "slug" for this name and stores it in the slug field.
-   * @throws {Meteor.Error} If the interest definition includes a defined name.
-   * @returns The newly created docID.
-   */
-  define({ name }) {
-    check(name, String);
-    if (this.find({ name }).count() > 0) {
-      throw new Meteor.Error(`${name} is previously defined`);
-    }
-    return this._collection.insert({ name });
-  }
 
   /**
    * Returns the Interest name corresponding to the passed interest docID.

@@ -2,7 +2,6 @@
 /* eslint-env mocha */
 
 import { Games } from './GameCollection.js';
-import { Categories } from '/imports/api/categories/CategoryCollection';
 import { Meteor } from 'meteor/meteor';
 import { expect } from 'chai';
 import { removeAllEntities } from '/imports/api/base/BaseUtilities';
