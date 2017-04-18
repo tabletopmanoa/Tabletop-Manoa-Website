@@ -1,7 +1,7 @@
 <template name="Games_Page" style="padding: 15%">
     {{#if Template.subscriptionsReady}}
       <div style="margin-top: 10px" class="ui menu">
-  
+      {{message}}
         <form class="ui equal width form games-data-form">
           <div class="field" style="align-content: center; color: black; font-size: large"> Choose from the game categories
               <div class="ui radio checkbox" >
@@ -35,7 +35,7 @@
           <div class="field" style="align-content: center; color: black; font-size: large"> Choose from the available
             card
             games
-            <p></p>
+            <div><p></p></div>
             <div class="ui checkbox magic-checkbox" >
               <input type="checkbox" id="magic-checkbox">
               <label>Magic the Gathering </label>
@@ -140,8 +140,7 @@
         </form>
 
 
-
-        {{#each game in gameList}}
+        {{#each gameList}}
         <form class="ui card games-data-form centered" style=" padding-top:5px;width:95%;">
           <div class="field" style="align-content: center; color: black; font-size: large">
             <div class="ui four column doubling stackable grid container">
@@ -223,7 +222,7 @@
             </div>
           </div>
         </form>
-  {{/each}}
+      {{/each}}
 
       </div>
     {{/if}}
