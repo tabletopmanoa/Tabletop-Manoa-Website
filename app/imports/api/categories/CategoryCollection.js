@@ -35,7 +35,7 @@ class CategoryCollection extends BaseCollection {
   define({ name }) {
     check(name, String);
     if (this.find({ name }).count() > 0) {
-      throw new Meteor.Error(`${name} is previously defined in another Interest`);
+      throw new Meteor.Error(`${name} is previously defined`);
     }
     return this._collection.insert({ name });
   }
