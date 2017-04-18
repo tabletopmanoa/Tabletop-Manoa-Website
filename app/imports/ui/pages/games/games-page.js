@@ -11,7 +11,10 @@ Template.Games_Page.onCreated(
 
 Template.Games_Page.helpers({
   gamesList(){
-    return GameTemplate.find();
+    if(instance.state.get('magic-checked')) {
+
+    }
+
   },
   message(){
     const instance = Template.instance();
@@ -25,8 +28,8 @@ Template.Games_Page.helpers({
 
 
 Template.Games_Page.events({
-  'change magic-checkbox'(event, instance){
-
+  'change #magic-checkbox'(event, instance){
+    console.log("magic");
     instance.state.set('magic-checked',event.target.checked);
   }
 

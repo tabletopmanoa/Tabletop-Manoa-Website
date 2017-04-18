@@ -1,13 +1,30 @@
 <template name="Games_Page" style="padding: 15%">
     {{#if Template.subscriptionsReady}}
       <div style="margin-top: 10px" class="ui menu">
-
+  
         <form class="ui equal width form games-data-form">
-          <div class="field" style="align-content: center; color: black; font-size: large"> Choose from the game
-            Categories
-            {{> Checkbox_Form_Control label="" checkboxes=categories}}
-          </div>
-          <button class="ui black circular button" type="submit">Filter</button>
+          <div class="field" style="align-content: center; color: black; font-size: large"> Choose from the game categories
+              <div class="ui radio checkbox" >
+                <input type="radio"  name="category" id="rp-games">
+                <label>Role Playing Games</label>
+              </div>
+              <div class="ui radio checkbox ">
+                <input type="radio"  name="category" id="card-games">
+                <label>Card Games</label>
+              </div>
+              <div class="ui radio checkbox">
+                <input type="radio" name="category" id="board-games">
+                <label>Board Games</label>
+              </div>
+              <div class="ui radio checkbox">
+                <input type="radio" name="category" id="mini-games">
+                <label>Miniature Games</label>
+              </div>
+            <div class="ui radio checkbox">
+              <input type="radio" name="category" id="all-games">
+              <label>All Games</label>
+            </div>
+            </div>
         </form>
 
         <!--{{> Games_Page_Directory games=games }}-->
@@ -18,16 +35,17 @@
           <div class="field" style="align-content: center; color: black; font-size: large"> Choose from the available
             card
             games
+            <p></p>
             <div class="ui checkbox magic-checkbox" >
-              <input type="checkbox" class="magic-checkbox">
+              <input type="checkbox" id="magic-checkbox">
               <label>Magic the Gathering </label>
             </div>
             <div class="ui checkbox kitten-checkbox">
-              <input type="checkbox" name="example2">
+              <input type="checkbox" id="example2">
               <label>Exploding Kittens</label>
             </div>
             <div class="ui checkbox spades-checkbox">
-              <input type="checkbox" name="example3">
+              <input type="checkbox" id="example3">
               <label>Spades</label>
             </div>
           </div>
@@ -209,6 +227,14 @@
 
       </div>
     {{/if}}
+  <script>
+    .   $('.ui.radio.checkbox')
+        .checkbox({
+          onChecked: function () {
 
+          }
+        });
+
+  </script>
 
 </template>
