@@ -52,6 +52,21 @@ Template.NewGame_Page.events({
     const cardGameId = document.getElementById('gameCARD');
     const boardGameId = document.getElementById('gameBOARD');
     const miniGameId = document.getElementById('gameMINI');
+    let category = '';
+    if (document.getElementById('RPG').checked) {
+      category = 'Role Playing';
+    }
+    else
+      if (document.getElementById('Card').checked) {
+        category = 'Card';
+      }
+      else
+        if (document.getElementById('Board').checked) {
+          category = 'Board';
+        }
+        else {
+          category = 'Miniatures';
+        }
     let gameName = '';
     if (rpgGameId.options[rpgGameId.selectedIndex].value > 0) {
       gameName = rpgGameId.options[rpgGameId.selectedIndex].text;
@@ -62,32 +77,21 @@ Template.NewGame_Page.events({
     } else {
       gameName = miniGameId.options[miniGameId.selectedIndex].text;
     }
-    console.log(gameName);
     const mp = document.getElementById('Players');
     const maxPlayers = mp.options[mp.selectedIndex].text;
-    console.log(maxPlayers);
     const le = document.getElementById('Length');
     const gameLength = le.options[le.selectedIndex].text;
-    console.log(gameLength);
     const location = event.target.Location.value;
-    console.log(location);
-    // const smoking = event.target.smoking.value;
-    // const alcohol = event.target.alcohol.value;
-
+    const smoking = document.getElementById('Smoking').checked;
+    const alcohol = document.getElementById('Alcohol').checked;
     const date = event.target.date.value;
-    console.log(date);
     const time = event.target.time.value;
-    console.log(time);
-
-    // const recurring = event.target.recurring.value;
+    const recurring = document.getElementById('Recurring').checked;
     const contact = event.target.contact.value;
-    console.log(contact);
     const resources = event.target.resources.value;
-    console.log(resources);
     const about = event.target.about.value;
-    console.log(about);
 
-    const newGameData = { gameName, maxPlayers, gameLength, location, date, time, contact, resources, about };
+    const newGameData = { category, gameName, maxPlayers, gameLength, location, smoking, alcohol, date, time, recurring, contact, resources, about };
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that newGameData reflects what will be inserted.
