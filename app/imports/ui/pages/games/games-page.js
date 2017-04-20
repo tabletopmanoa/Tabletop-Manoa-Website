@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating';
-import {GameTemplate} from '../../../api/template/template.js'
+import {GameTemplate} from '../../../api/games/GameCollection.js'
 import {ReactiveDict } from 'meteor/reactive-dict';
 
 
@@ -12,12 +12,12 @@ Template.Games_Page.onCreated(
 Template.Games_Page.helpers({
   gamesList(){
    const instance=Template.instance();
+
     if(instance.state.get('category').equals('all')){
       console.log("works here");
       return GameTemplate.find();
     }
     else{
-
       return GameTemplate.find({},{fields:{category:instance.state.get('category')}});
     }
   },
