@@ -3,7 +3,7 @@
     <h1 class="ui dividing header">
       Create Your Own Game Group
     </h1>
-    <form class="ui equal width form game-data-form {{ errorClass }}">
+    <form class="ui equal width form segment game-data-form {{ errorClass }}">
       <a class="ui red ribbon label">Category</a>
       <div class="ui divider"></div>
       <div class="grouped fields">
@@ -66,6 +66,7 @@
         </div>
       </div>
       <div id='board' style='display:none'>
+        {{enterGameName}}
         <a class="ui teal ribbon label">Game Information</a>
         <div class="ui divider"></div>
         <div class="field">
@@ -157,16 +158,19 @@
         <br/>
         <br/>
         <div class="fields">
-          {{> Social_Network_Form_Control label="Contact" id="contact" required=false icon="person" placeholder="iamDM@hawaii.edu" value=profile.github errorMessage=(fieldError "github")}}
+          {{> Social_Network_Form_Control label="Contact Email" id="contact" required=false icon="person" placeholder="iamDM@hawaii.edu" value=profile.github errorMessage=(fieldError "github")}}
           {{> Text_Form_Control label="Resources" id="resources" placeholder="http://www.d20pfsrd.com/" errorMessage=(fieldError "resources") multiple=true }}
         </div>
         <div class="field">
           {{> TextArea_Form_Control label="About / Comments" id="about" value=profile.bio placeholder="Short statement about gameplay for those who never heard of game: Roleplaying game in which you play in a high-fantasy environment slaying monsters and solving puzzles. Required to bring: pencil. Optional: D20 dice set and $5.00 for pizza" errorMessage=(fieldError "about")}}
         </div>
         <br/>
-        <button class="ui primary button" type="submit">Submit</button>
+        <div class="ui primary submit button">Submit</div>
+        <div class="ui reset button">Reset</div>
+        <div class="ui error message"></div>
       </div>
     </form>
+
     <script>
       $('.ui.radio.checkbox')
           .checkbox({
@@ -204,6 +208,59 @@
             }
           });
       $('.dropdown').dropdown({ transition: 'drop' }).dropdown({ on: 'hover' });
+
+      $('.ui.form')
+          .form({
+            fields: {
+              gameName: {
+                identifier: 'gameName',
+                rules: [
+                  {
+                    type: 'empty',
+                    prompt: 'Please select a Game.'
+                  }
+                ]
+              },
+              location: {
+                identifier: 'Location',
+                rules: [
+                  {
+                    type: 'empty',
+                    prompt: 'Please enter the location of the game.'
+                  }
+                ]
+              },
+              date: {
+                identifier: 'date',
+                rules: [
+                  {
+                    type: 'empty',
+                    prompt: 'Please enter a meeting date.'
+                  }
+                ]
+              },
+              time: {
+                identifier: 'time',
+                rules: [
+                  {
+                    type: 'empty',
+                    prompt: 'Please enter a meeting time.'
+                  }
+                ]
+              },
+              contact: {
+                identifier: 'contact',
+                rules: [
+                  {
+                    type: 'email',
+                    prompt: 'Please enter a valid email address'
+                  },
+                ]
+
+              }
+            }
+          })
+      ;
     </script>
   </div>
 </template>

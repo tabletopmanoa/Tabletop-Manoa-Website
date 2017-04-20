@@ -30,12 +30,12 @@ Template.NewGame_Page.helpers({
     const errorObject = _.find(invalidKeys, (keyObj) => keyObj.name === fieldName);
     return errorObject && Template.instance().context.keyErrorMessage(errorObject.name);
   },
-/*  categories() {
-    return _.map(categoryList, function makeCategoryObject(category) {
-      return { label: category };
-    });
-  },
-  */
+  /*  categories() {
+   return _.map(categoryList, function makeCategoryObject(category) {
+   return { label: category };
+   });
+   },
+   */
   // Not sure what this does
   game() {
     return Games.findDoc(FlowRouter.getParam('username'));
@@ -46,7 +46,6 @@ Template.NewGame_Page.events({
   'submit .game-data-form'(event, instance) {
     event.preventDefault();
     const username = FlowRouter.getParam('username'); // schema requires username.
-    console.log(username);
     // const category = event.target.Category.value;
     const rpgGameId = document.getElementById('gameRPG');
     const cardGameId = document.getElementById('gameCARD');
@@ -55,28 +54,29 @@ Template.NewGame_Page.events({
     let category = '';
     if (document.getElementById('RPG').checked) {
       category = 'Role Playing';
-    }
-    else
+    } else
       if (document.getElementById('Card').checked) {
         category = 'Card';
-      }
-      else
+      } else
         if (document.getElementById('Board').checked) {
           category = 'Board';
-        }
-        else {
+        } else {
           category = 'Miniatures';
         }
     let gameName = '';
     if (rpgGameId.options[rpgGameId.selectedIndex].value > 0) {
       gameName = rpgGameId.options[rpgGameId.selectedIndex].text;
-    } else if (cardGameId.options[cardGameId.selectedIndex].value > 0) {
-      gameName = cardGameId.options[cardGameId.selectedIndex].text;
-    } else if (boardGameId.options[boardGameId.selectedIndex].value > 0) {
-      gameName = boardGameId.options[boardGameId.selectedIndex].text;
-    } else {
-      gameName = miniGameId.options[miniGameId.selectedIndex].text;
-    }
+    } else
+      if (cardGameId.options[cardGameId.selectedIndex].value > 0) {
+        gameName = cardGameId.options[cardGameId.selectedIndex].text;
+      } else
+        if (boardGameId.options[boardGameId.selectedIndex].value > 0) {
+          gameName = boardGameId.options[boardGameId.selectedIndex].text;
+        } else if (boardGameId.options[miniGameId.selectedIndex].value > 0) {
+          gameName = miniGameId.options[miniGameId.selectedIndex].text;
+        } else {
+          gameName = '';
+        }
     const mp = document.getElementById('Players');
     const maxPlayers = mp.options[mp.selectedIndex].text;
     const le = document.getElementById('Length');
@@ -91,7 +91,21 @@ Template.NewGame_Page.events({
     const resources = event.target.resources.value;
     const about = event.target.about.value;
 
-    const newGameData = { category, gameName, maxPlayers, gameLength, location, smoking, alcohol, date, time, recurring, contact, resources, about };
+    const newGameData = {
+      category,
+      gameName,
+      maxPlayers,
+      gameLength,
+      location,
+      smoking,
+      alcohol,
+      date,
+      time,
+      recurring,
+      contact,
+      resources,
+      about,
+    };
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that newGameData reflects what will be inserted.
