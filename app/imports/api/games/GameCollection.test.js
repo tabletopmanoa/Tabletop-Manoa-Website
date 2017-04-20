@@ -16,11 +16,14 @@ if (Meteor.isServer) {
     const date = new Date("April 29, 2017 11:13:00");
     const gameLength = '4 hours';
     const location = 'Hale Wina Lounge';
+    const smoking = true;
+    const alcohol = false;
+    const recurring = true;
     const about = 'This game is very cool';
     const picture = 'http://www.levelupgamesmn.com/uploads/2/4/7/7/24777638/2796519_orig.png';
     const contact = 'kodayv@hawaii.edu';
     const resources = 'http://www.d20pfsrd.com/';
-    const defineObject = { gameName, category, maxPlayers, date, gameLength, location, about, picture, contact, resources };
+    const defineObject = { gameName, category, maxPlayers, date, gameLength, location, smoking, alcohol, recurring, about, picture, contact, resources };
 
     before(function setup() {
       removeAllEntities();
@@ -39,12 +42,17 @@ if (Meteor.isServer) {
       expect(doc.maxPlayers).to.equal(maxPlayers);
       expect(doc.gameLength).to.equal(gameLength);
       expect(doc.location).to.equal(location);
+      expect(doc.smoking).to.equal(smoking);
+      expect(doc.alcohol).to.equal(alcohol);
+      expect(doc.recurring).to.equal(recurring);
       expect(doc.date.getTime()).to.equal(date.getTime());
       expect(doc.category[0]).to.equal(categoryName);
       expect(doc.about).to.equal(about);
       expect(doc.picture).to.equal(picture);
       expect(doc.contact).to.equal(contact);
       expect(doc.resources).to.equal(resources);
+
+
       // Check that we can dump and restore a Profile.
       const dumpObject = Games.dumpOne(docID);
       Games.removeIt(docID);

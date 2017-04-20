@@ -1,6 +1,3 @@
-/**
- * Created by koday on 3/5/2017.
- */
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Categories } from '/imports/api/categories/CategoryCollection';
@@ -64,6 +61,21 @@ class GameSchema extends BaseCollection {
         optional: false,
         max: 200,
       },
+      smoking: {
+        label: 'smoking',
+        type: Boolean,
+        optional: false,
+      },
+      alcohol: {
+        label: 'alcohol',
+        type: Boolean,
+        optional: false,
+      },
+      recurring: {
+        label: 'recurring',
+        type: Boolean,
+        optional: false,
+      },
       contact: {
         label: 'contact',
         type: String,
@@ -79,17 +91,20 @@ class GameSchema extends BaseCollection {
     }));
   }
 
-  define({ gameName = '', category, maxPlayers = '', gameLength = '', date = '', location = '', about = '', picture = '', contact = '', resources = '' }) {
+  define({ gameName = '', category, maxPlayers = '', gameLength = '', date = '', location = '', about = '', picture = '', smoking = false, alcohol = false, recurring = false, contact = '', resources = '' }) {
     const checkPattern = {
-      gameName: String, maxPlayers: Number, gameLength: String, about: String, date: Date, location: String, picture: String,
+      gameName: String, maxPlayers: Number, gameLength: String, about: String, date: Date, location: String, smoking: Boolean, alcohol: Boolean, recurring: Boolean, picture: String,
       contact: String
     };
-    check({ gameName, maxPlayers, location, gameLength, date, about, picture, contact }, checkPattern);
+    check({ gameName, maxPlayers, location, smoking, alcohol, recurring, gameLength, date, about, picture, contact }, checkPattern);
 
     return this._collection.insert({
       gameName,
       category,
       location,
+      smoking,
+      alcohol,
+      recurring,
       maxPlayers,
       gameLength,
       date,
@@ -113,6 +128,9 @@ class GameSchema extends BaseCollection {
     const gameLength = doc.gameLength;
     const date = doc.date;
     const location = doc.location;
+    const smoking = doc.smoking;
+    const alcohol = doc.alcohol;
+    const recurring = doc.recurring;
     const about = doc.about;
     const picture = doc.picture;
     const contact = doc.contact;
