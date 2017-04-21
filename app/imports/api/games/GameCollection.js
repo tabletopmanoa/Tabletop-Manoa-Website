@@ -84,19 +84,48 @@ class GameSchema extends BaseCollection {
       },
       resources: {
         label: 'resources',
-        type: String,
+        type: SimpleSchema.RegEx.Url,
+        optional: false,
+        max: 200,
+      },
+      userID: {
+        label: 'userID',
+        type: [String],
         optional: false,
         max: 200,
       },
     }));
   }
 
-  define({ gameName = '', category, maxPlayers = '', gameLength = '', date = '', location = '', about = '', picture = '', smoking = false, alcohol = false, recurring = false, contact = '', resources = '' }) {
+  define({ gameName = '', category, maxPlayers = '', gameLength = '', date = '', location = '', about = '', picture = '', smoking = false, alcohol = false, recurring = false, contact = '', resources = '' , userID}) {
     const checkPattern = {
-      gameName: String, maxPlayers: Number, gameLength: String, about: String, date: Date, location: String, smoking: Boolean, alcohol: Boolean, recurring: Boolean, picture: String,
+      gameName: String,
+      maxPlayers: Number,
+      gameLength: String,
+      about: String,
+      date: Date,
+      location: String,
+      smoking: Boolean,
+      alcohol: Boolean,
+      recurring: Boolean,
+      picture: String,
       contact: String
     };
-    check({ gameName, maxPlayers, location, smoking, alcohol, recurring, gameLength, date, about, picture, contact }, checkPattern);
+    check({
+      gameName,
+      maxPlayers,
+      location,
+      smoking,
+      alcohol,
+      recurring,
+      gameLength,
+      date,
+      about,
+      picture,
+      contact
+    }, checkPattern);
+
+
 
     return this._collection.insert({
       gameName,
@@ -111,7 +140,8 @@ class GameSchema extends BaseCollection {
       about,
       picture,
       contact,
-      resources
+      resources,
+      userID
     });
   }
 
@@ -135,8 +165,10 @@ class GameSchema extends BaseCollection {
     const picture = doc.picture;
     const contact = doc.contact;
     const resources = doc.resources;
-    return { gameName, category, maxPlayers, gameLength, date, location, about, picture, contact, resources };
+    const  userID = doc.userID;
+    return { gameName, category, maxPlayers, gameLength, date, location, about, picture, contact, resources, userID };
   }
+
 }
 
 export const Games = new GameSchema();

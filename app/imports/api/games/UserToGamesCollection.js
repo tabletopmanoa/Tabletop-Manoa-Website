@@ -1,6 +1,3 @@
-/**
- * Created by jory on 4/19/2017.
- */
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Categories } from '/imports/api/categories/CategoryCollection';
@@ -19,9 +16,8 @@ class GameUserSchema extends BaseCollection {
     super('UserToGames', new SimpleSchema({
       ID: {
         label: 'ID',
-        type: ObjectID,
+        type: Meteor.Collection.ObjectID,
         optional: false,
-        max: 200,
       },
       UserID: {
         label: 'UserID',
@@ -32,12 +28,12 @@ class GameUserSchema extends BaseCollection {
     }));
   }
 
-  define({ ID= null, UserID='FFFF'}) {
-    const checkPattern = {
-      ID: ObjectID, UserID: String
-    };
-    check({ ID,UserID}, checkPattern);
-
+  define({ ID, UserID}) {
+        check(ID, Meteor.Collection.ObjectID);
+        check (UserID, [String]);
+    if (this.find({ ID }).count() > 0) {
+      ID = new Meteor.Collection.ObjectID;
+    }
     // Throw an error if any of the passed Categories names are not defined.
     return this._collection.insert({
         ID,
@@ -58,6 +54,6 @@ class GameUserSchema extends BaseCollection {
   }
 }
 
-export const GamesUserSchema = new GameSchema();
-GameUserCollection.attachSchema(GamesUserSchema);
+export const UserToGames = new GameUserSchema();
+GameUserCollection.attachSchema(GameUserSchema);
 
