@@ -94,10 +94,15 @@ class GameSchema extends BaseCollection {
         optional: false,
         max: 200,
       },
+      ID: {
+        label: 'ID',
+        type: Meteor.Collection.ObjectID,
+        optional: false,
+      },
     }));
   }
 
-  define({ gameName = '', category, maxPlayers = '', gameLength = '', date = '', location = '', about = '', picture = '', smoking = false, alcohol = false, recurring = false, contact = '', resources = '' , userID}) {
+  define({ gameName = '', category, maxPlayers = '', gameLength = '', date = '', location = '', about = '', picture = '', smoking = false, alcohol = false, recurring = false, contact = '', resources = '' , userID, ID}) {
     const checkPattern = {
       gameName: String,
       maxPlayers: Number,
@@ -141,7 +146,8 @@ class GameSchema extends BaseCollection {
       picture,
       contact,
       resources,
-      userID
+      userID,
+      ID
     });
   }
 
@@ -166,7 +172,8 @@ class GameSchema extends BaseCollection {
     const contact = doc.contact;
     const resources = doc.resources;
     const  userID = doc.userID;
-    return { gameName, category, maxPlayers, gameLength, date, location, about, picture, contact, resources, userID };
+    const ID = doc.ID;
+    return { gameName, category, maxPlayers, gameLength, date, location, about, picture, contact, resources, userID, ID };
   }
 
 }

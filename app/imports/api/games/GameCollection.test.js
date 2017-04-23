@@ -10,7 +10,7 @@ import  { UserToGames } from  './UserToGamesCollection';
 
 if (Meteor.isServer) {
   describe('GameCollection', function testSuite() {
-    const ID = new Meteor.Collection.ObjectID();
+    const ID = new Meteor.Collection.ObjectID;
     const categoryName = 'roleplaying'
     const gameName = 'Pathfinder';
     const category = [categoryName];
@@ -27,11 +27,11 @@ if (Meteor.isServer) {
     const resources = 'http://www.d20pfsrd.com/';
     const userName = 'kodayv@hawaii.edu';
     const userID = [userName];
-    const defineObject = { gameName, category, maxPlayers, date, gameLength, location, smoking, alcohol, recurring, about, picture, contact, resources, userID };
+    const defineObject = { gameName, category, maxPlayers, date, gameLength, location, smoking, alcohol, recurring, about, picture, contact, resources, userID, ID };
 
     before(function setup() {
       removeAllEntities();
-      UserToGames.define( {ID: ID , UserID: userID });
+      UserToGames.define( {ID: ID , UserID: userName });
     });
 
     after(function teardown() {
@@ -68,20 +68,20 @@ if (Meteor.isServer) {
 
     it('#define (illegal item)', function test() {
       const illegalItem = ['foo'];
-      const gameName2 = 'Snakes and Ladders';
-      const defineObject2 = {gameName2, category, illegalItem, maxPlayers, date, gameLength, location, smoking, alcohol, recurring, about, picture, contact, resources};
+      const ID1 = new Meteor.Collection.ObjectID();
+      const defineObject2 = {gameName, category, illegalItem, maxPlayers, date, gameLength, location, smoking, alcohol, recurring, about, picture, contact, resources, userID, ID1};
       expect(function foo() { GameCollection.define(defineObject2); }).to.throw(Error);
     });
 
     it('#define (missing required item)', function test() {
-      const gameName3 = 'Magic';
-      const defineObject2 = {gameName3, maxPlayers, date, gameLength, location, smoking, alcohol, recurring, about, picture, contact, resources};
+      const ID2 = new Meteor.Collection.ObjectID();
+      const defineObject2 = {gameName, maxPlayers, date, gameLength, location, smoking, alcohol, recurring, about, picture, contact, resources, userID, ID2};
       expect(function foo() { GameCollection.define(defineObject2); }).to.throw(Error);
     });
 
     it('#define (item defined twice)', function test() {
-      const gameName3 = 'Quest';
-      const defineObject2 = {gameName3, category, category, maxPlayers, date, gameLength, location, smoking, alcohol, recurring, about, picture, contact, resources};
+      const ID3 = new Meteor.Collection.ObjectID();
+      const defineObject2 = {gameName, category, category, maxPlayers, date, gameLength, location, smoking, alcohol, recurring, about, picture, contact, resources, userID, ID3};
       expect(function foo() { GameCollection.define(defineObject2); }).to.throw(Error);
     });
   });

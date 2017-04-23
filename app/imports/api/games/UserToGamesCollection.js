@@ -4,6 +4,8 @@ import { Categories } from '/imports/api/categories/CategoryCollection';
 import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
 import BaseCollection from '/imports/api/base/BaseCollection';
+import { _ } from 'meteor/underscore';
+
 
 export const GameUserCollection = new Mongo.Collection('GameUserCollection');
 
@@ -21,7 +23,7 @@ class GameUserSchema extends BaseCollection {
       },
       UserID: {
         label: 'UserID',
-        type: [String],
+        type: String,
         optional: false,
         max: 20,
       },
@@ -30,15 +32,24 @@ class GameUserSchema extends BaseCollection {
 
   define({ ID, UserID}) {
         check(ID, Meteor.Collection.ObjectID);
-        check (UserID, [String]);
+        check (UserID, String);
     if (this.find({ ID }).count() > 0) {
-      ID = new Meteor.Collection.ObjectID;
+      throw new Meteor.Error(`${ID} is previously defined in another Game`);
     }
     // Throw an error if any of the passed Categories names are not defined.
     return this._collection.insert({
         ID,
         UserID
     });
+  }
+  /**
+   * Returns a list of Game names corresponding to the User ID.
+   * @param UserIDs A list of Interest docIDs.
+   * @returns { Array }
+   * @throws { Meteor.Error} If any of the instanceIDs cannot be found.
+   */
+  findGames(User) {
+    return _.where(GameUserSchema,{UserID: User});
   }
 
   /**
