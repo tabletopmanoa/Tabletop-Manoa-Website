@@ -82,7 +82,7 @@ class GameSchema extends BaseCollection {
   define({ gameName = '', category, maxPlayers = '', gameLength = '', date = '', location = '', about = '', picture = '', contact = '', resources = '' }) {
     const checkPattern = {
       gameName: String, maxPlayers: Number, gameLength: String, about: String, date: Date, location: String, picture: String,
-      contact: String
+      contact: String,
     };
     check({ gameName, maxPlayers, location, gameLength, date, about, picture, contact }, checkPattern);
 
@@ -97,7 +97,7 @@ class GameSchema extends BaseCollection {
       about,
       picture,
       contact,
-      resources
+      resources,
     });
   }
 
@@ -124,4 +124,3 @@ class GameSchema extends BaseCollection {
 
 export const Games = new GameSchema();
 GameTemplate.attachSchema(GameSchema);
-
