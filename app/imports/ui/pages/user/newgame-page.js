@@ -87,7 +87,7 @@ Template.NewGame_Page.events({
                   if (miniGameId.options[miniGameId.selectedIndex].value > 0) {
                     gameName = miniGameId.options[miniGameId.selectedIndex].text;
                   } else {
-                    gameName = 'Error';
+                    gameName = '';
                   }
     const mp = document.getElementById('Players');
     const maxPlayers = mp.options[mp.selectedIndex].text;
