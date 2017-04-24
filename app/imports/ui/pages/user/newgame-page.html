@@ -161,7 +161,9 @@
         </div>
         <br/>
         <div class="fields">
-          {{> Text_Form_Control label="Meeting Date" id="date" required=false options=interests placeholder="04/07/2017" errorMessage=(fieldError "days") multiple=true }}
+          <label for="date">Meeting Date </label>
+          <br/>
+          <input id="date" type="date"/>
           {{> Text_Form_Control label="Meeting Time" id="time" required=false options=interests placeholder="6:00pm" errorMessage=(fieldError "time") multiple=true }}
         </div>
         <div class="ui checkbox">
