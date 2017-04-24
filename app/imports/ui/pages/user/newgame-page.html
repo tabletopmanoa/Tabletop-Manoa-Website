@@ -37,7 +37,7 @@
         <div class="ui divider"></div>
         <div class="field">
           <label>Game</label>
-          <select name ="gameRPG" class="ui dropdown" id="gameRPG" onchange='enterNameRPG(this.value);'>
+          <select name="gameRPG" class="ui dropdown" id="gameRPG" onchange='enterNameRPG(this.value);'>
             <option value="">Name</option>
             <option value="1">Dungeons & Dragons</option>
             <option value="2">Shadowrun</option>
@@ -48,7 +48,8 @@
             <option value="7">Other</option>
           </select>
           <br/><br/>
-          <input type="text" placeholder="Please enter the name of your game" name="enterRPG" id="enterRPG" style='display:none;'/>
+          <input type="text" placeholder="Please enter the name of your game" name="enterRPG" id="enterRPG"
+                 style='display:none;'/>
           <br/>
         </div>
       </div>
@@ -57,7 +58,8 @@
         <div class="ui divider"></div>
         <div class="field">
           <label>Game</label>
-          <select name="gameCard" class="ui dropdown" id="gameCARD" onchange='enterNameCard(this.value);'>            <option value="">Name</option>
+          <select name="gameCard" class="ui dropdown" id="gameCARD" onchange='enterNameCard(this.value);'>
+            <option value="">Name</option>
             <option value="1">Poker</option>
             <option value="2">Rummy</option>
             <option value="3">Cribbage</option>
@@ -67,7 +69,8 @@
             <option value="7">Other</option>
           </select>
           <br/><br/>
-          <input type="text" placeholder="Please enter the name of your game" name="enterCard" id="enterCard" style='display:none;'/>
+          <input type="text" placeholder="Please enter the name of your game" name="enterCard" id="enterCard"
+                 style='display:none;'/>
           <br/>
         </div>
       </div>
@@ -87,7 +90,8 @@
             <option value="7">Other</option>
           </select>
           <br/><br/>
-          <input type="text" placeholder="Please enter the name of your game" name="enterBoard" id="enterBoard" style='display:none;'/>
+          <input type="text" placeholder="Please enter the name of your game" name="enterBoard" id="enterBoard"
+                 style='display:none;'/>
           <br/>
         </div>
       </div>
@@ -97,7 +101,7 @@
         <div class="field">
           <label>Game</label>
           <select name="gameMINI" class="ui dropdown" id="gameMINI" onchange='enterNameMini(this.value);'>
-          <option value="">Name</option>
+            <option value="">Name</option>
             <option value="1">Star Wars: X-Wing</option>
             <option value="2">War Machine</option>
             <option value="3">Hordes</option>
@@ -105,7 +109,8 @@
             <option value="5">Other</option>
           </select>
           <br/><br/>
-          <input type="text" placeholder="Please enter the name of your game" name="enterMini" id="enterMini" style='display:none;'/>
+          <input type="text" placeholder="Please enter the name of your game" name="enterMini" id="enterMini"
+                 style='display:none;'/>
           <br/>
         </div>
       </div>
@@ -160,15 +165,21 @@
           </div>
         </div>
         <br/>
-        <div class="fields">
-          <label for="date">Meeting Date </label>
-          <br/>
-          <input id="date" type="date"/>
-          {{> Text_Form_Control label="Meeting Time" id="time" required=false options=interests placeholder="6:00pm" errorMessage=(fieldError "time") multiple=true }}
+        <div class="ui two column grid">
+          <div class="column">
+            <label for="date">Date </label>
+            <input id="date" type="date"/>
+          </div>
+          <div class="column">
+            <label for="time">Time </label>
+            <input id="time" type="time"/>
+          </div>
         </div>
-        <div class="ui checkbox">
-          <input type="checkbox" name="Recurring" id="Recurring" checked="">
-          <label>Is this meeting recurring? </label>
+        <div class="ui grid">
+          <div class="ui checkbox">
+            <input type="checkbox" name="Recurring" id="Recurring" checked="">
+            <label>Is this meeting recurring? </label>
+          </div>
         </div>
         <br/>
         <br/>
