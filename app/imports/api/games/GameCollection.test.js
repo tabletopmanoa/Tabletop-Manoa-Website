@@ -20,7 +20,18 @@ if (Meteor.isServer) {
     const picture = 'http://www.levelupgamesmn.com/uploads/2/4/7/7/24777638/2796519_orig.png';
     const contact = 'kodayv@hawaii.edu';
     const resources = 'http://www.d20pfsrd.com/';
-    const defineObject = { gameName, category, maxPlayers, date, gameLength, location, about, picture, contact, resources };
+    const defineObject = {
+      gameName,
+      category,
+      maxPlayers,
+      date,
+      gameLength,
+      location,
+      about,
+      picture,
+      contact,
+      resources
+    };
 
     before(function setup() {
       removeAllEntities();
