@@ -4,6 +4,7 @@
       <table style="margin-top: 20px" class="ui compact striped orange left aligned small celled table">
         <thead>
         <tr>
+          <th>User Name</th>
           <th>Category</th>
           <th>Game Title</th>
           <th>Max Players</th>
@@ -16,6 +17,7 @@
           <th>Recurring</th>
           <th>Contact</th>
           <th>Resources</th>
+          <th>Image URL</th>
           <th>About/Comments</th>
         </tr>
         </thead>
@@ -23,6 +25,7 @@
         <tbody>
         {{#each listing in listingsList}}
           <tr>
+            <td>{{listing.username}}</td>
             <td>{{listing.category}}</td>
             <td>{{listing.gameName}}</td>
             <td>{{listing.maxPlayers}}</td>
@@ -35,6 +38,7 @@
             <td>{{listing.recurring}}</td>
             <td>{{listing.contact}}</td>
             <td>{{listing.resources}}</td>
+            <td>{{listing.imageURL}}</td>
             <td>{{listing.about}}</td>
           </tr>
         {{/each}}

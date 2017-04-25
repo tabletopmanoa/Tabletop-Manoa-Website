@@ -188,6 +188,9 @@
           {{> Text_Form_Control label="Resources" id="resources" placeholder="http://www.d20pfsrd.com/" errorMessage=(fieldError "resources") multiple=true }}
         </div>
         <div class="field">
+          {{> Text_Form_Control label="Image URL" id="imageURL" required=false placeholder="http://www.website.com/image.jpg" }}
+        </div>
+        <div class="field">
           {{> TextArea_Form_Control label="About / Comments" id="about" value=profile.bio placeholder="Short statement about gameplay for those who never heard of game: Roleplaying game in which you play in a high-fantasy environment slaying monsters and solving puzzles. Required to bring: pencil. Optional: D20 dice set and $5.00 for pizza" errorMessage=(fieldError "about")}}
         </div>
         <br/>
