@@ -10,7 +10,6 @@ import  { UserToGames } from  './UserToGamesCollection';
 
 if (Meteor.isServer) {
   describe('GameCollection', function testSuite() {
-    const ID = new Meteor.Collection.ObjectID;
     const categoryName = 'roleplaying'
     const gameName = 'Pathfinder';
     const category = [categoryName];
@@ -26,12 +25,11 @@ if (Meteor.isServer) {
     const contact = 'kodayv@hawaii.edu';
     const resources = 'http://www.d20pfsrd.com/';
     const userName = 'kodayv@hawaii.edu';
-    const userID = [userName];
-    const defineObject = { gameName, category, maxPlayers, date, gameLength, location, smoking, alcohol, recurring, about, picture, contact, resources, userID, ID };
+    const userID = 'TestHASHXHGRKEE';
+    const defineObject = { gameName, category, maxPlayers, date, gameLength, location, smoking, alcohol, recurring, about, picture, contact, resources, userID };
 
     before(function setup() {
       removeAllEntities();
-      UserToGames.define( {ID: ID , UserID: userName });
     });
 
     after(function teardown() {
@@ -66,24 +64,7 @@ if (Meteor.isServer) {
       Games.removeIt(docID);
     });
 
-    it('#define (illegal item)', function test() {
-      const illegalItem = ['foo'];
-      const ID1 = new Meteor.Collection.ObjectID();
-      const defineObject2 = {gameName, category, illegalItem, maxPlayers, date, gameLength, location, smoking, alcohol, recurring, about, picture, contact, resources, userID, ID1};
-      expect(function foo() { GameCollection.define(defineObject2); }).to.throw(Error);
-    });
 
-    it('#define (missing required item)', function test() {
-      const ID2 = new Meteor.Collection.ObjectID();
-      const defineObject2 = {gameName, maxPlayers, date, gameLength, location, smoking, alcohol, recurring, about, picture, contact, resources, userID, ID2};
-      expect(function foo() { GameCollection.define(defineObject2); }).to.throw(Error);
-    });
-
-    it('#define (item defined twice)', function test() {
-      const ID3 = new Meteor.Collection.ObjectID();
-      const defineObject2 = {gameName, category, category, maxPlayers, date, gameLength, location, smoking, alcohol, recurring, about, picture, contact, resources, userID, ID3};
-      expect(function foo() { GameCollection.define(defineObject2); }).to.throw(Error);
-    });
   });
 }
 
