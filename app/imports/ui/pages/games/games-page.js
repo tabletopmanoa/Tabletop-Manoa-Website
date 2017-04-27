@@ -15,16 +15,18 @@ Template.Games_Page.onCreated(
 Template.Games_Page.helpers({
   gamesList(){
    const instance=Template.instance();
-   return Games.collection().find();
-    /*
-    if(instance.state.get('category').equals('all')){
-      console.log("works here");
+    var state = instance.state.get('category');
+    if(state==undefined){
+      state='all';
+    }
+    console.log("state="+state);
+   if(state == 'all'){
       return Games.collection().find();
     }
     else{
-      return Games.collection().find({},{fields:{category:instance.state.get('category')}});
+      return Games.collection().find({category:state},{});
     }
-    */
+
   },
 
   message(){
@@ -74,7 +76,7 @@ Template.Games_Page.events({
   },
   'change #rp-games'(event,instance){
     instance.state.set('rp-games',event.target.checked);
-    instance.state.set('category','role');
+    instance.state.set('category','roleplaying');
   },
   'change #all-games'(event,instance){
     instance.state.set('all-games',event.target.checked);
