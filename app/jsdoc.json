@@ -15,7 +15,7 @@
   "opts": {
     "encoding": "utf8",
     "template": "node_modules/docdash",
-    "destination": "../../bowfolios.github.io/tree/master/jsdocs.",
+    "destination": "../../tabletopmanoa.github.io/tree/master/jsdocs.",
     "recurse": true,
     "verbose": true
   },
