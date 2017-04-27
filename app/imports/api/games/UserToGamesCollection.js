@@ -18,8 +18,9 @@ class GameUserSchema extends BaseCollection {
     super('UserToGames', new SimpleSchema({
       ID: {
         label: 'ID',
-        type: Meteor.Collection.ObjectID,
+        type: String,
         optional: false,
+        max:20,
       },
       UserID: {
         label: 'UserID',
@@ -31,11 +32,8 @@ class GameUserSchema extends BaseCollection {
   }
 
   define({ ID, UserID}) {
-        check(ID, Meteor.Collection.ObjectID);
+        check(ID, String);
         check (UserID, String);
-    if (this.find({ ID }).count() > 0) {
-      throw new Meteor.Error(`${ID} is previously defined in another Game`);
-    }
     // Throw an error if any of the passed Categories names are not defined.
     return this._collection.insert({
         ID,
@@ -50,6 +48,10 @@ class GameUserSchema extends BaseCollection {
    */
   findGames(User) {
     return _.where(GameUserSchema,{UserID: User});
+  }
+
+  findID(id){
+    return _.where(GameUserSchema,{ID:id});
   }
 
   /**

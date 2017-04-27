@@ -90,15 +90,10 @@ class GameSchema extends BaseCollection {
       },
       userID: {
         label: 'userID',
-        type: [String],
+        type: String,
         optional: false,
         max: 200,
-      },
-      ID: {
-        label: 'ID',
-        type: Meteor.Collection.ObjectID,
-        optional: false,
-      },
+      }
     }));
   }
 
@@ -147,7 +142,6 @@ class GameSchema extends BaseCollection {
       contact,
       resources,
       userID,
-      ID
     });
   }
 
