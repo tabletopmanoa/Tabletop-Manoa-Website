@@ -45,7 +45,7 @@ Template.NewGame_Page.helpers({
 Template.NewGame_Page.events({
   'submit .game-data-form'(event, instance) {
     event.preventDefault();
-    // const username = FlowRouter.getParam('username'); // schema requires username.
+    const username = FlowRouter.getParam('username'); // schema requires username.
     const rpgGameId = document.getElementById('gameRPG');
     const cardGameId = document.getElementById('gameCARD');
     const boardGameId = document.getElementById('gameBOARD');
@@ -101,9 +101,11 @@ Template.NewGame_Page.events({
     const recurring = document.getElementById('Recurring').checked;
     const contact = event.target.contact.value;
     const resources = event.target.resources.value;
+    const imageURL = event.target.imageURL.value;
     const about = event.target.about.value;
 
     const newGameData = {
+      username,
       category,
       gameName,
       maxPlayers,
@@ -116,6 +118,7 @@ Template.NewGame_Page.events({
       recurring,
       contact,
       resources,
+      imageURL,
       about,
     };
     // Clear out any old validation errors.
