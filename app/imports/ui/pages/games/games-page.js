@@ -8,7 +8,7 @@ Template.Games_Page.onCreated(
     this.state=new ReactiveDict();
     this.context = Games.getSchema().namedContext('Games_Page');
 
-
+    this.subscribe(Games.getPublicationName());
   }
 );
 
@@ -30,6 +30,7 @@ Template.Games_Page.helpers({
   message(){
     const instance = Template.instance();
     return instance.state.get('category');
+
   }
 
 });
@@ -53,24 +54,19 @@ Template.Games_Page.events({
     const contact = 'kodayv@hawaii.edu';
     const resources = 'http://www.d20pfsrd.com/';
     const defineObject = { gameName, category, maxPlayers, date, gameLength, location, about, picture, contact, resources };
-    instance.context.resetValidation();
-    Games.define(defineObject);
+
     console.log("cleaned");
     console.log(defineObject);
-    if(instance.context.validate((defineObject))){
-
-      const id=Games.collection().insert(defineObject);
-      console.log("Games:"+Games.findAll());
-      console.log("Collection:"+Games.collection().find());
-    }
-    else{
-      console.log("not valid\n");
-    }
+    const docID = Games.define(defineObject);
+    Games.publish();
+    console.log("Games:"+Games.findAll());
+    console.log("Collection:"+Games.collection().find());
 
   },
   'change #mini-games'(event,instance){
     instance.state.set('mini-games',event.target.checked);
     instance.state.set('category','mini');
+    console.log(Games.findAll());
   },
   'change #card-games'(event,instance){
     instance.state.set('card-games',event.target.checked);
