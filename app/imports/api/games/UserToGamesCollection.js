@@ -1,11 +1,10 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { Categories } from '/imports/api/categories/CategoryCollection';
+// import { Categories } from '/imports/api/categories/CategoryCollection';
 import { check } from 'meteor/check';
-import { Meteor } from 'meteor/meteor';
+// import { Meteor } from 'meteor/meteor';
 import BaseCollection from '/imports/api/base/BaseCollection';
 import { _ } from 'meteor/underscore';
-
 
 export const GameUserCollection = new Mongo.Collection('GameUserCollection');
 
@@ -20,7 +19,7 @@ class GameUserSchema extends BaseCollection {
         label: 'ID',
         type: String,
         optional: false,
-        max:20,
+        max: 20,
       },
       UserID: {
         label: 'UserID',
@@ -31,15 +30,16 @@ class GameUserSchema extends BaseCollection {
     }));
   }
 
-  define({ ID, UserID}) {
-        check(ID, String);
-        check (UserID, String);
+  define({ ID, UserID }) {
+    check(ID, String);
+    check(UserID, String);
     // Throw an error if any of the passed Categories names are not defined.
     return this._collection.insert({
-        ID,
-        UserID
+      ID,
+      UserID,
     });
   }
+
   /**
    * Returns a list of Game names corresponding to the User ID.
    * @param UserIDs A list of Interest docIDs.
@@ -47,11 +47,11 @@ class GameUserSchema extends BaseCollection {
    * @throws { Meteor.Error} If any of the instanceIDs cannot be found.
    */
   findGames(User) {
-    return _.where(GameUserSchema,{UserID: User});
+    return _.where(GameUserSchema, { UserID: User });
   }
 
-  findID(id){
-    return _.where(GameUserSchema,{ID:id});
+  findID(id) {
+    return _.where(GameUserSchema, { ID: id });
   }
 
   /**
@@ -63,7 +63,7 @@ class GameUserSchema extends BaseCollection {
     const doc = this.findDoc(docID);
     const id = doc.ID;
     const userid = doc.UserID;
-    return { id,userid };
+    return { id, userid };
   }
 }
 

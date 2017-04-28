@@ -5,16 +5,16 @@ import { Games } from './GameCollection.js';
 import { Meteor } from 'meteor/meteor';
 import { expect } from 'chai';
 import { removeAllEntities } from '/imports/api/base/BaseUtilities';
-import  { UserToGames } from  './UserToGamesCollection';
+// import { UserToGames } from './UserToGamesCollection';
 
 
 if (Meteor.isServer) {
   describe('GameCollection', function testSuite() {
-    const categoryName = 'roleplaying'
+    const categoryName = 'roleplaying';
     const gameName = 'Pathfinder';
     const category = [categoryName];
     const maxPlayers = 10;
-    const date = new Date("April 29, 2017 11:13:00");
+    const date = new Date('April 29, 2017 11:13:00');
     const gameLength = '4 hours';
     const location = 'Hale Wina Lounge';
     const smoking = true;
@@ -24,9 +24,23 @@ if (Meteor.isServer) {
     const picture = 'http://www.levelupgamesmn.com/uploads/2/4/7/7/24777638/2796519_orig.png';
     const contact = 'kodayv@hawaii.edu';
     const resources = 'http://www.d20pfsrd.com/';
-    const userName = 'kodayv@hawaii.edu';
+    // const userName = 'kodayv@hawaii.edu';
     const userID = 'TestHASHXHGRKEE';
-    const defineObject = { gameName, category, maxPlayers, date, gameLength, location, smoking, alcohol, recurring, about, picture, contact, resources, userID };
+    const defineObject = {
+      gameName,
+      category,
+      maxPlayers,
+      date,
+      gameLength,
+      location,
+      smoking,
+      alcohol,
+      recurring,
+      about,
+      picture,
+      contact,
+      resources,
+      userID };
 
     before(function setup() {
       removeAllEntities();
@@ -63,8 +77,6 @@ if (Meteor.isServer) {
       expect(Games.isDefined(docID)).to.be.true;
       Games.removeIt(docID);
     });
-
-
   });
 }
 

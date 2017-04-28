@@ -12,14 +12,10 @@ Meteor.publish('Listings', function publishListingsData() {
 
 import { GameTemplate } from '../../api/template/template.js';
 
-
-
 Interests.publish();
 Profiles.publish();
 Categories.publish();
 Games.publish();
-
-
 
 Meteor.publish('GameTemplate', function publishContactsData() {
   return GameTemplate.find();
