@@ -10,7 +10,7 @@ if (Meteor.isServer) {
   describe('UserToGamesCollection', function testSuite() {
     const ID = 'XFDe4rgteed';
     const userID = 'XDgrEfcdS';
-    const defineObject = { ID, userID };
+    const defineObject = { ID: ID, UserID: userID };
 
     before(function setup() {
       removeAllEntities();
