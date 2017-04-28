@@ -1,8 +1,8 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { Categories } from '/imports/api/categories/CategoryCollection';
+// import { Categories } from '/imports/api/categories/CategoryCollection';
 import { check } from 'meteor/check';
-import { Meteor } from 'meteor/meteor';
+// import { Meteor } from 'meteor/meteor';
 import BaseCollection from '/imports/api/base/BaseCollection';
 
 export const GameTemplate = new Mongo.Collection('GameTemplate');
@@ -93,11 +93,26 @@ class GameSchema extends BaseCollection {
         type: String,
         optional: false,
         max: 200,
-      }
+      },
     }));
   }
 
-  define({ gameName = '', category, maxPlayers = '', gameLength = '', date = '', location = '', about = '', picture = '', smoking = false, alcohol = false, recurring = false, contact = '', resources = '' , userID, ID}) {
+  define({
+      gameName = '',
+      category,
+      maxPlayers = '',
+      gameLength = '',
+      date = '',
+      location = '',
+      about = '',
+      picture = '',
+      smoking = false,
+      alcohol = false,
+      recurring = false,
+      contact = '',
+      resources = '',
+      userID,
+  }) {
     const checkPattern = {
       gameName: String,
       maxPlayers: Number,
@@ -109,7 +124,7 @@ class GameSchema extends BaseCollection {
       alcohol: Boolean,
       recurring: Boolean,
       picture: String,
-      contact: String
+      contact: String,
     };
     check({
       gameName,
@@ -122,10 +137,8 @@ class GameSchema extends BaseCollection {
       date,
       about,
       picture,
-      contact
+      contact,
     }, checkPattern);
-
-
 
     return this._collection.insert({
       gameName,
@@ -165,11 +178,25 @@ class GameSchema extends BaseCollection {
     const picture = doc.picture;
     const contact = doc.contact;
     const resources = doc.resources;
-    const  userID = doc.userID;
-    const ID = doc.ID;
-    return { gameName, category, maxPlayers, gameLength, date, location, about, picture, contact, resources, userID, ID };
+    const userID = doc.userID;
+    // const ID = doc.ID;
+    return {
+      gameName,
+      category,
+      maxPlayers,
+      gameLength,
+      date,
+      location,
+      smoking,
+      alcohol,
+      recurring,
+      about,
+      picture,
+      contact,
+      resources,
+      userID,
+    };
   }
-
 }
 
 export const Games = new GameSchema();

@@ -10,7 +10,7 @@ if (Meteor.isServer) {
   describe('UserToGamesCollection', function testSuite() {
     const ID = 'XFDe4rgteed';
     const userID = 'XDgrEfcdS';
-    const defineObject = {ID: ID , UserID: userID };
+    const defineObject = { ID, userID };
 
     before(function setup() {
       removeAllEntities();
@@ -21,20 +21,17 @@ if (Meteor.isServer) {
     });
 
     it('#define, #isDefined, #removeIt, #dumpOne,', function test() {
-      let docID = UserToGames.define(defineObject);
+      const docID = UserToGames.define(defineObject);
       expect(UserToGames.isDefined(docID)).to.be.true;
       // Check that fields are available
       const doc = UserToGames.findDoc(docID);
       expect(doc.ID).to.equal(ID);
       expect(doc.UserID).to.equal(userID);
       // Check that we can dump and restore a Interest.
-
-      const dumpObject = UserToGames.dumpOne(docID);
+      // const dumpObject = UserToGames.dumpOne(docID);
       UserToGames.removeIt(docID);
       expect(UserToGames.isDefined(docID)).to.be.false;
-
     });
-
   });
 }
 

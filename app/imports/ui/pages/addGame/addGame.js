@@ -7,7 +7,6 @@ import { Meteor } from 'meteor/meteor';
 import { Games } from '/imports/api/games/GameCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
 
-
 export const gameObjects = [{ label: 'Chess', value: '1' },
   { label: 'Monopoly', value: '2' },
   { label: 'Scrabble', value: '3' },
@@ -64,10 +63,14 @@ Template.AddGame_Page.helpers({
     return lengthObjects;
   },
   smoking() {
-    return _.map(smokingList, function makeSmokingObject(smoking) { return { label: smoking }; });
+    return _.map(smokingList, function makeSmokingObject(smoking) {
+      return { label: smoking };
+    });
   },
   reoccurring() {
-    return _.map(reoccurringList, function makeReoccurringObject(reoccurring) { return { label: reoccurring }; });
+    return _.map(reoccurringList, function makeReoccurringObject(reoccurring) {
+      return { label: reoccurring };
+    });
   },
   categories() {
     const game = Games.findDoc(FlowRouter.getParam('username'));
@@ -78,7 +81,6 @@ Template.AddGame_Page.helpers({
             });
   },
 });
-
 
 Template.AddGame_Page.events({
   'submit .contact-data-form'(event, instance) {
@@ -98,7 +100,7 @@ Template.AddGame_Page.events({
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that newGameData reflects what will be inserted.
-   GameSchema.clean(newGameData);
+    GameSchema.clean(newGameData);
     // Determine validity.
     instance.context.validate(newGameData);
 
