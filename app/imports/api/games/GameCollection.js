@@ -218,7 +218,6 @@ export const GamesSchema = new SimpleSchema({
  userID,
  cancelled
  };
-
  };   */
 
 GameTemplate.attachSchema(GamesSchema);

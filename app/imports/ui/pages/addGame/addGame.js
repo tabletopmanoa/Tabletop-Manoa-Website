@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
 import { Games, GamesSchema, GameTemplate } from '/imports/api/games/GameCollection';
 // import { Categories } from '/imports/api/categories/CategoryCollection';

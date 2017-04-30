@@ -1,7 +1,7 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import BaseCollection from '/imports/api/base/BaseCollection';
-import { check } from 'meteor/check';
-import { Meteor } from 'meteor/meteor';
+// import { check } from 'meteor/check';
+// import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
 
 /** @module Interest */
@@ -39,9 +39,9 @@ class CategoryCollection extends BaseCollection {
    * @returns { Array }
    * @throws { Meteor.Error} If any of the instanceIDs cannot be found.
    */
-  findNames(categoryID) {
-    return categoryID.map(categoryID => this.findName(categoryID));
-  }
+  // findNames(categoryID) {
+  //   return categoryID.map(categoryID => this.findName(categoryID));
+  // }
 
   /**
    * Throws an error if the passed name is not a defined Interest name.
