@@ -8,6 +8,12 @@ export const Listings = new Mongo.Collection('Listings');
  *  Creating the schema for GameData
  */
 export const ListingsSchema = new SimpleSchema({
+  username: {
+    label: 'Username',
+    type: String,
+    optional: false,
+    max: 100,
+  },
   category: {
     label: 'Category',
     type: String,
@@ -77,13 +83,17 @@ export const ListingsSchema = new SimpleSchema({
     optional: true,
     max: 100,
   },
+  imageURL: {
+    label: 'Image URL',
+    type: String,
+    optional: true,
+  },
   about: {
     label: 'About',
     type: String,
     optional: true,
     max: 300,
   },
-
 });
 
 Listings.attachSchema(ListingsSchema);

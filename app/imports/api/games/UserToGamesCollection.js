@@ -1,12 +1,10 @@
-/**
- * Created by jory on 4/19/2017.
- */
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { Categories } from '/imports/api/categories/CategoryCollection';
+// import { Categories } from '/imports/api/categories/CategoryCollection';
 import { check } from 'meteor/check';
-import { Meteor } from 'meteor/meteor';
+// import { Meteor } from 'meteor/meteor';
 import BaseCollection from '/imports/api/base/BaseCollection';
+import { _ } from 'meteor/underscore';
 
 export const GameUserCollection = new Mongo.Collection('GameUserCollection');
 
@@ -19,30 +17,41 @@ class GameUserSchema extends BaseCollection {
     super('UserToGames', new SimpleSchema({
       ID: {
         label: 'ID',
-        type: ObjectID,
+        type: String,
         optional: false,
-        max: 200,
+        max: 20,
       },
       UserID: {
         label: 'UserID',
-        type: [String],
+        type: String,
         optional: false,
         max: 20,
       },
     }));
   }
 
-  define({ ID= null, UserID='FFFF'}) {
-    const checkPattern = {
-      ID: ObjectID, UserID: String
-    };
-    check({ ID,UserID}, checkPattern);
-
+  define({ ID, UserID }) {
+    check(ID, String);
+    check(UserID, String);
     // Throw an error if any of the passed Categories names are not defined.
     return this._collection.insert({
-        ID,
-        UserID
+      ID,
+      UserID,
     });
+  }
+
+  /**
+   * Returns a list of Game names corresponding to the User ID.
+   * @param UserIDs A list of Interest docIDs.
+   * @returns { Array }
+   * @throws { Meteor.Error} If any of the instanceIDs cannot be found.
+   */
+  findGames(User) {
+    return _.where(GameUserSchema, { UserID: User });
+  }
+
+  findID(id) {
+    return _.where(GameUserSchema, { ID: id });
   }
 
   /**
@@ -54,10 +63,10 @@ class GameUserSchema extends BaseCollection {
     const doc = this.findDoc(docID);
     const id = doc.ID;
     const userid = doc.UserID;
-    return { id,userid };
+    return { id, userid };
   }
 }
 
-export const GamesUserSchema = new GameUserSchema();
-GameUserCollection.attachSchema(GamesUserSchema);
+export const UserToGames = new GameUserSchema();
+GameUserCollection.attachSchema(GameUserSchema);
 

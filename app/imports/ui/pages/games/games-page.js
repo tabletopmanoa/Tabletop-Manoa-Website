@@ -26,9 +26,7 @@ Template.Games_Page.helpers({
   message() {
     return '';
   },
-
 });
-
 
 Template.Games_Page.events({
   'change #magic-checkbox'(event, instance) {

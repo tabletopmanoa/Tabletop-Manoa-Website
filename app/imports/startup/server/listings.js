@@ -7,6 +7,7 @@ import { _ } from 'meteor/underscore';
  */
 const listingSeeds = [
   {
+    username: 'admin',
     category: 'Card',
     gameName: 'Poker',
     maxPlayers: '10+ players',
@@ -19,9 +20,11 @@ const listingSeeds = [
     recurring: false,
     contact: 'help@WSOP.com',
     resources: 'WSOP.com',
+    imageURL: 'www.wsop.com/image.jpg',
     about: '45 man tournament.  Free to enter.  1st place: Las Vegas trip.  Trip provided by Aria Hotel and Casino',
   },
   {
+    username: 'admin',
     category: 'Board',
     gameName: 'Chess',
     maxPlayers: '4 players',
@@ -34,6 +37,7 @@ const listingSeeds = [
     recurring: true,
     contact: 'chess@hawaii.edu',
     resources: 'chess.com',
+    imageURL: 'www.chess.com/image.jpg',
     about: 'Inviting experienced Chess players to a nice friendly game.  Food and drinks will be provided.',
   },
 ];

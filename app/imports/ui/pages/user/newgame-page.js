@@ -46,7 +46,6 @@ Template.NewGame_Page.events({
   'submit .game-data-form'(event, instance) {
     event.preventDefault();
     const username = FlowRouter.getParam('username'); // schema requires username.
-    // const category = event.target.Category.value;
     const rpgGameId = document.getElementById('gameRPG');
     const cardGameId = document.getElementById('gameCARD');
     const boardGameId = document.getElementById('gameBOARD');
@@ -64,19 +63,32 @@ Template.NewGame_Page.events({
           category = 'Miniatures';
         }
     let gameName = '';
-    if (rpgGameId.options[rpgGameId.selectedIndex].value > 0) {
-      gameName = rpgGameId.options[rpgGameId.selectedIndex].text;
+    if (rpgGameId.options[rpgGameId.selectedIndex].value === '7') {
+      gameName = event.target.enterRPG.value;
     } else
-      if (cardGameId.options[cardGameId.selectedIndex].value > 0) {
-        gameName = cardGameId.options[cardGameId.selectedIndex].text;
+      if (rpgGameId.options[rpgGameId.selectedIndex].value > 0) {
+        gameName = rpgGameId.options[rpgGameId.selectedIndex].text;
       } else
-        if (boardGameId.options[boardGameId.selectedIndex].value > 0) {
-          gameName = boardGameId.options[boardGameId.selectedIndex].text;
-        } else if (boardGameId.options[miniGameId.selectedIndex].value > 0) {
-          gameName = miniGameId.options[miniGameId.selectedIndex].text;
-        } else {
-          gameName = '';
-        }
+        if (cardGameId.options[cardGameId.selectedIndex].value === '7') {
+          gameName = event.target.enterCard.value;
+        } else
+          if (cardGameId.options[cardGameId.selectedIndex].value > 0) {
+            gameName = cardGameId.options[cardGameId.selectedIndex].text;
+          } else
+            if (boardGameId.options[boardGameId.selectedIndex].value === '7') {
+              gameName = event.target.enterBoard.value;
+            } else
+              if (boardGameId.options[boardGameId.selectedIndex].value > 0) {
+                gameName = boardGameId.options[boardGameId.selectedIndex].text;
+              } else
+                if (miniGameId.options[miniGameId.selectedIndex].value === '5') {
+                  gameName = event.target.enterMini.value;
+                } else
+                  if (miniGameId.options[miniGameId.selectedIndex].value > 0) {
+                    gameName = miniGameId.options[miniGameId.selectedIndex].text;
+                  } else {
+                    gameName = '';
+                  }
     const mp = document.getElementById('Players');
     const maxPlayers = mp.options[mp.selectedIndex].text;
     const le = document.getElementById('Length');
@@ -89,9 +101,11 @@ Template.NewGame_Page.events({
     const recurring = document.getElementById('Recurring').checked;
     const contact = event.target.contact.value;
     const resources = event.target.resources.value;
+    const imageURL = event.target.imageURL.value;
     const about = event.target.about.value;
 
     const newGameData = {
+      username,
       category,
       gameName,
       maxPlayers,
@@ -104,6 +118,7 @@ Template.NewGame_Page.events({
       recurring,
       contact,
       resources,
+      imageURL,
       about,
     };
     // Clear out any old validation errors.
@@ -120,5 +135,7 @@ Template.NewGame_Page.events({
     } else {
       instance.messageFlags.set(displayErrorMessages, true);
     }
-  },
-});
+  }
+  ,
+})
+;

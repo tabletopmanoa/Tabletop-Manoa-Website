@@ -37,7 +37,7 @@
         <div class="ui divider"></div>
         <div class="field">
           <label>Game</label>
-          <select class="ui dropdown" id="gameRPG">
+          <select name="gameRPG" class="ui dropdown" id="gameRPG" onchange='enterNameRPG(this.value);'>
             <option value="">Name</option>
             <option value="1">Dungeons & Dragons</option>
             <option value="2">Shadowrun</option>
@@ -47,6 +47,10 @@
             <option value="6">Pathfinder Roleplaying Game</option>
             <option value="7">Other</option>
           </select>
+          <br/><br/>
+          <input type="text" placeholder="Please enter the name of your game" name="enterRPG" id="enterRPG"
+                 style='display:none;'/>
+          <br/>
         </div>
       </div>
       <div id='card' style='display:none'>
@@ -54,31 +58,41 @@
         <div class="ui divider"></div>
         <div class="field">
           <label>Game</label>
-          <select class="ui dropdown" id="gameCARD">
+          <select name="gameCard" class="ui dropdown" id="gameCARD" onchange='enterNameCard(this.value);'>
             <option value="">Name</option>
             <option value="1">Poker</option>
             <option value="2">Rummy</option>
             <option value="3">Cribbage</option>
             <option value="4">Spades</option>
             <option value="5">Mahjong</option>
-            <option value="6">Other</option>
+            <option value="6">Trumps</option>
+            <option value="7">Other</option>
           </select>
+          <br/><br/>
+          <input type="text" placeholder="Please enter the name of your game" name="enterCard" id="enterCard"
+                 style='display:none;'/>
+          <br/>
         </div>
       </div>
       <div id='board' style='display:none'>
-        {{enterGameName}}
         <a class="ui teal ribbon label">Game Information</a>
         <div class="ui divider"></div>
         <div class="field">
           <label>Game</label>
-          <select class="ui dropdown" id="gameBOARD">
+          <select name="gameBoard" class="ui dropdown" id="gameBOARD" onchange='enterNameBoard(this.value);'>
             <option value="">Name</option>
             <option value="1">Chess</option>
             <option value="2">Monopoly</option>
             <option value="3">Scrabble</option>
             <option value="4">Backgammon</option>
-            <option value="5">Other</option>
+            <option value="5">Risk</option>
+            <option value="6">Yahtzee</option>
+            <option value="7">Other</option>
           </select>
+          <br/><br/>
+          <input type="text" placeholder="Please enter the name of your game" name="enterBoard" id="enterBoard"
+                 style='display:none;'/>
+          <br/>
         </div>
       </div>
       <div id='mini' style='display:none'>
@@ -86,7 +100,7 @@
         <div class="ui divider"></div>
         <div class="field">
           <label>Game</label>
-          <select class="ui dropdown" id="gameMINI">
+          <select name="gameMINI" class="ui dropdown" id="gameMINI" onchange='enterNameMini(this.value);'>
             <option value="">Name</option>
             <option value="1">Star Wars: X-Wing</option>
             <option value="2">War Machine</option>
@@ -94,6 +108,10 @@
             <option value="4">War Hammer</option>
             <option value="5">Other</option>
           </select>
+          <br/><br/>
+          <input type="text" placeholder="Please enter the name of your game" name="enterMini" id="enterMini"
+                 style='display:none;'/>
+          <br/>
         </div>
       </div>
       <div id='dataFields' style='display:none'>
@@ -147,19 +165,30 @@
           </div>
         </div>
         <br/>
-        <div class="fields">
-          {{> Text_Form_Control label="Meeting Date" id="date" required=false options=interests placeholder="04/07/2017" errorMessage=(fieldError "days") multiple=true }}
-          {{> Text_Form_Control label="Meeting Time" id="time" required=false options=interests placeholder="6:00pm" errorMessage=(fieldError "time") multiple=true }}
+        <div class="ui two column grid">
+          <div class="column">
+            <label for="date">Date </label>
+            <input id="date" type="date"/>
+          </div>
+          <div class="column">
+            <label for="time">Time </label>
+            <input id="time" type="time"/>
+          </div>
         </div>
-        <div class="ui checkbox">
-          <input type="checkbox" name="Recurring" id="Recurring" checked="">
-          <label>Is this meeting recurring? </label>
+        <div class="ui grid">
+          <div class="ui checkbox">
+            <input type="checkbox" name="Recurring" id="Recurring" checked="">
+            <label>Is this meeting recurring? </label>
+          </div>
         </div>
         <br/>
         <br/>
         <div class="fields">
           {{> Social_Network_Form_Control label="Contact Email" id="contact" required=false icon="person" placeholder="iamDM@hawaii.edu" value=profile.github errorMessage=(fieldError "github")}}
           {{> Text_Form_Control label="Resources" id="resources" placeholder="http://www.d20pfsrd.com/" errorMessage=(fieldError "resources") multiple=true }}
+        </div>
+        <div class="field">
+          {{> Text_Form_Control label="Image URL" id="imageURL" required=false placeholder="http://www.website.com/image.jpg" }}
         </div>
         <div class="field">
           {{> TextArea_Form_Control label="About / Comments" id="about" value=profile.bio placeholder="Short statement about gameplay for those who never heard of game: Roleplaying game in which you play in a high-fantasy environment slaying monsters and solving puzzles. Required to bring: pencil. Optional: D20 dice set and $5.00 for pizza" errorMessage=(fieldError "about")}}
@@ -170,8 +199,39 @@
         <div class="ui error message"></div>
       </div>
     </form>
-
     <script>
+      function enterNameRPG(val) {
+        var element = document.getElementById('enterRPG');
+        if (val === '7') {
+          element.style.display = 'block';
+        } else {
+          element.style.display = 'none';
+        }
+      }
+      function enterNameCard(val) {
+        var element = document.getElementById('enterCard');
+        if (val === '7') {
+          element.style.display = 'block';
+        } else {
+          element.style.display = 'none';
+        }
+      }
+      function enterNameBoard(val) {
+        var element = document.getElementById('enterBoard');
+        if (val === '7') {
+          element.style.display = 'block';
+        } else {
+          element.style.display = 'none';
+        }
+      }
+      function enterNameMini(val) {
+        var element = document.getElementById('enterMini');
+        if (val === '5') {
+          element.style.display = 'block';
+        } else {
+          element.style.display = 'none';
+        }
+      }
       $('.ui.radio.checkbox')
           .checkbox({
             onChecked: function () {
