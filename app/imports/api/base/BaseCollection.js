@@ -35,6 +35,10 @@ class BaseCollection {
     return this._collection.find().count();
   }
 
+  collection(){
+    return this._collection;
+  }
+
   /**
    * Returns the SimpleSchema instance associated with this collection.
    * @returns {SimpleSchema} The schema.
