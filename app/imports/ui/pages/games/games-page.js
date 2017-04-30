@@ -1,11 +1,10 @@
 import { Template } from 'meteor/templating';
-import {GameTemplate,  Games} from '../../../api/games/GameCollection.js'
-import {ReactiveDict } from 'meteor/reactive-dict';
+import { Games } from '../../../api/games/GameCollection.js';
+import { ReactiveDict } from 'meteor/reactive-dict';
 
-const era = 10;
 Template.Games_Page.onCreated(
-  function bodyOnCreated(){
-    this.state=new ReactiveDict();
+  function bodyOnCreated() {
+    this.state = new ReactiveDict();
     this.context = Games.getSchema().namedContext('Games_Page');
 
     this.subscribe(Games.getPublicationName());
@@ -13,79 +12,74 @@ Template.Games_Page.onCreated(
 );
 
 Template.Games_Page.helpers({
-  gamesList(){
-   const instance=Template.instance();
-    var state = instance.state.get('category');
-    if(state==undefined){
-      state='all';
+  gamesList() {
+    const instance = Template.instance();
+    let state = instance.state.get('category');
+    if (state === undefined) {
+      state = 'all';
     }
-    console.log("state="+state);
-   if(state == 'all'){
+    if (state.equals('all')) {
       return Games.collection().find();
     }
-    else{
-      return Games.collection().find({category:state},{});
-    }
-
+    return Games.collection().find({ category: state }, {});
   },
-
-  message(){
-    const instance = Template.instance();
-    return instance.state.get('category');
-
-  }
+  message() {
+    return '';
+  },
 
 });
 
 
 Template.Games_Page.events({
-  'change #magic-checkbox'(event, instance){
-    /*TODO: Remove test code to see **/
-    console.log("magic");
-    instance.state.set('magic-checked',event.target.checked);
+  'change #magic-checkbox'(event, instance) {
+    /*
+     TODO: Remove test code to see */
+    instance.state.set('magic-checked', event.target.checked);
     this.era++;
-    const categoryName = 'roleplaying'
+    const categoryName = 'roleplaying';
     const gameName = 'Pathfinder';
     const category = [categoryName];
-    const maxPlayers = Math.floor((Math.random()*100%10));
-    const date = new Date("April 29, 2017 11:13:00");
+    const maxPlayers = Math.floor((Math.random() * 100 % 10));
+    const date = new Date('April 29, 2017 11:13:00');
     const gameLength = '4 hours';
     const location = 'Hale Wina Lounge';
     const about = 'This game is very cool';
     const picture = 'http://www.levelupgamesmn.com/uploads/2/4/7/7/24777638/2796519_orig.png';
     const contact = 'kodayv@hawaii.edu';
     const resources = 'http://www.d20pfsrd.com/';
-    const defineObject = { gameName, category, maxPlayers, date, gameLength, location, about, picture, contact, resources };
-
-    console.log("cleaned");
-    console.log(defineObject);
-    const docID = Games.define(defineObject);
+    const defineObject = {
+      gameName,
+      category,
+      maxPlayers,
+      date,
+      gameLength,
+      location,
+      about,
+      picture,
+      contact,
+      resources };
+    Games.define(defineObject);
     Games.publish();
-    console.log("Games:"+Games.findAll());
-    console.log("Collection:"+Games.collection().find());
-
   },
-  'change #mini-games'(event,instance){
-    instance.state.set('mini-games',event.target.checked);
-    instance.state.set('category','mini');
-    console.log(Games.findAll());
+  'change #mini-games'(event, instance) {
+    instance.state.set('mini-games', event.target.checked);
+    instance.state.set('category', 'mini');
   },
-  'change #card-games'(event,instance){
-    instance.state.set('card-games',event.target.checked);
-    instance.state.set('category','card');
+  'change #card-games'(event, instance) {
+    instance.state.set('card-games', event.target.checked);
+    instance.state.set('category', 'card');
   },
-  'change #rp-games'(event,instance){
-    instance.state.set('rp-games',event.target.checked);
-    instance.state.set('category','roleplaying');
+  'change #rp-games'(event, instance) {
+    instance.state.set('rp-games', event.target.checked);
+    instance.state.set('category', 'roleplaying');
   },
-  'change #all-games'(event,instance){
-    instance.state.set('all-games',event.target.checked);
-    instance.state.set('category','all');
+  'change #all-games'(event, instance) {
+    instance.state.set('all-games', event.target.checked);
+    instance.state.set('category', 'all');
   },
-  'change #board-games'(event,instance){
-    instance.state.set('board-games',event.target.checked);
-    instance.state.set('category','board');
-    console.log(event.target.checked);
+  'change #board-games'(event, instance) {
+    instance.state.set('board-games', event.target.checked);
+    instance.state.set('category', 'board');
   },
 
 });
