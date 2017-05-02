@@ -106,7 +106,7 @@ Template.AddGame_Page.events({
     const resources = event.target.resources.value;
     const picture = event.target.imageURL.value;
     const about = event.target.about.value;
-    const gameID = new Date().getTime();
+    // const gameID = new Date().getTime();
     const cancelled = false;
 
     const defineObject = {
@@ -124,7 +124,7 @@ Template.AddGame_Page.events({
       resources,
       picture,
       userID,
-      gameID,
+      // gameID,
       cancelled,
     };
 
