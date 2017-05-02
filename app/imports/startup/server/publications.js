@@ -2,21 +2,21 @@ import { Meteor } from 'meteor/meteor';
 import { Interests } from '/imports/api/interest/InterestCollection';
 import { Profiles } from '/imports/api/profile/ProfileCollection';
 import { Categories } from '/imports/api/categories/CategoryCollection';
-import { GameTemplate } from '/imports/api/games/GameCollection';
-// import { Listings } from '/imports/api/listings/listings.js';
+import { Games } from '/imports/api/games/GameCollection';
 
-// Meteor.publish('Listings', function publishListingsData() {
-//   return Listings.find();
-// });
+import { Listings } from '/imports/api/listings/listings.js';
 
-// import { GameTemplate } from '../../api/template/template.js';
-
-// Interests.publish();
-// Profiles.publish();
-// Categories.publish();
-// Games.publish();
-
-Meteor.publish('GameTemplate', function publishGamesData() {
-  return GameTemplate.find();
+Meteor.publish('Listings', function publishListingsData() {
+  return Listings.find();
 });
 
+import { GameTemplate } from '../../api/template/template.js';
+
+Interests.publish();
+Profiles.publish();
+Categories.publish();
+Games.publish();
+
+Meteor.publish('GameTemplate', function publishContactsData() {
+  return GameTemplate.find();
+});
