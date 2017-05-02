@@ -19,6 +19,7 @@ Template.AddGame_Page.onCreated(function onCreated() {
   this.context = GamesSchema.namedContext('AddGame_Page');
 });
 
+
 Template.AddGame_Page.helpers({
   routeUserName() {
     return FlowRouter.getParam('username');
@@ -37,7 +38,6 @@ Template.AddGame_Page.helpers({
    });
    },
    */
-  // Not sure what this does
   game() {
     return Games.findDoc(FlowRouter.getParam('username'));
   },
@@ -109,8 +109,7 @@ Template.AddGame_Page.events({
     const gameID = new Date().getTime();
     const cancelled = false;
 
-
-    const newGameData = {
+    const defineObject = {
       gameName,
       category,
       maxPlayers,
@@ -128,16 +127,21 @@ Template.AddGame_Page.events({
       gameID,
       cancelled,
     };
+
+
     // Clear out any old validation errors.
-    instance.context.resetValidation();
+    // instance.context.resetValidation();
     // Invoke clean so that newGameData reflects what will be inserted.
-    GamesSchema.clean(newGameData);
+    // GamesSchema.clean(newGameData);
     // Determine validity.
-    instance.context.validate(newGameData);
+    // instance.context.validate(newGameData);
 
     if (instance.context.isValid()) {
       alert('Your game group has been successfully added.');
-      GameTemplate.insert(newGameData);
+      // GameTemplate.insert(newGameData);
+
+      Games.define(defineObject);
+      Games.publish();
       instance.messageFlags.set(displayErrorMessages, false);
       FlowRouter.go(FlowRouter.path('Manage_Page', FlowRouter.current().params));
     } else {
