@@ -18,7 +18,7 @@ Template.Games_Page.helpers({
     if (state === undefined) {
       state = 'all';
     }
-    if (state.equals('all')) {
+    if (state == 'all') {
       return Games.collection().find();
     }
     return Games.collection().find({ category: state }, {});
@@ -36,7 +36,7 @@ Template.Games_Page.events({
     this.era++;
     const categoryName = 'roleplaying';
     const gameName = 'Pathfinder';
-    const category = [categoryName];
+    const category = categoryName;
     const maxPlayers = Math.floor((Math.random() * 100 % 10));
     const date = new Date('April 29, 2017 11:13:00');
     const gameLength = '4 hours';
@@ -45,6 +45,8 @@ Template.Games_Page.events({
     const picture = 'http://www.levelupgamesmn.com/uploads/2/4/7/7/24777638/2796519_orig.png';
     const contact = 'kodayv@hawaii.edu';
     const resources = 'http://www.d20pfsrd.com/';
+    const imageURL='url.com';
+    const userID='x';
     const defineObject = {
       gameName,
       category,
@@ -55,7 +57,9 @@ Template.Games_Page.events({
       about,
       picture,
       contact,
-      resources };
+      resources,
+      userID,
+      imageURL, };
     Games.define(defineObject);
     Games.publish();
   },

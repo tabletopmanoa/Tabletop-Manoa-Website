@@ -69,4 +69,3 @@ class GameUserSchema extends BaseCollection {
 
 export const UserToGames = new GameUserSchema();
 GameUserCollection.attachSchema(GameUserSchema);
-
