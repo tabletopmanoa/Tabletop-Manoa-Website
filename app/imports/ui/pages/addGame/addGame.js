@@ -1,24 +1,19 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
-import { Games, GamesSchema, GameTemplate } from '/imports/api/games/GameCollection';
-// import { Categories } from '/imports/api/categories/CategoryCollection';
-// import { Listings, ListingsSchema } from '/imports/api/listings/listings.js';
+import { Games } from '/imports/api/games/GameCollection';
 
 const displayErrorMessages = 'displayErrorMessages';
 
 /* eslint-disable no-param-reassign */
 
-Template.AddGame_Page.onCreated(function onCreated() {
-  // this.subscribe(Categories.getPublicationName());
-  // this.subscribe(Games.getPublicationName());
-  this.messageFlags = new ReactiveDict();
-  this.messageFlags.set(displayErrorMessages, false);
-  this.context = GamesSchema.namedContext('AddGame_Page');
-});
-
+Template.AddGame_Page.onCreated(
+    function onCreated() {
+      this.messageFlags = new ReactiveDict();
+      this.messageFlags.set(displayErrorMessages, false);
+      this.context = Games.getSchema().namedContext('AddGame_Page');
+    });
 
 Template.AddGame_Page.helpers({
   routeUserName() {
@@ -32,12 +27,6 @@ Template.AddGame_Page.helpers({
     const errorObject = _.find(invalidKeys, (keyObj) => keyObj.name === fieldName);
     return errorObject && Template.instance().context.keyErrorMessage(errorObject.name);
   },
-  /*  categories() {
-   return _.map(categoryList, function makeCategoryObject(category) {
-   return { label: category };
-   });
-   },
-   */
   game() {
     return Games.findDoc(FlowRouter.getParam('username'));
   },
@@ -70,7 +59,7 @@ Template.AddGame_Page.events({
       if (rpgGameId.options[rpgGameId.selectedIndex].value > 0) {
         gameName = rpgGameId.options[rpgGameId.selectedIndex].text;
       } else
-        if (cardGameId.options[cardGameId.selectedIndex].value === '7') {
+        if (cardGameId.options[cardGameId.selectedIndex].value === '10') {
           gameName = event.target.enterCard.value;
         } else
           if (cardGameId.options[cardGameId.selectedIndex].value > 0) {
@@ -90,8 +79,7 @@ Template.AddGame_Page.events({
                   } else {
                     gameName = '';
                   }
-    const mp = document.getElementById('Players');
-    const maxPlayers = mp.options[mp.selectedIndex].text;
+    const maxPlayers = parseInt(document.getElementById('Players').value, 10);
     const le = document.getElementById('Length');
     const gameLength = le.options[le.selectedIndex].text;
     const location = event.target.Location.value;
@@ -100,13 +88,15 @@ Template.AddGame_Page.events({
     const date1 = event.target.date.value;
     const time1 = event.target.time.value;
     const space = ' ';
-    const date = date1 + space + time1;
+    const dateStr = date1 + space + time1;
+    const date = new Date (dateStr);
     const recurring = document.getElementById('Recurring').checked;
     const contact = event.target.contact.value;
     const resources = event.target.resources.value;
     const picture = event.target.imageURL.value;
     const about = event.target.about.value;
-    // const gameID = new Date().getTime();
+    const imageURL = event.target.imageURL.value;
+    // difference between picture and imageURL?
     const cancelled = false;
 
     const defineObject = {
@@ -124,22 +114,12 @@ Template.AddGame_Page.events({
       resources,
       picture,
       userID,
-      // gameID,
+      imageURL,
       cancelled,
     };
 
-
-    // Clear out any old validation errors.
-    // instance.context.resetValidation();
-    // Invoke clean so that newGameData reflects what will be inserted.
-    // GamesSchema.clean(newGameData);
-    // Determine validity.
-    // instance.context.validate(newGameData);
-
     if (instance.context.isValid()) {
-      alert('Your game group has been successfully added.');
-      // GameTemplate.insert(newGameData);
-
+      window.alert('Your game group has been successfully added.');  // eslint-disable-line no-alert
       Games.define(defineObject);
       Games.publish();
       instance.messageFlags.set(displayErrorMessages, false);
