@@ -4,6 +4,7 @@
       <table style="margin-top: 20px" class="ui compact striped orange left aligned small celled table">
         <thead>
         <tr>
+          <th>Game ID</th>
           <th>User Name</th>
           <th>Category</th>
           <th>Game Title</th>
@@ -13,37 +14,36 @@
           <th>Smoking</th>
           <th>Alcohol</th>
           <th>Date</th>
-          <th>Time</th>
           <th>Recurring</th>
           <th>Contact</th>
           <th>Resources</th>
           <th>Image URL</th>
           <th>About/Comments</th>
+          <th>Cancelled</th>
         </tr>
         </thead>
-
         <tbody>
-        {{#each listing in listingsList}}
+        {{#each game in GamesList}}
           <tr>
-            <td>{{listing.username}}</td>
-            <td>{{listing.category}}</td>
-            <td>{{listing.gameName}}</td>
-            <td>{{listing.maxPlayers}}</td>
-            <td>{{listing.gameLength}}</td>
-            <td>{{listing.location}}</td>
-            <td>{{listing.smoking}}</td>
-            <td>{{listing.alcohol}}</td>
-            <td>{{listing.date}}</td>
-            <td>{{listing.time}}</td>
-            <td>{{listing.recurring}}</td>
-            <td>{{listing.contact}}</td>
-            <td>{{listing.resources}}</td>
-            <td>{{listing.imageURL}}</td>
-            <td>{{listing.about}}</td>
+            <td>{{game.gameID}}</td>
+            <td>{{game.userID}}</td>
+            <td>{{game.category}}</td>
+            <td>{{game.gameName}}</td>
+            <td>{{game.maxPlayers}}</td>
+            <td>{{game.gameLength}}</td>
+            <td>{{game.location}}</td>
+            <td>{{game.smoking}}</td>
+            <td>{{game.alcohol}}</td>
+            <td>{{game.date}}</td>
+            <td>{{game.recurring}}</td>
+            <td>{{game.contact}}</td>
+            <td>{{game.resources}}</td>
+            <td>{{game.picture}}</td>
+            <td>{{game.about}}</td>
+            <td>{{game.cancelled}}</td>
           </tr>
         {{/each}}
         </tbody>
-
       </table>
     {{else}}
       {{> Loading}}

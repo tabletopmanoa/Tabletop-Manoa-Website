@@ -7,14 +7,12 @@
         <button class="ui button" > <a class="{{isActiveRoute "Games_Page"}} item" href="{{pathFor "Games_Page" username=routeUserName}}">Browse Games</a></button>
       </div>
       <div class=" item">
-        <button class="ui button"> <a class="{{isActiveRoute "NewGame_Page"}} item" href="{{pathFor "NewGame_Page" username=routeUserName}}">Coordinate a Game!</a></button>
+        <button class="ui button"> <a class="{{isActiveRoute "NewGame_Page"}} item" href="{{pathFor "AddGame_Page" username=routeUserName}}">Coordinate a Game!</a></button>
       </div>
     </div>
   </div>
 
     <div style="margin-top: 10px" class="ui menu">
-
-
       <form class="ui card games-data-form centered" style=" padding-top:5px;width:95%;">
         <div class="field" style="align-content: center; color: black; font-size: large">
           <div class="ui four column doubling stackable grid container">
@@ -94,20 +92,5 @@
           </div>
         </div>
       </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
-
 </template>

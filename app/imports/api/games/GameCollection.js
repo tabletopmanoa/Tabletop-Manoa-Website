@@ -22,7 +22,7 @@ class GameSchema extends BaseCollection {
       },
       category: {
         label: 'category',
-        type: [String],
+        type: String,
         optional: false,
         max: 200,
       },
@@ -94,12 +94,18 @@ class GameSchema extends BaseCollection {
         optional: false,
         max: 200,
       },
+      imageURL: {
+        label: 'imageURL',
+        type: String,
+        optional: false,
+        max: 200,
+      },
     }));
   }
 
   define({
       gameName = '',
-      category,
+      category = '',
       maxPlayers = '',
       gameLength = '',
       date = '',
@@ -112,6 +118,7 @@ class GameSchema extends BaseCollection {
       contact = '',
       resources = '',
       userID,
+      imageURL='',
   }) {
     const checkPattern = {
       gameName: String,
@@ -125,6 +132,7 @@ class GameSchema extends BaseCollection {
       recurring: Boolean,
       picture: String,
       contact: String,
+      imageURL: String,
     };
     check({
       gameName,
@@ -138,6 +146,7 @@ class GameSchema extends BaseCollection {
       about,
       picture,
       contact,
+      imageURL,
     }, checkPattern);
 
     return this._collection.insert({
@@ -155,6 +164,7 @@ class GameSchema extends BaseCollection {
       contact,
       resources,
       userID,
+      imageURL,
     });
   }
 
@@ -179,6 +189,7 @@ class GameSchema extends BaseCollection {
     const contact = doc.contact;
     const resources = doc.resources;
     const userID = doc.userID;
+    const imageURL = doc.imageURL;
     // const ID = doc.ID;
     return {
       gameName,
@@ -195,6 +206,7 @@ class GameSchema extends BaseCollection {
       contact,
       resources,
       userID,
+      imageURL,
     };
   }
 }

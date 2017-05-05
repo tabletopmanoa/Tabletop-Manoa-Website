@@ -20,4 +20,3 @@ Games.publish();
 Meteor.publish('GameTemplate', function publishContactsData() {
   return GameTemplate.find();
 });
-

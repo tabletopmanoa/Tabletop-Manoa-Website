@@ -21,14 +21,14 @@
                 <label>Miniature Games</label>
               </div>
             <div class="ui radio checkbox">
-              <input type="radio" name="category" id="all-games">
+              <input type="radio" name="category" id="all-games" checked="checked">
               <label>All Games</label>
             </div>
             </div>
         </form>
-
-        <!--{{> Games_Page_Directory games=games }}-->
       </div>
+        <!--{{> Games_Page_Directory games=games }}-->
+
       <div style="margin-top: 10px" class="ui menu">
 
         <form class="ui equal width form games-data-form">
@@ -54,94 +54,11 @@
 
       </div>
 
-      <div style="margin-top: 10px" class="ui menu">
 
-
-        <form class="ui card games-data-form centered" style=" padding-top:5px;width:95%;">
-          <div class="field" style="align-content: center; color: black; font-size: large">
-            <div class="ui four column doubling stackable grid container">
-              <div class="column">
-                Exploding Kittens
-                <img class="ui small image" style="padding: 5px" src="/images/exkitten.png">
-              </div>
-              <div class="column">
-                <div class="ui list">
-                  <!-- Max Players -->
-                  <div class="item">
-                    <i class="ui circular user inverted big icon avatar image" ></i>
-                    <div class="content">
-                      <div class="header">max players</div>
-                      5
-                    </div>
-                  </div>
-                  <!-- End Max Players -->
-
-                  <!-- Game Length -->
-                  <div class="item">
-                    <i class="ui circular hourglass empty inverted big icon avatar image" ></i>
-                    <div class="content">
-                      <div class="header">Game length</div>
-                      30 min
-                    </div>
-                  </div>
-                  <!-- End Game Length -->
-
-                  <!-- Location -->
-                  <div class="item">
-                    <img class="ui avatar image" src="/images/bldg.png">
-                    <div class="content">
-                      <div class="header">Location</div>
-                      ICSpace - POST Bldg rm308
-                    </div>
-                  </div>
-                  <!-- End Location -->
-                </div>
-              </div>
-              <div class="column">
-                <div class="ui list">
-                  <div class="item">
-                    <i class="ui circular mail inverted big icon avatar image" ></i>
-                    <div class="content">
-                      <div class="header">Contact</div>
-                      kodayv@hawaii.edu
-                    </div>
-                  </div>
-                  <div class="item">
-                    <i class="ui circular newspaper inverted big icon avatar image" ></i>
-                    <div class="content">
-                      <div class="header">resources</div>
-                      <a href="https://www.explodingkittens.com/">explodingkittens.com</a>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <i class="ui circular calender inverted big icon avatar image" ></i>
-                    <div class="content">
-                      <div class="header">When</div>
-                      05/01/2017 2:00 pm
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="column">
-                <div class="ui list">
-                  <br>
-                  <div class="item">
-
-                    <button class="ui button blue"> Join Us!</button>
-                  </div>
-                  <br>
-                  <div class="item">
-                    <button class="ui button blue"> More Information</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-
-
-        {{#each gameList}}
-        <form class="ui card games-data-form centered" style=" padding-top:5px;width:95%;">
+        {{#each game in gamesList}}
+        <p></p>
+        <div>
+        <form class="ui card games-data-form " style=" padding-top:5px;width:95%;position:static;">
           <div class="field" style="align-content: center; color: black; font-size: large">
             <div class="ui four column doubling stackable grid container">
               <div class="column">
@@ -222,18 +139,10 @@
             </div>
           </div>
         </form>
+        </div>
       {{/each}}
+  {{/if}}
 
-      </div>
-    {{/if}}
-  <script>
-    .   $('.ui.radio.checkbox')
-        .checkbox({
-          onChecked: function () {
 
-          }
-        });
-
-  </script>
 
 </template>

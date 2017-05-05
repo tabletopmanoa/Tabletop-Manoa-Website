@@ -1,43 +1,394 @@
 <template name="AddGame_Page">
-  {{#if Template.subscriptionsReady}}
-  <div class="ui text container segment">
-    <div class="ui dividing header">
-      Create Your Own Board Game Group - Step 2
-    </div>
-    <form class="ui equal width form profile-data-form {{ successClass }} {{ errorClass }}">
-      <div class="fields">
-        {{> Select_Form_Control label="GameName" required=true options=games errorMessage=(fieldError "games") }}
-        {{> Select_Form_Control label="Maxplayers" required=true options=players errorMessage=(fieldError "players") }}
+  <div class="ui fluid text container segment">
+    <h1 class="ui dividing header">
+      Create Your Own Game Group
+    </h1>
+    <form class="ui equal width form segment game-data-form {{ errorClass }}">
+      <a class="ui red ribbon label">Category</a>
+      <div class="ui divider"></div>
+      <div class="grouped fields">
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" id="RPG" name="category">
+            <label>Role Playing Games</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" id="Card" name="category">
+            <label>Card Games</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" id="Board" name="category">
+            <label>Board Games</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" id="Mini" name="category">
+            <label>Miniatures</label>
+          </div>
+        </div>
       </div>
-      <div class="field">
-        {{> Select_Form_Control label="Approx. Length of Game (in Hours)" required=optional options=gameLength errorMessage=(fieldError "gameLength") }}
-        {{> Text_Form_Control label="Location" placeholder="Hale Hino Study Hall" required=true value=profile.picture errorMessage=(fieldError "picture")}}
+      <div id="rpg" style="display:none">
+        <a class="ui teal ribbon label">Game Information</a>
+        <div class="ui divider"></div>
+        <div class="field">
+          <label>Game</label>
+          <select name="gameRPG" class="ui dropdown" id="gameRPG" onchange='enterNameRPG(this.value);'>
+            <option value="">Name</option>
+            <option value="1">Call of Cthulhu</option>
+            <option value="2">Dungeons & Dragons</option>
+            <option value="3">Pathfinder Roleplaying Game</option>
+            <option value="4">Shadowrun</option>
+            <option value="5">Star Wars The Roleplaying Game</option>
+            <option value="6">Vampire: The Masquerade</option>
+            <option value="7">Other</option>
+          </select>
+          <br/><br/>
+          <input type="text" placeholder="Please enter the name of your game" name="enterRPG" id="enterRPG"
+                 style='display:none;'/>
+          <br/>
+        </div>
       </div>
-      <div class="field">
-        {{> Checkbox_Form_Control label="Are Smoking and Alcohol Permitted?" checkboxes=smoking }}
+      <div id='card' style='display:none'>
+        <a class="ui teal ribbon label">Game Information</a>
+        <div class="ui divider"></div>
+        <div class="field">
+          <label>Game</label>
+          <select name="gameCard" class="ui dropdown" id="gameCARD" onchange='enterNameCard(this.value);'>
+            <option value="">Name</option>
+            <option value="1">Crazy Eights</option>
+            <option value="2">Cribbage</option>
+            <option value="3">Exploding Kittens</option>
+            <option value="4">Hearts</option>
+            <option value="5">Magic the Gathering</option>
+            <option value="6">Poker</option>
+            <option value="7">Rummy</option>
+            <option value="8">Spades</option>
+            <option value="9">Trumps</option>
+            <option value="10">Other</option>
+          </select>
+          <br/><br/>
+          <input type="text" placeholder="Please enter the name of your game" name="enterCard" id="enterCard"
+                 style='display:none;'/>
+          <br/>
+        </div>
       </div>
-      <div class="fields">
-        {{> Text_Form_Control label="Meeting Date" required=true options=interests placeholder="04/07/2017" errorMessage=(fieldError "days") multiple=true }}
-        {{> Text_Form_Control label="Meeting Time" required=true options=interests placeholder="6:00pm" errorMessage=(fieldError "time") multiple=true }}
+      <div id='board' style='display:none'>
+        <a class="ui teal ribbon label">Game Information</a>
+        <div class="ui divider"></div>
+        <div class="field">
+          <label>Game</label>
+          <select name="gameBoard" class="ui dropdown" id="gameBOARD" onchange='enterNameBoard(this.value);'>
+            <option value="">Name</option>
+            <option value="1">Backgammon</option>
+            <option value="2">Chess</option>
+            <option value="3">Monopoly</option>
+            <option value="4">Risk</option>
+            <option value="5">Scrabble</option>
+            <option value="6">Yahtzee</option>
+            <option value="7">Other</option>
+          </select>
+          <br/><br/>
+          <input type="text" placeholder="Please enter the name of your game" name="enterBoard" id="enterBoard"
+                 style='display:none;'/>
+          <br/>
+        </div>
       </div>
-      <div class="field">
-        {{> Checkbox_Form_Control label="Is this Meeting reoccuring?" checkboxes=reoccurring }}
+      <div id='mini' style='display:none'>
+        <a class="ui teal ribbon label">Game Information</a>
+        <div class="ui divider"></div>
+        <div class="field">
+          <label>Game</label>
+          <select name="gameMINI" class="ui dropdown" id="gameMINI" onchange='enterNameMini(this.value);'>
+            <option value="">Name</option>
+            <option value="1">Hordes</option>
+            <option value="2">Star Wars: X-Wing</option>
+            <option value="3">War Hammer</option>
+            <option value="4">War Machine</option>
+            <option value="5">Other</option>
+          </select>
+          <br/><br/>
+          <input type="text" placeholder="Please enter the name of your game" name="enterMini" id="enterMini"
+                 style='display:none;'/>
+          <br/>
+        </div>
       </div>
-      <div class="fields">
-        {{> Social_Network_Form_Control label="Contact" required=true icon="person" placeholder="iamDM@hawaii.edu" value=profile.github errorMessage=(fieldError "github")}}
-        {{> Text_Form_Control label="Resources" placeholder="http://www.d20pfsrd.com/" errorMessage=(fieldError "resources") multiple=true }}
+      <div id='dataFields' style='display:none'>
+        <div class="ui divider"></div>
+        <a class="ui orange ribbon label">Meeting Information</a>
+        <div class="ui divider"></div>
+        <div class="ui two column grid">
+          <div class="seven wide column">
+            <label style="color: black">Maximum Players</label>
+            <select class="ui dropdown" id="Players">
+              <option value="">Max Players</option>
+              <option value="2">2 Players</option>
+              <option value="3">3 Players</option>
+              <option value="4">4 Players</option>
+              <option value="5">5 Players</option>
+              <option value="6">6 Players</option>
+              <option value="7">7 Players</option>
+              <option value="8">8 Players</option>
+              <option value="9">9 Players</option>
+              <option value="10">10+ Players</option>
+            </select>
+          </div>
+          <div class="column">
+            <label style="color: black">Estimated Length of Game (in Hours)</label>
+            <select class="ui dropdown" id="Length">
+              <option value="">Game Length</option>
+              <option value="1">1 Hour</option>
+              <option value="2">2 Hours</option>
+              <option value="3">3 Hours</option>
+              <option value="4">4 Hours</option>
+              <option value="5">5+ Hours</option>
+            </select>
+          </div>
+        </div>
+        <br/>
+        <div class="field">
+          {{> Text_Form_Control label="Location" placeholder="Hale Hino Study Hall" errorMessage=(fieldError
+          "picture")}}
+        </div>
+        <div class="ui two column grid">
+          <div class="column">
+            <div class="ui checkbox">
+              <input type="checkbox" name="Smoking" id="Smoking" checked="">
+              <label>Is Smoking Permitted? </label>
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui checkbox">
+              <input type="checkbox" name="Alcohol" id="Alcohol" checked="">
+              <label>Is Alcohol Permitted? </label>
+            </div>
+          </div>
+        </div>
+        <br/>
+        <div class="ui two column grid">
+          <div class="column">
+            <label for="date">Date </label>
+            <input id="date" type="date"/>
+          </div>
+          <div class="column">
+            <label for="time">Time </label>
+            <input id="time" type="time"/>
+          </div>
+        </div>
+        <div class="ui grid">
+          <div class="ui checkbox">
+            <input type="checkbox" name="Recurring" id="Recurring" checked="">
+            <label>Is this meeting recurring? </label>
+          </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="fields">
+          {{> Social_Network_Form_Control label="Contact Email" id="contact" icon="person" placeholder="iamDM@hawaii.edu" value=profile.github errorMessage=(fieldError "github")}}
+          {{> Text_Form_Control label="Resources" id="resources" placeholder="http://www.d20pfsrd.com/" errorMessage=(fieldError "resources") multiple=true }}
+        </div>
+        <div class="field">
+          {{> Text_Form_Control label="Image URL" id="imageURL" placeholder="http://www.website.com/image.jpg" }}
+        </div>
+        <div class="field">
+          {{> TextArea_Form_Control label="About / Comments" id="about" value=profile.bio placeholder="Short statement about gameplay for those who never heard of game: Roleplaying game in which you play in a high-fantasy environment slaying monsters and solving puzzles. Required to bring: pencil. Optional: D20 dice set and $5.00 for pizza" errorMessage=(fieldError "about")}}
+        </div>
+        <br/>
+        <div class="ui primary submit button">Submit</div>
+        <div class="ui reset button">Reset</div>
+        <div class="ui error message"></div>
       </div>
-
-      {{> TextArea_Form_Control label="About" value=profile.bio placeholder="Short statement about gameplay for those who never heard of game: Roleplaying game in which you play in a high-fantasy environment slaying monsters and solving puzzles. Required to bring: pencil. Optional: D20 dice set and $5.00 for pizza" errorMessage=(fieldError "about")}}
-
-      <button class="ui primary button" type="submit">Submit</button>
-
-      {{#if displaySuccessMessage}}
-      <div class="ui success message">
-        <p>Profile data successfully updated.</p>
-      </div>
-      {{/if}}
     </form>
+    <script>
+      function enterNameRPG(val) {
+        var element = document.getElementById('enterRPG');
+        if (val === '7') {
+          element.style.display = 'block';
+        } else {
+          element.style.display = 'none';
+        }
+      }
+      function enterNameCard(val) {
+        var element = document.getElementById('enterCard');
+        if (val === '10') {
+          element.style.display = 'block';
+        } else {
+          element.style.display = 'none';
+        }
+      }
+      function enterNameBoard(val) {
+        var element = document.getElementById('enterBoard');
+        if (val === '7') {
+          element.style.display = 'block';
+        } else {
+          element.style.display = 'none';
+        }
+      }
+      function enterNameMini(val) {
+        var element = document.getElementById('enterMini');
+        if (val === '5') {
+          element.style.display = 'block';
+        } else {
+          element.style.display = 'none';
+        }
+      }
+      $('.ui.radio.checkbox')
+          .checkbox({
+            onChecked: function () {
+              if ($(this).attr('id') == 'RPG') {
+                $('#rpg').show();
+                $('#dataFields').show();
+                $('#card').hide();
+                $('#board').hide();
+                $('#mini').hide();
+              }
+              else
+                if ($(this).attr('id') == 'Card') {
+                  $('#card').show();
+                  $('#dataFields').show();
+                  $('#rpg').hide();
+                  $('#board').hide();
+                  $('#mini').hide();
+                }
+                else
+                  if ($(this).attr('id') == 'Board') {
+                    $('#board').show();
+                    $('#dataFields').show();
+                    $('#rpg').hide();
+                    $('#card').hide();
+                    $('#mini').hide();
+                  }
+                  else {
+                    $('#mini').show();
+                    $('#dataFields').show();
+                    $('#rpg').hide();
+                    $('#card').hide();
+                    $('#board').hide();
+                  }
+            }
+          });
+      $('.dropdown').dropdown({ transition: 'drop' }).dropdown({ on: 'hover' });
+
+      // function to check if the text contains an element from the array
+      $.fn.form.settings.rules.containsInArray = function (text, csv) {
+        var array = csv.split(','); // you're separating the string by commas
+        var isContains = false; // return value
+        // for each element check it usign contains function
+        $.each(array, function (index, elem) {
+          if ($.fn.form.settings.rules.contains(text, $.trim(elem))) {
+            // if condition are meet set the result as true
+            // and breaks the loop
+            isContains = true;
+            return false;
+          }
+        });
+        return isContains;
+      };
+
+      $('.ui.form')
+          .form({
+            fields: {
+              gameName: {
+                identifier: 'gameName',
+                rules: [
+                  {
+                    type: 'empty',
+                    prompt: 'Please select a Game.'
+                  }
+                ]
+              },
+              players: {
+                identifier: 'Players',
+                rules: [
+                  {
+                    type: 'empty',
+                    prompt: 'Please select the maximum number of players.'
+                  }
+                ]
+              },
+              length: {
+                identifier: 'Length',
+                rules: [
+                  {
+                    type: 'empty',
+                    prompt: 'Please select the estimated length of the game.'
+                  }
+                ]
+              },
+              location: {
+                identifier: 'Location',
+                rules: [
+                  {
+                    type: 'empty',
+                    prompt: 'Please enter the location of the game.'
+                  }
+                ]
+              },
+              date: {
+                identifier: 'date',
+                rules: [
+                  {
+                    type: 'empty',
+                    prompt: 'Please enter a meeting date.'
+                  }
+                ]
+              },
+              time: {
+                identifier: 'time',
+                rules: [
+                  {
+                    type: 'empty',
+                    prompt: 'Please enter a meeting time.'
+                  }
+                ]
+              },
+              contact: {
+                identifier: 'contact',
+                rules: [
+                  {
+                    type: 'email',
+                    prompt: 'Please enter a valid email address.'
+                  },
+                ]
+              },
+              resources: {
+                identifier: 'Resources',
+                rules: [
+                  {
+                    type: 'url',
+                    prompt: 'Please enter a valid URL in the Resources field.'
+                  },
+                ]
+              },
+              imageURL: {
+                identifier: 'imageURL',
+                rules: [
+                  {
+                    type: 'url',
+                    prompt: 'Image URL not a valid URL'
+                  },
+                  {
+                    type: 'containsInArray[.png, .jpg, .jpeg, .gif, .tiff, .bmp, .svg]',
+                    prompt: 'Image URL not a valid image'
+                  },
+                ]
+              },
+              about: {
+                identifier: 'about',
+                rules: [
+                  {
+                    type: 'empty',
+                    prompt: 'Please enter About/Comments.'
+                  },
+                ]
+              },
+            }
+          });
+    </script>
   </div>
-  {{/if}}
 </template>
+

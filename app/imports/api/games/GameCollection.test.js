@@ -24,8 +24,10 @@ if (Meteor.isServer) {
     const picture = 'http://www.levelupgamesmn.com/uploads/2/4/7/7/24777638/2796519_orig.png';
     const contact = 'kodayv@hawaii.edu';
     const resources = 'http://www.d20pfsrd.com/';
+
     // const userName = 'kodayv@hawaii.edu';
     const userID = 'TestHASHXHGRKEE';
+
     const defineObject = {
       gameName,
       category,
