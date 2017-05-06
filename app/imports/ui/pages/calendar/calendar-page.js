@@ -1,5 +1,5 @@
 import { Tracker } from 'meteor/tracker';
-import { GameTemplate } from '../../../api/template/template.js';
+import { somethingElse } from '../../../api/template/template.js';
 import { Template } from 'meteor/templating';
 
 // Define a function that checks whether a moment has already passed.
@@ -9,9 +9,8 @@ const isPast = (date) => {
 };
 
 Template.Calendar_Page.onCreated(function onCreated() {
-  this.subscribe('GameTemplate');
-});
-
+  this.subscribe('somethingElse');
+}),
 
 Template.Calendar_Page.onRendered(() => {
   // Initialize the calendar.
@@ -25,9 +24,9 @@ Template.Calendar_Page.onRendered(() => {
     },
     // Add events to the calendar.
     events(date, gameLength, callback) {
-      const data = GameTemplate.find().fetch().map((session) => {
+      const data = somethingElse.find().fetch().map((session) => {
         // Don't allow already past study events to be editable.
-        // session.editable = !isPast(session.date);
+        // session.editable = !isPast(session.start);
         return session;
       });
 
@@ -49,7 +48,7 @@ Template.Calendar_Page.onRendered(() => {
 // // Triggered when a day is clicked on.
 //     dayClick (date, session)
 //     {
-//       // Store the date so it can be used when adding an event to the GameTemplate collection.
+//       // Store the date so it can be used when adding an event to the somethingElse collection.
 //       Session.set('eventModal', { type: 'add', date: date.format() });
 //       // If the date has not already passed, show the create event modal.
 //       if (moment(date.format()).isSameOrAfter(moment(), 'day')) {
@@ -61,7 +60,7 @@ Template.Calendar_Page.onRendered(() => {
 // // Delete an event if it is clicked on.
 //     eventClick(event)
 //     {
-//       GameTemplate.remove({ _id: event._id });
+//       somethingElse.remove({ _id: event._id });
 //     }
 //     ,
 //
@@ -89,8 +88,7 @@ Template.Calendar_Page.onRendered(() => {
 
 // Updates the calendar if there are changes.
 //   Tracker.autorun(() => {
-//     GameTemplate.find().fetch();
+//     somethingElse.find().fetch();
 //     $('#event-calendar').fullCalendar('refetchEvents');
 //   });
 })
-;
