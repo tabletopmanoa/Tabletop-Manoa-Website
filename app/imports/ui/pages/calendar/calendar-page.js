@@ -8,9 +8,9 @@ const isPast = (date) => {
   return today.isAfter(date);
 };
 
-Template.Calendar_Page.onCreated(function onCreated() {
-  this.subscribe('somethingElse');
-}),
+Template.Calendar_Page.onCreated(() => {
+  Template.instance().subscribe('somethingElse');
+});
 
 Template.Calendar_Page.onRendered(() => {
   // Initialize the calendar.
@@ -31,7 +31,9 @@ Template.Calendar_Page.onRendered(() => {
       });
 
       if (data) {
-        callback(data);
+        if (callback) {
+          callback(data);
+        }
       }
     },
 
