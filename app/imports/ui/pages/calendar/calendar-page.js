@@ -88,9 +88,9 @@ Template.Calendar_Page.onRendered(() => {
   ;
 
 // Updates the calendar if there are changes.
-//   Tracker.autorun(() => {
-//     GameTemplate.find().fetch();
-//     $('#event-calendar').fullCalendar('refetchEvents');
-//   });
+  Tracker.autorun(() => {
+    GameTemplate.find().fetch();
+    $('#event-calendar').fullCalendar('refetchEvents');
+  });
 })
 ;

@@ -53,9 +53,5 @@ insecure@1.0.7
 
 # Tests
 practicalmeteor:mocha
-fullcalendar:fullcalendar
+rzymek:fullcalendar
 momentjs:moment
-logging
-reload
-spacebars
-
