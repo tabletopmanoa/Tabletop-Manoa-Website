@@ -2,37 +2,19 @@ import { Tracker } from 'meteor/tracker';
 import { EventData } from '../../../api/eventdata/eventdata';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
-import { Games } from '/imports/api/games/GameCollection';
-import { ReactiveDict } from 'meteor/reactive-dict';
 
+// Define a function that checks whether a moment has already passed.
+  let isPast = (date) => {
+  let today = moment().format();
+  return moment(today).isAfter(date);
+};
 
-Template.Calendar_Page.onCreated(
-    function bodyOnCreated() {
-      this.state = new ReactiveDict();
-      this.context = Games.getSchema().namedContext('Calendar_Page');
-      this.subscribe(Games.getPublicationName());
-    }
-);
-// Template.Calendar_Page.helpers({
-//   gamesList() {
-//     const instance = Template.instance();
-//     let state = instance.state.get('category');
-//     if (state === undefined) {
-//       state = 'all';
-//     }
-//     if (state == 'all') {
-//       return Games.collection().find();
-//     }
-//     return Games.collection().find({ category: state }, {});
-//   },
-//   message() {
-//     return '';
-//   },
-// });
-// Games.publish();
+Template.Calendar_Page.onCreated(() => {
+  Template.instance().subscribe('EventData');
+});
 
 Template.Calendar_Page.onRendered(() => {
-  // console.log(Games.find().fetch());
+
   // Initialize the calendar.
   $('#event-calendar').fullCalendar({
     // Define the navigation buttons.
@@ -41,37 +23,70 @@ Template.Calendar_Page.onRendered(() => {
       center: '',
       right: 'today prev,next',
     },
-    eventSources: Games.collection().find(),
-    // events: [
-    //   {
-    //     title: 'event1',
-    //     start: '2017-05-01'
-    //   },
-    //   {
-    //     title: 'event2',
-    //     start: '2017-05-20',
-    //     end: '2010-01-07'
-    //   },
-    //   {
-    //     title: 'event3',
-    //     start: '2017-05-09T12:30:00',
-    //     allDay: false, // will make the time show
-    //   },
-    // ],
+    // Add events to the calendar.
+    events(start, end, timezone, callback) {
+      console.log('in events');
+      const data = EventData.find().fetch().map((session) => {
+        console.log('past data');
+        console.log(EventData.find(session.title));
+        // Don't allow already past study events to be editable.
+        // session.editable = !isPast(session.start);
+        return session;
+      });
+      console.log('out of data');
+      if (data) {
+        if (callback) {
+          callback(data);
+        }
+      }
+    },
 
     // Configure the information displayed for an "event."
-    // eventRender(session, element) {
-    //   element.find('.fc-content').html(
-    //       `<h4 class="title">${session.title}</h4>
-    //       <p class="time">${session.startString}</p>
-    //       `
-    //   );
+    eventRender(session, element) {
+      element.find('.fc-content').html(
+          `<h4 class="title">${session.title}</h4>
+          <p class="time">${session.startString}</p>
+          `
+      );
+    },
+
+    // Triggered when a day is clicked on.
+    // dayClick(date, session) {
+    //   // Store the date so it can be used when adding an event to the EventData collection.
+    //   Session.set('eventModal', { type: 'add', date: date.format() });
+    //   // If the date has not already passed, show the create event modal.
+    //   if (moment(date.format()).isSameOrAfter(moment(), 'day')) {
+    //     $('#create-event-modal').modal({ blurring: true }).modal('show');
+    //   }
     // },
 
-    // Updates the calendar if there are changes.
-    // Tracker: autorun(() => {
-    //   EventData.find().fetch();
-    //   $('#event-calendar').fullCalendar('refetchEvents');
-    // }),
+    // // Delete an event if it is clicked on.
+    // eventClick(event) {
+    //   EventData.remove({ _id: event._id });
+    // },
+    //
+    // // Allow events to be dragged and dropped.
+    // eventDrop(session, delta, revert) {
+    //   let date = session.start.format();
+    //
+    //   if (!isPast(date)) {
+    //     let update = {
+    //       _id: session._id,
+    //       start: date,
+    //       end: date
+    //     };
+    //
+    //     // Update the date of the event.
+    //     Meteor.call('editEvent', update);
+    //   } else {
+    //     revert();
+    //   }
+    // },
+  });
+
+  // Updates the calendar if there are changes.
+  Tracker.autorun(() => {
+    EventData.find().fetch();
+    $('#event-calendar').fullCalendar('refetchEvents');
   });
 });

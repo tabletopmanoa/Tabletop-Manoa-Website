@@ -214,4 +214,3 @@ class GameSchema extends BaseCollection {
 
 export const Games = new GameSchema();
 GamesTemplate.attachSchema(GameSchema);
-Games.url = '/games/all';

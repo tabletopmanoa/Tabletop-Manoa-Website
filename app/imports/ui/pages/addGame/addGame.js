@@ -3,6 +3,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { Games } from '/imports/api/games/GameCollection';
+import { Session } from 'meteor/session';
 
 const displayErrorMessages = 'displayErrorMessages';
 
@@ -122,6 +123,11 @@ Template.AddGame_Page.events({
       window.alert('Your game group has been successfully added.');  // eslint-disable-line no-alert
       Games.define(defineObject);
       Games.publish();
+
+      // Store the date so it can be used when adding an event to the EventData collection.
+      Session.set('eventModal', { type: 'add', date: date.format() });
+      // If the date has not already passed, show the create event modal.
+
       instance.messageFlags.set(displayErrorMessages, false);
       FlowRouter.go(FlowRouter.path('Manage_Page', FlowRouter.current().params));
     } else {
