@@ -65,6 +65,7 @@ Template.Games_Page.events({
   'change #board-games'(event, instance) {
     instance.state.set('board-games', event.target.checked);
     instance.state.set('category', 'board');
+    return false;
   },
   'click .joinGame'(event) {
     const ID = event.target.value;
@@ -80,6 +81,7 @@ Template.Games_Page.events({
       console.log(UserToGames.define(defineObject));
       UserToGames.publish();
     }
+    return false;
   },
   'click .leaveGame'(event) {
     const ID = event.target.value;
@@ -90,6 +92,7 @@ Template.Games_Page.events({
       UserToGames.collection().remove(list[i]._id);
       UserToGames.publish();
     }
+    return false;
   },
 
 });
