@@ -1,6 +1,8 @@
 import { Template } from 'meteor/templating';
 import { Games } from '../../../api/games/GameCollection.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { UserToGames } from '../../../api/games/UserToGamesCollection.js';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 Template.Games_Page.onCreated(
   function bodyOnCreated() {
@@ -18,13 +20,28 @@ Template.Games_Page.helpers({
     if (state === undefined) {
       state = 'all';
     }
-    if (state == 'all') {
+    if (state === 'all') {
       return Games.collection().find();
     }
     return Games.collection().find({ category: state }, {});
   },
   message() {
     return '';
+  },
+  isOpen(tID) {
+    const howMany = UserToGames.find({ ID: tID }).fetch().length;
+    if (howMany > Games.findDoc(tID).maxPlayers)
+    {
+      return false;
+    }
+    return true;
+  },
+  alreadyPlaying(tID) {
+    const UserID = FlowRouter.getParam('username');
+    if (UserToGames.find({ tID, UserID }).fetch().length > 1) {
+      return true;
+    }
+    return false;
   },
 });
 
@@ -83,5 +100,29 @@ Template.Games_Page.events({
     instance.state.set('board-games', event.target.checked);
     instance.state.set('category', 'board');
   },
+  'click .joinGame': function(event, instance){
+    const ID = event.target.value;
+    const UserID = FlowRouter.getParam('username');
+    console.log(UserToGames.find({ID,UserID}).fetch());
+    if (UserToGames.find({ ID, UserID }).fetch().length > 0) {
+      console.log("already  the game");
+    }
+    else {
+      const defineObject = { ID, UserID };
+      UserToGames.define(defineObject);
+      UserToGames.publish();
+    }
+
+  },
+  'click .leaveGame': function(event, instance){
+    const ID = event.target.value;
+    const UserID = FlowRouter.getParam('username');
+    console.log(UserToGames.find({ID,UserID}).fetch());
+    const list = UserToGames.find({ID,UserID});
+    if (list.length > 0) {
+      UserToGames.removeIt(list[0]._id);
+    }
+
+  }
 
 });

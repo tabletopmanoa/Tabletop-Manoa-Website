@@ -28,7 +28,7 @@ class BaseCollection {
   }
 
   /**
-   * Returns the number of documents in this collection.
+   * Returns the nimport { FlowRouter } from 'meteor/kadira:flow-router';ndumber of documents in this collection.
    * @returns { Number } The number of elements in this collection.
    */
   count() {
