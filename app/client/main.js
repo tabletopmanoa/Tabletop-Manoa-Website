@@ -23,4 +23,6 @@ import '/imports/api/games';
 import '/imports/api/categories';
 import '/imports/api/listings';
 import '/imports/api/template';
+import '/imports/api/eventdata';
+
 

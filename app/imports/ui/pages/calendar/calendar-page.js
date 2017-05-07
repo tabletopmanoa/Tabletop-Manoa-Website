@@ -1,12 +1,13 @@
 import { Tracker } from 'meteor/tracker';
 import { EventData } from '../../../api/eventdata/eventdata';
 import { Template } from 'meteor/templating';
+import { Session } from 'meteor/session';
 
 // Define a function that checks whether a moment has already passed.
-// let isPast = (date) => {
-//   let today = moment().format();
-//   return moment(today).isAfter(date);
-// };
+  let isPast = (date) => {
+  let today = moment().format();
+  return moment(today).isAfter(date);
+};
 
 Template.Calendar_Page.onCreated(() => {
   Template.instance().subscribe('EventData');
@@ -20,16 +21,19 @@ Template.Calendar_Page.onRendered(() => {
     header: {
       left: 'title',
       center: '',
-      right: 'today prev,next'
+      right: 'today prev,next',
     },
     // Add events to the calendar.
     events(start, end, timezone, callback) {
+      console.log('in events');
       const data = EventData.find().fetch().map((session) => {
+        console.log('past data');
+        console.log(EventData.find(session.title));
         // Don't allow already past study events to be editable.
         // session.editable = !isPast(session.start);
         return session;
       });
-
+      console.log('out of data');
       if (data) {
         if (callback) {
           callback(data);
@@ -46,16 +50,16 @@ Template.Calendar_Page.onRendered(() => {
       );
     },
 
-    // // Triggered when a day is clicked on.
+    // Triggered when a day is clicked on.
     // dayClick(date, session) {
     //   // Store the date so it can be used when adding an event to the EventData collection.
     //   Session.set('eventModal', { type: 'add', date: date.format() });
     //   // If the date has not already passed, show the create event modal.
-    //   if(moment(date.format()).isSameOrAfter(moment(), 'day')) {
+    //   if (moment(date.format()).isSameOrAfter(moment(), 'day')) {
     //     $('#create-event-modal').modal({ blurring: true }).modal('show');
     //   }
     // },
-    //
+
     // // Delete an event if it is clicked on.
     // eventClick(event) {
     //   EventData.remove({ _id: event._id });
