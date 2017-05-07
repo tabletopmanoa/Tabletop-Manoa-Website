@@ -34,10 +34,5 @@
         ]
       }
     }
-  },
-  "eslintConfig": {
-    "env": {
-      "jquery" : true
-    }
   }
 }

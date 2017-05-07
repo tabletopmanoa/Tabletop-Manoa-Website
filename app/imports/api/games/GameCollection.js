@@ -5,7 +5,8 @@ import { check } from 'meteor/check';
 // import { Meteor } from 'meteor/meteor';
 import BaseCollection from '/imports/api/base/BaseCollection';
 
-export const GameTemplate = new Mongo.Collection('GameTemplate');
+
+export const GamesTemplate = new Mongo.Collection('GamesTemplate');
 
 class GameSchema extends BaseCollection {
 
@@ -212,4 +213,4 @@ class GameSchema extends BaseCollection {
 }
 
 export const Games = new GameSchema();
-GameTemplate.attachSchema(GameSchema);
+GamesTemplate.attachSchema(GameSchema);
