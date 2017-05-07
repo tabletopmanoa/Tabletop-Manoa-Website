@@ -177,10 +177,12 @@ class GameSchema extends BaseCollection {
   dumpOne(docID) {
     const doc = this.findDoc(docID);
     const gameName = doc.gameName;
+    const title = gameName;
     const category = doc.category;
     const maxPlayers = doc.maxPlayers;
     const gameLength = doc.gameLength;
     const date = doc.date;
+    const start = date;
     const location = doc.location;
     const smoking = doc.smoking;
     const alcohol = doc.alcohol;
@@ -194,6 +196,8 @@ class GameSchema extends BaseCollection {
     // const ID = doc.ID;
     return {
       gameName,
+      title,
+      start,
       category,
       maxPlayers,
       gameLength,
@@ -214,3 +218,4 @@ class GameSchema extends BaseCollection {
 
 export const Games = new GameSchema();
 GamesTemplate.attachSchema(GameSchema);
+Games.url = '/games/all';

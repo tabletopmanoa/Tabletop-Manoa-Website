@@ -20,31 +20,37 @@ Template.Calendar_Page.onRendered(() => {
     header: {
       left: 'title',
       center: '',
-      right: 'today prev,next'
+      right: 'today prev,next',
     },
     // Add events to the calendar.
-    events(start, end, timezone, callback) {
-      const data = EventData.find().fetch().map((session) => {
-        // Don't allow already past study events to be editable.
-        // session.editable = !isPast(session.start);
-        return session;
-      });
-
-      if (data) {
-        if (callback) {
-          callback(data);
-        }
-      }
+    events: {
+      url: 'games/all',
+      cache: true,
     },
+
+    // events: 'games/all',
+    //     (start, end, timezone, callback) {
+    //   const data = EventData.find().fetch().map((session) => {
+    //     // Don't allow already past study events to be editable.
+    //     // session.editable = !isPast(session.start);
+    //     return session;
+    //   });
+    //
+    //   if (data) {
+    //     if (callback) {
+    //       callback(data);
+    //     }
+    //   }
+    // },
 
     // Configure the information displayed for an "event."
-    eventRender(session, element) {
-      element.find('.fc-content').html(
-          `<h4 class="title">${session.title}</h4>
-          <p class="time">${session.startString}</p>
-          `
-      );
-    },
+    // eventRender(session, element) {
+    //   element.find('.fc-content').html(
+    //       `<h4 class="title">${session.title}</h4>
+    //       <p class="time">${session.startString}</p>
+    //       `
+    //   );
+    // },
 
     // // Triggered when a day is clicked on.
     // dayClick(date, session) {
