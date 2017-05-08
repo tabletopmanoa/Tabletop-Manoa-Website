@@ -8,15 +8,9 @@ Template.Games_Page.onCreated(
     function bodyOnCreated() {
       this.state = new ReactiveDict();
       this.context = Games.getSchema().namedContext('Games_Page');
-
-<<<<<<< HEAD
       this.subscribe(Games.getPublicationName());
+      this.subscribe(UserToGames.getPublicationName());
     }
-=======
-    this.subscribe(Games.getPublicationName());
-    this.subscribe(UserToGames.getPublicationName());
-  }
->>>>>>> origin/master
 );
 
 Template.Games_Page.helpers({
@@ -51,7 +45,6 @@ Template.Games_Page.helpers({
 });
 
 Template.Games_Page.events({
-<<<<<<< HEAD
   'change #magic-checkbox'(event, instance) {
     /*
      TODO: Remove test code to see */
@@ -90,8 +83,6 @@ Template.Games_Page.events({
     Games.define(defineObject);
     Games.publish();
   },
-=======
->>>>>>> origin/master
   'change #mini-games'(event, instance) {
     instance.state.set('mini-games', event.target.checked);
     instance.state.set('category', 'mini');
@@ -117,7 +108,7 @@ Template.Games_Page.events({
     const ID = event.target.value;
     const UserID = FlowRouter.getParam('username');
     const defineObject = { ID, UserID };
-    console.log(UserToGames.find({ ID,UserID }).fetch());
+    console.log(UserToGames.find({ ID, UserID }).fetch());
     if (UserToGames.find({ ID, UserID }).fetch().length > 0) {
       /**
        * This will trigger if there is a document that already exists for this user and game.
