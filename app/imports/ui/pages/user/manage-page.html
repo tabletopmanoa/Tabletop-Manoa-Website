@@ -12,85 +12,222 @@
     </div>
   </div>
 
-    <div style="margin-top: 10px" class="ui menu">
-      <form class="ui card games-data-form centered" style=" padding-top:5px;width:95%;">
-        <div class="field" style="align-content: center; color: black; font-size: large">
-          <div class="ui four column doubling stackable grid container">
-            <div class="column">
-              Exploding Kittens
-              <img class="ui small image" style="padding: 5px" src="/images/exkitten.png">
-            </div>
-            <div class="column">
-              <div class="ui list">
-                <!-- Max Players -->
-                <div class="item">
-                  <i class="ui circular user inverted big icon avatar image" ></i>
-                  <div class="content">
-                    <div class="header">max players</div>
-                    5
-                  </div>
-                </div>
-                <!-- End Max Players -->
 
-                <!-- Game Length -->
-                <div class="item">
-                  <i class="ui circular hourglass empty inverted big icon avatar image" ></i>
-                  <div class="content">
-                    <div class="header">Game length</div>
-                    30 min
-                  </div>
-                </div>
-                <!-- End Game Length -->
+  <!--
 
-                <!-- Location -->
-                <div class="item">
-                  <img class="ui avatar image" src="/images/bldg.png">
-                  <div class="content">
-                    <div class="header">Location</div>
-                    ICSpace - POST Bldg rm308
-                  </div>
-                </div>
-                <!-- End Location -->
-              </div>
-            </div>
-            <div class="column">
-              <div class="ui list">
-                <div class="item">
-                  <i class="ui circular mail inverted big icon avatar image" ></i>
-                  <div class="content">
-                    <div class="header">Contact</div>
-                    kodayv@hawaii.edu
-                  </div>
-                </div>
-                <div class="item">
-                  <i class="ui circular newspaper inverted big icon avatar image" ></i>
-                  <div class="content">
-                    <div class="header">resources</div>
-                    <a href="https://www.explodingkittens.com/">explodingkittens.com</a>
-                  </div>
-                </div>
-                <div class="item">
-                  <i class="ui circular calender inverted big icon avatar image" ></i>
-                  <div class="content">
-                    <div class="header">When</div>
-                    05/01/2017 2:00 pm
-                  </div>
+
+
+  Games the user is running!
+
+
+
+  -->
+
+  <div class="item" ><center><h1>Games You're Running</h1></center></div>
+  {{#each game in runningList}}
+  <p></p>
+  <div>
+    <form class="ui card games-data-form " style=" padding-top:5px;width:95%;position:static;">
+      <div class="field" style="align-content: center; color: black; font-size: large">
+        <div class="ui four column doubling stackable grid container">
+          <div class="column">
+            {{game.gameName}}
+            <img class="ui small image" style="max-height:150px;padding: 5px" src="{{game.picture}}">
+          </div>
+          <div class="column">
+            <div class="ui list">
+              <!-- Max Players -->
+              <div class="item">
+                <i class="ui circular user inverted big icon avatar image" ></i>
+                <div class="content">
+                  <div class="header">max players</div>
+                  {{game.maxPlayers}}
                 </div>
               </div>
-            </div>
-            <div class="column">
-              <div class="ui list">
-                <br>
-                <div class="item">
+              <!-- End Max Players -->
+
+              <!-- Game Length -->
+              <div class="item">
+                <i class="ui circular hourglass empty inverted big icon avatar image" ></i>
+                <div class="content">
+                  <div class="header">Game length</div>
+                  {{game.gameLength}}
                 </div>
-                <br>
-                <div class="item">
-                  <button class="ui button blue"> More Information</button>
+              </div>
+              <!-- End Game Length -->
+
+              <!-- Location -->
+              <div class="item">
+                <img class="ui avatar image" src="/images/bldg.png">
+                <div class="content">
+                  <div class="header">Location</div>
+                  {{game.location}}
+                </div>
+              </div>
+              <!-- End Location -->
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui list">
+              <div class="item">
+                <i class="ui circular mail inverted big icon avatar image" ></i>
+                <div class="content">
+                  <div class="header">Contact</div>
+                  {{game.contact}}
+                </div>
+              </div>
+              <div class="item">
+                <i class="ui circular newspaper inverted big icon avatar image" ></i>
+                <div class="content">
+                  <div class="header">resources</div>
+                  {{game.resources}}
+                </div>
+              </div>
+              <div class="item">
+                <i class="ui circular calender inverted big icon avatar image" ></i>
+                <div class="content">
+                  <div class="header">When</div>
+                  <!-- put when in the db -->
                 </div>
               </div>
             </div>
           </div>
+          <div class="column">
+            <div class="ui list">
+              <br>
+              <div class="item">
+
+                <!--
+                  {{else}}
+                    {{#if isOpen game._id}}
+                       <button class="ui button blue joinGame" value="{{game._id}}" href="#" > Join Us!</button>
+                    {{else}}
+                     <button class="ui button red" value="{{game._id}}" href="#" > Game Is Full</button>
+                    {{/if}}
+
+                  {{/if}}-->
+              </div>
+              <br>
+              <div class="item ">
+                <!-- <button class="ui button blue"> More Information</button> -->
+              </div>
+            </div>
+          </div>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
+  </div>
+  {{/each}}
+
+  <!--
+
+
+
+ Games the user is playing!
+
+
+
+ -->
+
+  <div class="item" ><center><h1>Games You're Playing</h1></center></div>
+
+  {{#each game in playingList}}
+  <p></p>
+  <div>
+    <form class="ui card games-data-form " style=" padding-top:5px;width:95%;position:static;">
+      <div class="field" style="align-content: center; color: black; font-size: large">
+        <div class="ui four column doubling stackable grid container">
+          <div class="column">
+            {{game.gameName}}
+            <img class="ui small image" style="max-height:150px;padding: 5px" src="{{game.picture}}">
+          </div>
+          <div class="column">
+            <div class="ui list">
+              <!-- Max Players -->
+              <div class="item">
+                <i class="ui circular user inverted big icon avatar image" ></i>
+                <div class="content">
+                  <div class="header">max players</div>
+                  {{game.maxPlayers}}
+                </div>
+              </div>
+              <!-- End Max Players -->
+
+              <!-- Game Length -->
+              <div class="item">
+                <i class="ui circular hourglass empty inverted big icon avatar image" ></i>
+                <div class="content">
+                  <div class="header">Game length</div>
+                  {{game.gameLength}}
+                </div>
+              </div>
+              <!-- End Game Length -->
+
+              <!-- Location -->
+              <div class="item">
+                <img class="ui avatar image" src="/images/bldg.png">
+                <div class="content">
+                  <div class="header">Location</div>
+                  {{game.location}}
+                </div>
+              </div>
+              <!-- End Location -->
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui list">
+              <div class="item">
+                <i class="ui circular mail inverted big icon avatar image" ></i>
+                <div class="content">
+                  <div class="header">Contact</div>
+                  {{game.contact}}
+                </div>
+              </div>
+              <div class="item">
+                <i class="ui circular newspaper inverted big icon avatar image" ></i>
+                <div class="content">
+                  <div class="header">resources</div>
+                  {{game.resources}}
+                </div>
+              </div>
+              <div class="item">
+                <i class="ui circular calender inverted big icon avatar image" ></i>
+                <div class="content">
+                  <div class="header">When</div>
+                  <!-- put when in the db -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui list">
+              <br>
+              <div class="item">
+
+                <button class="ui button red leaveGame" value="{{game._id}}" href="#" onclick="false" > Leave Game</button>
+
+                <!--
+                  {{else}}
+                    {{#if isOpen game._id}}
+                       <button class="ui button blue joinGame" value="{{game._id}}" href="#" > Join Us!</button>
+                    {{else}}
+                     <button class="ui button red" value="{{game._id}}" href="#" > Game Is Full</button>
+                    {{/if}}
+
+                  {{/if}}-->
+              </div>
+              <br>
+              <div class="item ">
+                <!-- <button class="ui button blue"> More Information</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  {{/each}}
+
+
+
 </template>

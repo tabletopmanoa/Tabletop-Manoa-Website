@@ -30,9 +30,12 @@ class GameUserSchema extends BaseCollection {
     }));
   }
 
-  define({ ID, UserID }) {
-    check(ID, String);
-    check(UserID, String);
+  define({ ID='', UserID='' }) {
+    const checkPattern = {
+      ID: String,
+      UserID: String,
+    };
+    check({ ID, UserID }, checkPattern);
     // Throw an error if any of the passed Categories names are not defined.
     return this._collection.insert({
       ID,
