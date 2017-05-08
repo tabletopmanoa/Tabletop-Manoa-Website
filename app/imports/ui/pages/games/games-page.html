@@ -28,7 +28,8 @@
         </form>
       </div>
         <!--{{> Games_Page_Directory games=games }}-->
-
+<!--
+    This was no longer used, it could be implmented at aa further date.
       <div style="margin-top: 10px" class="ui menu">
 
         <form class="ui equal width form games-data-form">
@@ -53,6 +54,7 @@
         </form>
 
       </div>
+  -->
 
 
         {{#each game in gamesList}}
@@ -63,7 +65,11 @@
             <div class="ui four column doubling stackable grid container">
               <div class="column">
                 {{game.gameName}}
+<<<<<<< HEAD
                 <img class="ui small image" style="padding: 5px" src={{game.picture}}>
+=======
+                <img class="ui small image" style="max-height:150px;padding: 5px" src="{{game.picture}}">
+>>>>>>> origin/master
               </div>
               <div class="column">
                 <div class="ui list">
@@ -126,11 +132,31 @@
                 <div class="ui list">
                   <br>
                   <div class="item">
+<<<<<<< HEAD
                     <button class="ui button blue"> Join Us!</button>
+=======
+                    {{#if alreadyPlaying game._id}}
+                       <button class="ui button red leaveGame" value="{{game._id}}" href="#" onclick="false" > Leave Game</button>
+                        {{else if isOpen game._id}}
+                           <button class="ui button blue joinGame" value="{{game._id}}" href="#" onclick="false"> Join Us!</button>
+                        {{else}}
+                           <button class="ui button red full" value="{{game._id}}" href="#" onclick="false"> Game Is Full</button>
+                    {{/if}}
+
+                  <!--
+                    {{else}}
+                      {{#if isOpen game._id}}
+                         <button class="ui button blue joinGame" value="{{game._id}}" href="#" > Join Us!</button>
+                      {{else}}
+                       <button class="ui button red" value="{{game._id}}" href="#" > Game Is Full</button>
+                      {{/if}}
+
+                    {{/if}}-->
+>>>>>>> origin/master
                   </div>
                   <br>
-                  <div class="item">
-                    <button class="ui button blue"> More Information</button>
+                  <div class="item ">
+                   <!-- <button class="ui button blue"> More Information</button> -->
                   </div>
                 </div>
               </div>
