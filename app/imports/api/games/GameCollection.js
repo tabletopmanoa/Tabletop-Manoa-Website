@@ -32,16 +32,22 @@ class GameSchema extends BaseCollection {
         optional: false,
         max: 200,
       },
-      gameLength: {
-        label: 'gameLength',
+      date: {
+        label: 'date',
+        type: String,
+        optional: false,
+      },
+      startTime: {
+        label: 'startTime',
         type: String,
         optional: false,
         max: 200,
       },
-      date: {
-        label: 'date',
-        type: Date,
+      endTime: {
+        label: 'endTime',
+        type: String,
         optional: false,
+        max: 200,
       },
       location: {
         label: 'location',
@@ -94,12 +100,6 @@ class GameSchema extends BaseCollection {
         optional: false,
         max: 200,
       },
-      imageURL: {
-        label: 'imageURL',
-        type: String,
-        optional: false,
-        max: 200,
-      },
     }));
   }
 
@@ -107,8 +107,9 @@ class GameSchema extends BaseCollection {
       gameName = '',
       category = '',
       maxPlayers = '',
-      gameLength = '',
       date = '',
+      startTime = '',
+      endTime = '',
       location = '',
       about = '',
       picture = '',
@@ -118,21 +119,20 @@ class GameSchema extends BaseCollection {
       contact = '',
       resources = '',
       userID,
-      imageURL='',
   }) {
     const checkPattern = {
       gameName: String,
       maxPlayers: Number,
-      gameLength: String,
+      startTime: String,
+      endTime: String,
       about: String,
-      date: Date,
+      date: String,
       location: String,
       smoking: Boolean,
       alcohol: Boolean,
       recurring: Boolean,
       picture: String,
       contact: String,
-      imageURL: String,
     };
     check({
       gameName,
@@ -141,12 +141,12 @@ class GameSchema extends BaseCollection {
       smoking,
       alcohol,
       recurring,
-      gameLength,
+      startTime,
+      endTime,
       date,
       about,
       picture,
       contact,
-      imageURL,
     }, checkPattern);
 
     return this._collection.insert({
@@ -157,14 +157,14 @@ class GameSchema extends BaseCollection {
       alcohol,
       recurring,
       maxPlayers,
-      gameLength,
+      startTime,
+      endTime,
       date,
       about,
       picture,
       contact,
       resources,
       userID,
-      imageURL,
     });
   }
 
@@ -178,7 +178,8 @@ class GameSchema extends BaseCollection {
     const gameName = doc.gameName;
     const category = doc.category;
     const maxPlayers = doc.maxPlayers;
-    const gameLength = doc.gameLength;
+    const startTime = doc.startTime;
+    const endTime = doc.endTime;
     const date = doc.date;
     const location = doc.location;
     const smoking = doc.smoking;
@@ -189,13 +190,13 @@ class GameSchema extends BaseCollection {
     const contact = doc.contact;
     const resources = doc.resources;
     const userID = doc.userID;
-    const imageURL = doc.imageURL;
     // const ID = doc.ID;
     return {
       gameName,
       category,
       maxPlayers,
-      gameLength,
+      startTime,
+      endTime,
       date,
       location,
       smoking,
@@ -206,7 +207,6 @@ class GameSchema extends BaseCollection {
       contact,
       resources,
       userID,
-      imageURL,
     };
   }
 }

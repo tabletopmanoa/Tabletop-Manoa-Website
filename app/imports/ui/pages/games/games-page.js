@@ -3,12 +3,12 @@ import { Games } from '../../../api/games/GameCollection.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 Template.Games_Page.onCreated(
-  function bodyOnCreated() {
-    this.state = new ReactiveDict();
-    this.context = Games.getSchema().namedContext('Games_Page');
+    function bodyOnCreated() {
+      this.state = new ReactiveDict();
+      this.context = Games.getSchema().namedContext('Games_Page');
 
-    this.subscribe(Games.getPublicationName());
-  }
+      this.subscribe(Games.getPublicationName());
+    }
 );
 
 Template.Games_Page.helpers({
@@ -18,7 +18,7 @@ Template.Games_Page.helpers({
     if (state === undefined) {
       state = 'all';
     }
-    if (state == 'all') {
+    if (state === 'all') {
       return Games.collection().find();
     }
     return Games.collection().find({ category: state }, {});
@@ -38,28 +38,32 @@ Template.Games_Page.events({
     const gameName = 'Pathfinder';
     const category = categoryName;
     const maxPlayers = Math.floor((Math.random() * 100 % 10));
-    const date = new Date('April 29, 2017 11:13:00');
-    const gameLength = '4 hours';
+    const meetingDate = new Date('April 29, 2017 07:00:00');
+    const startTime = '20:00';
+    const endTime = '23:00';
     const location = 'Hale Wina Lounge';
     const about = 'This game is very cool';
     const picture = 'http://www.levelupgamesmn.com/uploads/2/4/7/7/24777638/2796519_orig.png';
     const contact = 'kodayv@hawaii.edu';
     const resources = 'http://www.d20pfsrd.com/';
-    const imageURL='url.com';
-    const userID='x';
+    // const imageURL = 'url.com';
+    const userID = 'x';
     const defineObject = {
       gameName,
       category,
       maxPlayers,
-      date,
-      gameLength,
+      meetingDate,
+      startTime,
+      endTime,
+      // gameLength,
       location,
       about,
       picture,
       contact,
       resources,
       userID,
-      imageURL, };
+      // imageURL,
+    };
     Games.define(defineObject);
     Games.publish();
   },

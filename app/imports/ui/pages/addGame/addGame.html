@@ -6,29 +6,31 @@
     <form class="ui equal width form segment game-data-form {{ errorClass }}">
       <a class="ui red ribbon label">Category</a>
       <div class="ui divider"></div>
-      <div class="grouped fields">
-        <div class="field">
-          <div class="ui radio checkbox">
-            <input type="radio" id="RPG" name="category">
-            <label>Role Playing Games</label>
+      <div class="block">
+        <div class="grouped fields">
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input type="radio" id="RPG" name="category">
+              <label>Role Playing Games</label>
+            </div>
           </div>
-        </div>
-        <div class="field">
-          <div class="ui radio checkbox">
-            <input type="radio" id="Card" name="category">
-            <label>Card Games</label>
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input type="radio" id="Card" name="category">
+              <label>Card Games</label>
+            </div>
           </div>
-        </div>
-        <div class="field">
-          <div class="ui radio checkbox">
-            <input type="radio" id="Board" name="category">
-            <label>Board Games</label>
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input type="radio" id="Board" name="category">
+              <label>Board Games</label>
+            </div>
           </div>
-        </div>
-        <div class="field">
-          <div class="ui radio checkbox">
-            <input type="radio" id="Mini" name="category">
-            <label>Miniatures</label>
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input type="radio" id="Mini" name="category">
+              <label>Miniatures</label>
+            </div>
           </div>
         </div>
       </div>
@@ -72,7 +74,7 @@
             <option value="10">Other</option>
           </select>
           <br/><br/>
-          <input type="text" placeholder="Please enter the name of your game" name="enterCard" id="enterCard"
+          <input type="text" required=true placeholder="Please enter the name of your game" name="enterCard" id="enterCard"
                  style='display:none;'/>
           <br/>
         </div>
@@ -93,7 +95,7 @@
             <option value="7">Other</option>
           </select>
           <br/><br/>
-          <input type="text" placeholder="Please enter the name of your game" name="enterBoard" id="enterBoard"
+          <input type="text" required=true placeholder="Please enter the name of your game" name="enterBoard" id="enterBoard"
                  style='display:none;'/>
           <br/>
         </div>
@@ -112,7 +114,7 @@
             <option value="5">Other</option>
           </select>
           <br/><br/>
-          <input type="text" placeholder="Please enter the name of your game" name="enterMini" id="enterMini"
+          <input type="text" required=true placeholder="Please enter the name of your game" name="enterMini" id="enterMini"
                  style='display:none;'/>
           <br/>
         </div>
@@ -121,6 +123,82 @@
         <div class="ui divider"></div>
         <a class="ui orange ribbon label">Meeting Information</a>
         <div class="ui divider"></div>
+        <div class="ui grid container">
+          <label for="date">Meeting Date </label>
+          <input id="date" type="date"/>
+        </div>
+        <br/>
+        <div class="two fields">
+          <div class="required field">
+            <label>Start Time</label>
+            <select class="ui fluid search dropdown" name="start" id="start">
+              <option value="">Select a Start Time</option>
+              <option value="00:00">12:00AM</option>
+              <option value="01:00">1:00AM</option>
+              <option value="02:00">2:00AM</option>
+              <option value="03:00">3:00AM</option>
+              <option value="04:00">4:00AM</option>
+              <option value="05:00">5:00AM</option>
+              <option value="06:00">6:00AM</option>
+              <option value="07:00">7:00AM</option>
+              <option value="08:00">8:00AM</option>
+              <option value="09:00">9:00AM</option>
+              <option value="10:00">10:00AM</option>
+              <option value="11:00">11:00AM</option>
+              <option value="12:00">12:00PM</option>
+              <option value="13:00">1:00PM</option>
+              <option value="14:00">2:00PM</option>
+              <option value="15:00">3:00PM</option>
+              <option value="16:00">4:00PM</option>
+              <option value="17:00">5:00PM</option>
+              <option value="18:00">6:00PM</option>
+              <option value="19:00">7:00PM</option>
+              <option value="20:00">8:00PM</option>
+              <option value="21:00">9:00PM</option>
+              <option value="22:00">10:00PM</option>
+              <option value="23:00">11:00PM</option>
+            </select>
+
+          </div>
+          <div class="required field">
+            <label>End Time</label>
+            <select class="ui fluid search dropdown" name="end" id="end">
+              <option value="">Select an End Time</option>
+              <option value="00:00">12:00AM</option>
+              <option value="01:00">1:00AM</option>
+              <option value="02:00">2:00AM</option>
+              <option value="03:00">3:00AM</option>
+              <option value="04:00">4:00AM</option>
+              <option value="05:00">5:00AM</option>
+              <option value="06:00">6:00AM</option>
+              <option value="07:00">7:00AM</option>
+              <option value="08:00">8:00AM</option>
+              <option value="09:00">9:00AM</option>
+              <option value="10:00">10:00AM</option>
+              <option value="11:00">11:00AM</option>
+              <option value="12:00">12:00PM</option>
+              <option value="13:00">1:00PM</option>
+              <option value="14:00">2:00PM</option>
+              <option value="15:00">3:00PM</option>
+              <option value="16:00">4:00PM</option>
+              <option value="17:00">5:00PM</option>
+              <option value="18:00">6:00PM</option>
+              <option value="19:00">7:00PM</option>
+              <option value="20:00">8:00PM</option>
+              <option value="21:00">9:00PM</option>
+              <option value="22:00">10:00PM</option>
+              <option value="23:00">11:00PM</option>
+            </select>
+
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui checkbox">
+            <input type="checkbox" name="Recurring" id="Recurring" checked="">
+            <label>Is this meeting recurring? </label>
+          </div>
+        </div>
+        <br/>
         <div class="ui two column grid">
           <div class="seven wide column">
             <label style="color: black">Maximum Players</label>
@@ -134,25 +212,15 @@
               <option value="7">7 Players</option>
               <option value="8">8 Players</option>
               <option value="9">9 Players</option>
-              <option value="10">10+ Players</option>
+              <option value="10">10 Players</option>
             </select>
           </div>
-          <div class="column">
-            <label style="color: black">Estimated Length of Game (in Hours)</label>
-            <select class="ui dropdown" id="Length">
-              <option value="">Game Length</option>
-              <option value="1">1 Hour</option>
-              <option value="2">2 Hours</option>
-              <option value="3">3 Hours</option>
-              <option value="4">4 Hours</option>
-              <option value="5">5+ Hours</option>
-            </select>
-          </div>
+
         </div>
         <br/>
         <div class="field">
           {{> Text_Form_Control label="Location" placeholder="Hale Hino Study Hall" errorMessage=(fieldError
-          "picture")}}
+              "picture")}}
         </div>
         <div class="ui two column grid">
           <div class="column">
@@ -168,23 +236,8 @@
             </div>
           </div>
         </div>
-        <br/>
-        <div class="ui two column grid">
-          <div class="column">
-            <label for="date">Date </label>
-            <input id="date" type="date"/>
-          </div>
-          <div class="column">
-            <label for="time">Time </label>
-            <input id="time" type="time"/>
-          </div>
-        </div>
-        <div class="ui grid">
-          <div class="ui checkbox">
-            <input type="checkbox" name="Recurring" id="Recurring" checked="">
-            <label>Is this meeting recurring? </label>
-          </div>
-        </div>
+
+
         <br/>
         <br/>
         <div class="fields">
@@ -203,6 +256,7 @@
         <div class="ui error message"></div>
       </div>
     </form>
+
     <script>
       function enterNameRPG(val) {
         var element = document.getElementById('enterRPG');
@@ -236,9 +290,18 @@
           element.style.display = 'none';
         }
       }
+      $(":radio").click(function () {
+        var radioName = $(this).attr("name"); //Get radio name
+        $(":radio[name='" + radioName + "']:not(:checked)").attr("disabled", true); //Disable all unchecked radios with the same name
+      });
+
       $('.ui.radio.checkbox')
           .checkbox({
             onChecked: function () {
+              var radioName = $(this).attr("name"); //Get radio name
+              $(":radio[name='" + radioName + "']:not(:checked)").attr("disabled", true);
+              //Disable all unchecked radios with the same name
+
               if ($(this).attr('id') == 'RPG') {
                 $('#rpg').show();
                 $('#dataFields').show();
@@ -288,16 +351,52 @@
         });
         return isContains;
       };
-
+      $('.ui.dropdown')
+          .dropdown()
+      ;
       $('.ui.form')
           .form({
             fields: {
               gameName: {
-                identifier: 'gameName',
+                identifier  : 'gameName',
+                rules: [
+                  {
+                    type   : 'empty',
+                    prompt : 'Please enter a game'
+                  }
+                ]
+              },
+            }
+          })
+      ;
+
+      $('.ui.form')
+          .form({
+            fields: {
+              date: {
+                identifier: 'date',
                 rules: [
                   {
                     type: 'empty',
-                    prompt: 'Please select a Game.'
+                    prompt: 'Please enter a meeting date.'
+                  }
+                ]
+              },
+              startTime: {
+                identifier: 'start',
+                rules: [
+                  {
+                    type: 'empty',
+                    prompt: 'Please enter the starting time.'
+                  }
+                ]
+              },
+              endTime: {
+                identifier: 'end',
+                rules: [
+                  {
+                    type: 'empty',
+                    prompt: 'Please enter the ending time.'
                   }
                 ]
               },
@@ -310,39 +409,12 @@
                   }
                 ]
               },
-              length: {
-                identifier: 'Length',
-                rules: [
-                  {
-                    type: 'empty',
-                    prompt: 'Please select the estimated length of the game.'
-                  }
-                ]
-              },
               location: {
                 identifier: 'Location',
                 rules: [
                   {
                     type: 'empty',
                     prompt: 'Please enter the location of the game.'
-                  }
-                ]
-              },
-              date: {
-                identifier: 'date',
-                rules: [
-                  {
-                    type: 'empty',
-                    prompt: 'Please enter a meeting date.'
-                  }
-                ]
-              },
-              time: {
-                identifier: 'time',
-                rules: [
-                  {
-                    type: 'empty',
-                    prompt: 'Please enter a meeting time.'
                   }
                 ]
               },
@@ -386,7 +458,7 @@
                   },
                 ]
               },
-            }
+            },
           });
     </script>
   </div>

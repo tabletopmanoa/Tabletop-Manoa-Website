@@ -40,7 +40,8 @@ Template.AddGame_Page.events({
     const cardGameId = document.getElementById('gameCARD');
     const boardGameId = document.getElementById('gameBOARD');
     const miniGameId = document.getElementById('gameMINI');
-    let category = '';
+
+    let category = '_';
     if (document.getElementById('RPG').checked) {
       category = 'Role Playing';
     } else
@@ -52,80 +53,86 @@ Template.AddGame_Page.events({
         } else {
           category = 'Miniatures';
         }
-    let gameName = '';
+
     if (rpgGameId.options[rpgGameId.selectedIndex].value === '7') {
-      gameName = event.target.enterRPG.value;
-    } else
-      if (rpgGameId.options[rpgGameId.selectedIndex].value > 0) {
-        gameName = rpgGameId.options[rpgGameId.selectedIndex].text;
+      let gameName = event.target.enterRPG.value;
+      if (!gameName) {
+        gameName = 'Role Playing Game';
       } else
-        if (cardGameId.options[cardGameId.selectedIndex].value === '10') {
-          gameName = event.target.enterCard.value;
+        if (rpgGameId.options[rpgGameId.selectedIndex].value > 0) {
+          gameName = rpgGameId.options[rpgGameId.selectedIndex].text;
         } else
-          if (cardGameId.options[cardGameId.selectedIndex].value > 0) {
-            gameName = cardGameId.options[cardGameId.selectedIndex].text;
+          if (cardGameId.options[cardGameId.selectedIndex].value === '10') {
+            gameName = event.target.enterCard.value;
+            if (!gameName) {
+              gameName = 'Card Game';
+            }
           } else
-            if (boardGameId.options[boardGameId.selectedIndex].value === '7') {
-              gameName = event.target.enterBoard.value;
+            if (cardGameId.options[cardGameId.selectedIndex].value > 0) {
+              gameName = cardGameId.options[cardGameId.selectedIndex].text;
             } else
-              if (boardGameId.options[boardGameId.selectedIndex].value > 0) {
-                gameName = boardGameId.options[boardGameId.selectedIndex].text;
+              if (boardGameId.options[boardGameId.selectedIndex].value === '7') {
+                gameName = event.target.enterBoard.value;
+                if (!gameName) {
+                  gameName = 'Board Game';
+                }
               } else
-                if (miniGameId.options[miniGameId.selectedIndex].value === '5') {
-                  gameName = event.target.enterMini.value;
+                if (boardGameId.options[boardGameId.selectedIndex].value > 0) {
+                  gameName = boardGameId.options[boardGameId.selectedIndex].text;
                 } else
-                  if (miniGameId.options[miniGameId.selectedIndex].value > 0) {
-                    gameName = miniGameId.options[miniGameId.selectedIndex].text;
-                  } else {
-                    gameName = '';
-                  }
-    const maxPlayers = parseInt(document.getElementById('Players').value, 10);
-    const le = document.getElementById('Length');
-    const gameLength = le.options[le.selectedIndex].text;
-    const location = event.target.Location.value;
-    const smoking = document.getElementById('Smoking').checked;
-    const alcohol = document.getElementById('Alcohol').checked;
-    const date1 = event.target.date.value;
-    const time1 = event.target.time.value;
-    const space = ' ';
-    const dateStr = date1 + space + time1;
-    const date = new Date (dateStr);
-    const recurring = document.getElementById('Recurring').checked;
-    const contact = event.target.contact.value;
-    const resources = event.target.resources.value;
-    const picture = event.target.imageURL.value;
-    const about = event.target.about.value;
-    const imageURL = event.target.imageURL.value;
-    // difference between picture and imageURL?
-    const cancelled = false;
+                  if (miniGameId.options[miniGameId.selectedIndex].value === '5') {
+                    gameName = event.target.enterMini.value;
+                    if (!gameName) {
+                      gameName = 'Miniatures';
+                    }
+                  } else
+                    if (miniGameId.options[miniGameId.selectedIndex].value > 0) {
+                      gameName = miniGameId.options[miniGameId.selectedIndex].text;
+                    } else {
+                      gameName = 'Error';
+                    }
+      const maxPlayers = parseInt(document.getElementById('Players').value, 10);
+      const location = event.target.Location.value;
+      const smoking = document.getElementById('Smoking').checked;
+      const alcohol = document.getElementById('Alcohol').checked;
+      const date = event.target.date.value;
+      const startTime = event.target.start.value;
+      const endTime = event.target.end.value;
+      const recurring = document.getElementById('Recurring').checked;
+      const contact = event.target.contact.value;
+      const resources = event.target.resources.value;
+      const picture = event.target.imageURL.value;
+      const about = event.target.about.value;
+      const cancelled = false;
 
-    const defineObject = {
-      gameName,
-      category,
-      maxPlayers,
-      gameLength,
-      date,
-      location,
-      about,
-      smoking,
-      alcohol,
-      recurring,
-      contact,
-      resources,
-      picture,
-      userID,
-      imageURL,
-      cancelled,
-    };
+      const defineObject = {
+        gameName,
+        category,
+        maxPlayers,
+        date,
+        startTime,
+        endTime,
+        location,
+        about,
+        smoking,
+        alcohol,
+        recurring,
+        contact,
+        resources,
+        picture,
+        userID,
+        cancelled,
+      };
 
-    if (instance.context.isValid()) {
-      window.alert('Your game group has been successfully added.');  // eslint-disable-line no-alert
-      Games.define(defineObject);
-      Games.publish();
-      instance.messageFlags.set(displayErrorMessages, false);
-      FlowRouter.go(FlowRouter.path('Manage_Page', FlowRouter.current().params));
-    } else {
-      instance.messageFlags.set(displayErrorMessages, true);
+      if (instance.context.isValid()) {
+        Games.define(defineObject);
+        Games.publish();
+        instance.messageFlags.set(displayErrorMessages, false);
+        window.alert('Your game group has been successfully added.');  // eslint-disable-line no-alert
+        FlowRouter.go(FlowRouter.path('Manage_Page', FlowRouter.current().params));
+      } else {
+        instance.messageFlags.set(displayErrorMessages, true);
+      }
     }
   },
 });
