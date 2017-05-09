@@ -1,7 +1,7 @@
 import { Games } from '../../../api/games/GameCollection.js';
 import { Template } from 'meteor/templating';
 import { _ } from 'meteor/underscore';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { $ } from 'meteor/jquery';
 
 Template.Calendar_Page.onCreated(
     function bodyOnCreated() {
@@ -26,12 +26,13 @@ Template.Calendar_Page.onRendered(() => {
       right: 'today prev,next,basicWeek,month',
     },
     events: list,
-    eventClick: function(calEvent, jsEvent, view) {
+    eventClick: function (calEvent, jsEvent, view) {
 
       alert('Event: ' + calEvent.title + ', Start Time: ' + calEvent.startTime + ', Location : ' + calEvent.location);
 
       // change the border color just for fun
       $(this).css('border-color', 'red');
 
-    }  });
+    }
+  });
 });

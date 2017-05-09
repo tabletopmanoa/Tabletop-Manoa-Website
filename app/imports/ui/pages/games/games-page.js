@@ -131,5 +131,9 @@ Template.Games_Page.events({
     }
     return false;
   },
-
+  'click .moreInfo'(event) {
+    const ID = event.target.value;
+    FlowRouter.go(FlowRouter.path('info/' + ID, FlowRouter.current().params));
+    location.reload();
+  },
 });

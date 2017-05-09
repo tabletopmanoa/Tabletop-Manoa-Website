@@ -2,7 +2,6 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { $ } from 'meteor/jquery';
 
-
 /*                        LANDING ROUTE                       */
 
 export const landingPageRouteName = 'Landing_Page';
@@ -33,9 +32,7 @@ FlowRouter.route('/directory', {
   triggersExit: [removeDirectoryBodyClass],
 });
 
-
 /*                        USER ROUTES                      */
-
 
 function addUserBodyClass() {
   $('body').addClass('user-layout-body');
@@ -68,7 +65,6 @@ userRoutes.route('/addGame', {
   },
 });
 
-
 export const gamesPageRouteName = 'Games_Page';
 userRoutes.route('/games', {
   name: gamesPageRouteName,
@@ -92,7 +88,16 @@ userRoutes.route('/manage', {
     BlazeLayout.render('User_Layout', { main: managePageRouteName });
   },
 });
-
+export const infoPageRouteName = 'Info_Page';
+userRoutes.route('/info/:_id', {
+  name: infoPageRouteName,
+  data() {
+    return { _id: this.params._id };
+  },
+  action() {
+    BlazeLayout.render('User_Layout', { main: infoPageRouteName });
+  },
+});
 export const newgamePageRouteName = 'NewGame_Page';
 userRoutes.route('/newGame', {
   name: newgamePageRouteName,

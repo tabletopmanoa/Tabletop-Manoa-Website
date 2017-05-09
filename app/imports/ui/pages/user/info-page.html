@@ -1,0 +1,126 @@
+<template name="Info_Page">
+
+  {{#if Template.subscriptionsReady}}
+
+  {{#each game in gamesList}}
+  <p></p>
+  <div>
+    <form class="ui card games-data-form " style=" padding-top:5px;width:95%;position:static;">
+      <div class="field" style="align-content: center; color: black; font-size: large">
+        <div class="ui four column doubling stackable grid container">
+          <div class="column">
+            {{game.title}}
+
+            <img class="ui small image" style="max-height:150px;padding: 5px" src="{{game.picture}}">
+
+          </div>
+          <div class="column">
+            <div class="ui list">
+              <div class="item">
+                <i class="ui circular calender inverted big icon avatar image"></i>
+                <div class="content">
+                  <div class="header">When</div>
+                  {{game.date}}
+                </div>
+              </div>
+              <!-- Start Time -->
+              <div class="item">
+                <i class="ui circular hourglass start inverted big icon avatar image"></i>
+                <div class="content">
+                  <div class="header">Start Time</div>
+                  {{game.startTime}}
+                </div>
+              </div>
+              <!-- End Game Length -->
+              <div class="item">
+                <i class="ui circular hourglass end inverted big icon avatar image"></i>
+                <div class="content">
+                  <div class="header">End Time</div>
+                  {{game.endTime}}
+                </div>
+              </div>
+              <!-- Location -->
+              <!-- Max Players -->
+              <div class="item">
+                <i class="ui circular users inverted big icon avatar image"></i>
+                <div class="content">
+                  <div class="header">Maximum Players</div>
+                  {{game.maxPlayers}}
+                </div>
+              </div>
+              <!-- End Max Players -->
+              <div class="item">
+                <img class="ui avatar image" src="/images/bldg.png">
+                <div class="content">
+                  <div class="header">Location</div>
+                  {{game.location}}
+                </div>
+              </div>
+              <!-- End Location -->
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui list">
+              <div class="item">
+                <i class="ui circular mail inverted big icon avatar image"></i>
+                <div class="content">
+                  <div class="header">Contact</div>
+                  {{game.contact}}
+                </div>
+              </div>
+              <div class="item">
+                <i class="ui circular newspaper inverted big icon avatar image"></i>
+                <div class="content">
+                  <div class="header">Resources</div>
+                  {{game.resources}}
+                </div>
+              </div>
+
+              <!-- about -->
+              <div class="item">
+                <i class="ui circular fire inverted big icon avatar image"></i>
+                <div class="content">
+                  <div class="header">Smoking Allowed?</div>
+                  {{game.smoking}}
+                </div>
+              </div>
+              <!-- End about -->    <!-- about -->
+              <div class="item">
+                <i class="ui circular lemon inverted big icon avatar image"></i>
+                <div class="content">
+                  <div class="header">Drinking Allowed?</div>
+                  {{game.alcohol}}
+                </div>
+              </div>
+              <!-- End about -->
+              <!-- about -->
+              <div class="item">
+                <i class="ui circular user inverted big icon avatar image"></i>
+                <div class="content">
+                  <div class="header">Additional Information</div>
+                  {{game.about}}
+                </div>
+              </div>
+              <!-- End about -->
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui list">
+              <br>
+              <div class="item">
+
+
+              </div>
+              <br>
+              <div class="item ">
+                <!-- <button class="ui button blue"> More Information</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  {{/each}}
+  {{/if}}
+</template>

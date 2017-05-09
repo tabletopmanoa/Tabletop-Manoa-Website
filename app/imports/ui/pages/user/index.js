@@ -12,3 +12,6 @@ import './profile-page.js';
 
 import './browse-page.html';
 import './browse-page.js';
+
+import './info-page.html';
+import './info-page.js';
