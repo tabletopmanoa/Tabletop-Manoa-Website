@@ -51,7 +51,7 @@ Template.Games_Page.events({
     instance.state.set('magic-checked', event.target.checked);
     this.era++;
     const categoryName = 'roleplaying';
-    const gameName = 'Pathfinder';
+    const title = 'Pathfinder';
     const category = categoryName;
     const maxPlayers = Math.floor((Math.random() * 100 % 10));
     const meetingDate = new Date('April 29, 2017 07:00:00');
@@ -65,7 +65,7 @@ Template.Games_Page.events({
     // const imageURL = 'url.com';
     const userID = 'x';
     const defineObject = {
-      gameName,
+      title,
       category,
       maxPlayers,
       meetingDate,
