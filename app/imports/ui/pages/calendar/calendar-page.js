@@ -25,7 +25,7 @@ Template.Calendar_Page.onRendered(() => {
     // Add events to the calendar.
     events: {
       url: 'games/all',
-      // cache: true,
+      cache: true,
     },
 
     // events: 'games/all',

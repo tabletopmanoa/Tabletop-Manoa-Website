@@ -107,6 +107,55 @@ Template.AddGame_Page.events({
       const about = event.target.about.value;
       const cancelled = false;
 
+<<<<<<< HEAD
+    const defineObject = {
+      gameName,
+      category,
+      maxPlayers,
+      gameLength,
+      date,
+      location,
+      about,
+      smoking,
+      alcohol,
+      recurring,
+      contact,
+      resources,
+      picture,
+      userID,
+      imageURL,
+      cancelled,
+    };
+    // create data for calendar
+    const title = gameName;
+    const start = time1;
+    const end = time1 + gameLength;
+    const startValue = time1;
+    const endValue = time1 + gameLength;
+    const startString = event.target.time.value.toString();
+    const endString = endValue.toString();
+
+    if (instance.context.isValid()) {
+      window.alert('Your game group has been successfully added.');  // eslint-disable-line no-alert
+      Games.define(defineObject);
+      Games.publish();
+      const newEvent = { title, start, end, startValue, endValue, startString, endString };
+      // Clear out any old validation errors.
+      instance.context.resetValidation();
+
+      // Invoke clean so that newEvent reflects what will be inserted.
+      EventDataSchema.clean(newEvent);
+
+      // Determine validity.
+      instance.context.validate(newEvent);
+      if (instance.context.isValid()) {
+        EventData.insert(newEvent);
+      }
+      instance.messageFlags.set(displayErrorMessages, false);
+      FlowRouter.go(FlowRouter.path('Manage_Page', FlowRouter.current().params));
+    } else {
+      instance.messageFlags.set(displayErrorMessages, true);
+=======
       const defineObject = {
         gameName,
         category,
@@ -135,6 +184,7 @@ Template.AddGame_Page.events({
       } else {
         instance.messageFlags.set(displayErrorMessages, true);
       }
+>>>>>>> refs/remotes/origin/master
     }
   },
 });
