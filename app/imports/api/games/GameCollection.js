@@ -15,7 +15,7 @@ class GameSchema extends BaseCollection {
    */
   constructor() {
     super('Games', new SimpleSchema({
-      gameName: {
+      title: {
         label: 'Name of Game',
         type: String,
         optional: false,
@@ -105,7 +105,7 @@ class GameSchema extends BaseCollection {
   }
 
   define({
-      gameName = '',
+      title = '',
       category = '',
       maxPlayers = '',
       date = '',
@@ -122,7 +122,7 @@ class GameSchema extends BaseCollection {
       userID,
   }) {
     const checkPattern = {
-      gameName: String,
+      title: String,
       maxPlayers: Number,
       startTime: String,
       endTime: String,
@@ -136,7 +136,7 @@ class GameSchema extends BaseCollection {
       contact: String,
     };
     check({
-      gameName,
+      title,
       maxPlayers,
       location,
       smoking,
@@ -151,7 +151,7 @@ class GameSchema extends BaseCollection {
     }, checkPattern);
 
     return this._collection.insert({
-      gameName,
+      title,
       category,
       location,
       smoking,
@@ -176,8 +176,8 @@ class GameSchema extends BaseCollection {
    */
   dumpOne(docID) {
     const doc = this.findDoc(docID);
-    const gameName = doc.gameName;
-    const title = gameName;
+    const title = doc.title;
+    // const title = title;
     const category = doc.category;
     const maxPlayers = doc.maxPlayers;
     const startTime = doc.startTime;
@@ -194,12 +194,11 @@ class GameSchema extends BaseCollection {
     const resources = doc.resources;
     const userID = doc.userID;
     const id = userID;
-    const start = startTime;
+    const start = date + startTime;
     const end = endTime;
-    const allDay = '';
+    const allDay = false;
     // const ID = doc.ID;
     return {
-      gameName,
       title,
       startDate,
       category,
@@ -219,6 +218,7 @@ class GameSchema extends BaseCollection {
       id,
       end,
       allDay,
+      start
     };
   }
 }
