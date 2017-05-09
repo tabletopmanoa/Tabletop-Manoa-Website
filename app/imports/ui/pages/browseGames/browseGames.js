@@ -1,6 +1,5 @@
 import { Template } from 'meteor/templating';
 import { GameTemplate } from '../../../api/template/template.js';
-
 Template.Template_Page.helpers({
 
   /**

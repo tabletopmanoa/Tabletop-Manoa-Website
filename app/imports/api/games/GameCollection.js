@@ -5,7 +5,8 @@ import { check } from 'meteor/check';
 // import { Meteor } from 'meteor/meteor';
 import BaseCollection from '/imports/api/base/BaseCollection';
 
-export const GameTemplate = new Mongo.Collection('GameTemplate');
+
+export const GamesTemplate = new Mongo.Collection('GamesTemplate');
 
 class GameSchema extends BaseCollection {
 
@@ -176,11 +177,13 @@ class GameSchema extends BaseCollection {
   dumpOne(docID) {
     const doc = this.findDoc(docID);
     const gameName = doc.gameName;
+    const title = gameName;
     const category = doc.category;
     const maxPlayers = doc.maxPlayers;
     const startTime = doc.startTime;
     const endTime = doc.endTime;
     const date = doc.date;
+    const startDate = date;
     const location = doc.location;
     const smoking = doc.smoking;
     const alcohol = doc.alcohol;
@@ -190,9 +193,15 @@ class GameSchema extends BaseCollection {
     const contact = doc.contact;
     const resources = doc.resources;
     const userID = doc.userID;
+    const id = userID;
+    const start = startTime;
+    const end = endTime;
+    const allDay = '';
     // const ID = doc.ID;
     return {
       gameName,
+      title,
+      startDate,
       category,
       maxPlayers,
       startTime,
@@ -207,9 +216,13 @@ class GameSchema extends BaseCollection {
       contact,
       resources,
       userID,
+      id,
+      end,
+      allDay,
     };
   }
 }
 
 export const Games = new GameSchema();
-GameTemplate.attachSchema(GameSchema);
+GamesTemplate.attachSchema(GameSchema);
+
