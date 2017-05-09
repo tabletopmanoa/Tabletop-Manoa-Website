@@ -38,6 +38,12 @@ class GameSchema extends BaseCollection {
         type: String,
         optional: false,
       },
+      start: {
+        label: 'start',
+        type: String,
+        optional: false,
+        max: 200,
+      },
       startTime: {
         label: 'startTime',
         type: String,
@@ -109,6 +115,7 @@ class GameSchema extends BaseCollection {
       category = '',
       maxPlayers = '',
       date = '',
+      start = '',
       startTime = '',
       endTime = '',
       location = '',
@@ -124,6 +131,7 @@ class GameSchema extends BaseCollection {
     const checkPattern = {
       title: String,
       maxPlayers: Number,
+      start: String,
       startTime: String,
       endTime: String,
       about: String,
@@ -142,6 +150,7 @@ class GameSchema extends BaseCollection {
       smoking,
       alcohol,
       recurring,
+      start,
       startTime,
       endTime,
       date,
@@ -158,6 +167,7 @@ class GameSchema extends BaseCollection {
       alcohol,
       recurring,
       maxPlayers,
+      start,
       startTime,
       endTime,
       date,
@@ -182,6 +192,7 @@ class GameSchema extends BaseCollection {
     const maxPlayers = doc.maxPlayers;
     const startTime = doc.startTime;
     const endTime = doc.endTime;
+    const start = doc.start;
     const date = doc.date;
     const startDate = date;
     const location = doc.location;
@@ -194,7 +205,6 @@ class GameSchema extends BaseCollection {
     const resources = doc.resources;
     const userID = doc.userID;
     const id = userID;
-    const start = date + startTime;
     const end = endTime;
     const allDay = false;
     // const ID = doc.ID;
@@ -203,6 +213,7 @@ class GameSchema extends BaseCollection {
       startDate,
       category,
       maxPlayers,
+      start,
       startTime,
       endTime,
       date,
@@ -218,7 +229,6 @@ class GameSchema extends BaseCollection {
       id,
       end,
       allDay,
-      start
     };
   }
 }
