@@ -1,165 +1,164 @@
 <template name="Games_Page" style="padding: 15%">
-    {{#if Template.subscriptionsReady}}
-      <div style="margin-top: 10px" class="ui menu">
+  {{#if Template.subscriptionsReady}}
+    <div style="margin-top: 10px" class="ui menu">
       {{message}}
-        <form class="ui equal width form games-data-form">
-          <div class="field" style="align-content: center; color: black; font-size: large"> Choose from the game categories
-              <div class="ui radio checkbox" >
-                <input type="radio"  name="category" id="rp-games">
-                <label>Role Playing Games</label>
-              </div>
-              <div class="ui radio checkbox ">
-                <input type="radio"  name="category" id="card-games">
-                <label>Card Games</label>
-              </div>
-              <div class="ui radio checkbox">
-                <input type="radio" name="category" id="board-games">
-                <label>Board Games</label>
-              </div>
-              <div class="ui radio checkbox">
-                <input type="radio" name="category" id="mini-games">
-                <label>Miniature Games</label>
-              </div>
-            <div class="ui radio checkbox">
-              <input type="radio" name="category" id="all-games" checked="checked">
-              <label>All Games</label>
-            </div>
-            </div>
-        </form>
-      </div>
-        <!--{{> Games_Page_Directory games=games }}-->
-<!--
-    This was no longer used, it could be implmented at aa further date.
-      <div style="margin-top: 10px" class="ui menu">
+      <form class="ui equal width form games-data-form">
+        <div class="field" style="align-content: center; color: black; font-size: large"> Choose from the game
+          categories
+          <div class="ui radio checkbox">
+            <input type="radio" name="category" id="rp-games">
+            <label>Role Playing Games</label>
+          </div>
+          <div class="ui radio checkbox ">
+            <input type="radio" name="category" id="card-games">
+            <label>Card Games</label>
+          </div>
+          <div class="ui radio checkbox">
+            <input type="radio" name="category" id="board-games">
+            <label>Board Games</label>
+          </div>
+          <div class="ui radio checkbox">
+            <input type="radio" name="category" id="mini-games">
+            <label>Miniature Games</label>
+          </div>
+          <div class="ui radio checkbox">
+            <input type="radio" name="category" id="all-games" checked="checked">
+            <label>All Games</label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!--{{> Games_Page_Directory games=games }}-->
+    <!--
+        This was no longer used, it could be implmented at aa further date.
+          <div style="margin-top: 10px" class="ui menu">
 
-        <form class="ui equal width form games-data-form">
-          <div class="field" style="align-content: center; color: black; font-size: large"> Choose from the available
-            card
-            games
-            <div><p></p></div>
-            <div class="ui checkbox magic-checkbox" >
-              <input type="checkbox" id="magic-checkbox">
-              <label>Magic the Gathering </label>
-            </div>
-            <div class="ui checkbox kitten-checkbox">
-              <input type="checkbox" id="example2">
-              <label>Exploding Kittens</label>
-            </div>
-            <div class="ui checkbox spades-checkbox">
-              <input type="checkbox" id="example3">
-              <label>Spades</label>
+            <form class="ui equal width form games-data-form">
+              <div class="field" style="align-content: center; color: black; font-size: large"> Choose from the available
+                card
+                games
+                <div><p></p></div>
+                <div class="ui checkbox magic-checkbox" >
+                  <input type="checkbox" id="magic-checkbox">
+                  <label>Magic the Gathering </label>
+                </div>
+                <div class="ui checkbox kitten-checkbox">
+                  <input type="checkbox" id="example2">
+                  <label>Exploding Kittens</label>
+                </div>
+                <div class="ui checkbox spades-checkbox">
+                  <input type="checkbox" id="example3">
+                  <label>Spades</label>
+                </div>
+              </div>
+              <button class="ui black circular button" type="submit">Filter</button>
+            </form>
+
+          </div>
+      -->
+
+
+    {{#each game in gamesList}}
+      <p></p>
+    <div>
+    <form class="ui card games-data-form " style=" padding-top:5px;width:95%;position:static;">
+    <div class="field" style="align-content: center; color: black; font-size: large">
+    <div class="ui four column doubling stackable grid container">
+      <div class="column">
+        {{game.gameName}}
+
+        <img class="ui small image" style="max-height:150px;padding: 5px" src="{{game.picture}}">
+
+      </div>
+      <div class="column">
+        <div class="ui list">
+          <div class="item">
+            <i class="ui circular calender inverted big icon avatar image"></i>
+            <div class="content">
+              <div class="header">When</div>
+              {{game.date}}
             </div>
           </div>
-          <button class="ui black circular button" type="submit">Filter</button>
-        </form>
+          <!-- Start Time -->
+          <div class="item">
+            <i class="ui circular hourglass empty inverted big icon avatar image"></i>
+            <div class="content">
+              <div class="header">Start Time</div>
+              {{game.startTime}}
+            </div>
+          </div>
+          <!-- End Game Length -->
 
+          <!-- Location -->
+          <div class="item">
+            <img class="ui avatar image" src="/images/bldg.png">
+            <div class="content">
+              <div class="header">Location</div>
+              {{game.location}}
+            </div>
+          </div>
+          <!-- End Location -->
+        </div>
       </div>
-  -->
+      <div class="column">
+        <div class="ui list">
+          <div class="item">
+            <i class="ui circular mail inverted big icon avatar image"></i>
+            <div class="content">
+              <div class="header">Contact</div>
+              {{game.contact}}
+            </div>
+          </div>
+          <div class="item">
+            <i class="ui circular newspaper inverted big icon avatar image"></i>
+            <div class="content">
+              <div class="header">Resources</div>
+              {{game.resources}}
+            </div>
+          </div>
+          <!-- Max Players -->
+          <div class="item">
+            <i class="ui circular user inverted big icon avatar image"></i>
+            <div class="content">
+              <div class="header">Maximum players</div>
+              {{game.maxPlayers}}
+            </div>
+          </div>
+          <!-- End Max Players -->
+        </div>
+      </div>
+    <div class="column">
+    <div class="ui list">
+      <br>
+    <div class="item">
 
+      {{#if alreadyPlaying game._id}}
+        <button class="ui button red leaveGame" value="{{game._id}}" href="#" onclick="false"> Leave Game</button>
+      {{else if isOpen game._id}}
+        <button class="ui button blue joinGame" value="{{game._id}}" href="#" onclick="false"> Join Us!</button>
+      {{else}}
+        <button class="ui button red full" value="{{game._id}}" href="#" onclick="false"> Game Is Full</button>
+      {{/if}}
 
-        {{#each game in gamesList}}
-        <p></p>
-        <div>
-        <form class="ui card games-data-form " style=" padding-top:5px;width:95%;position:static;">
-          <div class="field" style="align-content: center; color: black; font-size: large">
-            <div class="ui four column doubling stackable grid container">
-              <div class="column">
-                {{game.gameName}}
-                <img class="ui small image" style="max-height:150px;padding: 5px" src="{{game.picture}}">
-              </div>
-              <div class="column">
-                <div class="ui list">
-                  <!-- Max Players -->
-                  <div class="item">
-                    <i class="ui circular user inverted big icon avatar image" ></i>
-                    <div class="content">
-                      <div class="header">max players</div>
-                      {{game.maxPlayers}}
-                    </div>
-                  </div>
-                  <!-- End Max Players -->
-
-                  <!-- Game Length -->
-                  <div class="item">
-                    <i class="ui circular hourglass empty inverted big icon avatar image" ></i>
-                    <div class="content">
-                      <div class="header">Game length</div>
-                      {{game.gameLength}}
-                    </div>
-                  </div>
-                  <!-- End Game Length -->
-
-                  <!-- Location -->
-                  <div class="item">
-                    <img class="ui avatar image" src="/images/bldg.png">
-                    <div class="content">
-                      <div class="header">Location</div>
-                      {{game.location}}
-                    </div>
-                  </div>
-                  <!-- End Location -->
-                </div>
-              </div>
-              <div class="column">
-                <div class="ui list">
-                  <div class="item">
-                    <i class="ui circular mail inverted big icon avatar image" ></i>
-                    <div class="content">
-                      <div class="header">Contact</div>
-                      {{game.contact}}
-                    </div>
-                  </div>
-                  <div class="item">
-                    <i class="ui circular newspaper inverted big icon avatar image" ></i>
-                    <div class="content">
-                      <div class="header">resources</div>
-                      {{game.resources}}
-                    </div>
-                  </div>
-                  <div class="item">
-                    <i class="ui circular calender inverted big icon avatar image" ></i>
-                    <div class="content">
-                      <div class="header">When</div>
-                      <!-- put when in the db -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="column">
-                <div class="ui list">
-                  <br>
-                  <div class="item">
-                    {{#if alreadyPlaying game._id}}
-                       <button class="ui button red leaveGame" value="{{game._id}}" href="#" onclick="false" > Leave Game</button>
-                        {{else if isOpen game._id}}
-                           <button class="ui button blue joinGame" value="{{game._id}}" href="#" onclick="false"> Join Us!</button>
-                        {{else}}
-                           <button class="ui button red full" value="{{game._id}}" href="#" onclick="false"> Game Is Full</button>
-                    {{/if}}
-
-                  <!--
+        <!--
                     {{else}}
-                      {{#if isOpen game._id}}
+      {{#if isOpen game._id}}
                          <button class="ui button blue joinGame" value="{{game._id}}" href="#" > Join Us!</button>
                       {{else}}
                        <button class="ui button red" value="{{game._id}}" href="#" > Game Is Full</button>
-                      {{/if}}
+                      {{/if}}-->
 
-                    {{/if}}-->
-                  </div>
-                  <br>
-                  <div class="item ">
-                   <!-- <button class="ui button blue"> More Information</button> -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-        </div>
-      {{/each}}
+    </div>
+      <br>
+      <div class="item ">
+        <!-- <button class="ui button blue"> More Information</button> -->
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </form>
+    </div>
+    {{/each}}
   {{/if}}
-
-
-
 </template>

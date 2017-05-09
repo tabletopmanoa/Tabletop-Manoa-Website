@@ -15,6 +15,9 @@ Template.Manage_Page.onCreated(
 );
 
 Template.Manage_Page.helpers({
+  routeUserName() {
+    return FlowRouter.getParam('username');
+  },
   runningList(){
       console.log(Games.find().fetch());
     const userID = FlowRouter.getParam('username');
@@ -53,7 +56,6 @@ Template.Manage_Page.events({
     const ID = event.target.value;
     const UserID = FlowRouter.getParam('username');
     const defineObject = { ID, UserID };
-    console.log(UserToGames.find({ ID,UserID }).fetch());
     if (UserToGames.find({ ID, UserID }).fetch().length > 0) {
       /**
        * This will trigger if there is a document that already exists for this user and game.

@@ -5,13 +5,12 @@ import { UserToGames } from '../../../api/games/UserToGamesCollection.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 Template.Games_Page.onCreated(
-  function bodyOnCreated() {
-    this.state = new ReactiveDict();
-    this.context = Games.getSchema().namedContext('Games_Page');
-
-    this.subscribe(Games.getPublicationName());
-    this.subscribe(UserToGames.getPublicationName());
-  }
+    function bodyOnCreated() {
+      this.state = new ReactiveDict();
+      this.context = Games.getSchema().namedContext('Games_Page');
+      this.subscribe(Games.getPublicationName());
+      this.subscribe(UserToGames.getPublicationName());
+    }
 );
 
 Template.Games_Page.helpers({
@@ -46,6 +45,44 @@ Template.Games_Page.helpers({
 });
 
 Template.Games_Page.events({
+  'change #magic-checkbox'(event, instance) {
+    /*
+     TODO: Remove test code to see */
+    instance.state.set('magic-checked', event.target.checked);
+    this.era++;
+    const categoryName = 'roleplaying';
+    const gameName = 'Pathfinder';
+    const category = categoryName;
+    const maxPlayers = Math.floor((Math.random() * 100 % 10));
+    const meetingDate = new Date('April 29, 2017 07:00:00');
+    const startTime = '20:00';
+    const endTime = '23:00';
+    const location = 'Hale Wina Lounge';
+    const about = 'This game is very cool';
+    const picture = 'http://www.levelupgamesmn.com/uploads/2/4/7/7/24777638/2796519_orig.png';
+    const contact = 'kodayv@hawaii.edu';
+    const resources = 'http://www.d20pfsrd.com/';
+    // const imageURL = 'url.com';
+    const userID = 'x';
+    const defineObject = {
+      gameName,
+      category,
+      maxPlayers,
+      meetingDate,
+      startTime,
+      endTime,
+      // gameLength,
+      location,
+      about,
+      picture,
+      contact,
+      resources,
+      userID,
+      // imageURL,
+    };
+    Games.define(defineObject);
+    Games.publish();
+  },
   'change #mini-games'(event, instance) {
     instance.state.set('mini-games', event.target.checked);
     instance.state.set('category', 'mini');
@@ -71,7 +108,7 @@ Template.Games_Page.events({
     const ID = event.target.value;
     const UserID = FlowRouter.getParam('username');
     const defineObject = { ID, UserID };
-    console.log(UserToGames.find({ ID,UserID }).fetch());
+    console.log(UserToGames.find({ ID, UserID }).fetch());
     if (UserToGames.find({ ID, UserID }).fetch().length > 0) {
       /**
        * This will trigger if there is a document that already exists for this user and game.
