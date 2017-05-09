@@ -94,5 +94,9 @@ Template.Browse_Page.events({
     }
     return false;
   },
+  'click .moreInfo'(event) {
+    const ID = event.target.value;
+    FlowRouter.go(FlowRouter.path('Info_Page/'+ID, FlowRouter.current().params));
+  },
 
 });
