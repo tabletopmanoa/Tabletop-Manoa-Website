@@ -101,7 +101,6 @@ Template.AddGame_Page.events({
     const date = event.target.date.value;
     const startTime = event.target.start.value;
     const endTime = event.target.end.value;
-    const recurring = document.getElementById('Recurring').checked;
     const contact = event.target.contact.value;
     const resources = event.target.resources.value;
     const picture = event.target.imageURL.value;
@@ -120,7 +119,6 @@ Template.AddGame_Page.events({
       about,
       smoking,
       alcohol,
-      recurring,
       contact,
       resources,
       picture,
