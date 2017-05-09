@@ -54,9 +54,9 @@ Template.AddGame_Page.events({
         } else {
           category = 'Miniatures';
         }
-
+    let title = ' ';
     if (rpgGameId.options[rpgGameId.selectedIndex].value === '7') {
-      let title = event.target.enterRPG.value;
+      title = event.target.enterRPG.value;
       if (!title) {
         title = 'Role Playing Game';
       }
@@ -93,7 +93,6 @@ Template.AddGame_Page.events({
                   } else {
                     title = 'Error';
                   }
-    console.log('broken');
 
     const maxPlayers = parseInt(document.getElementById('Players').value, 10);
     const location = event.target.Location.value;
@@ -108,6 +107,7 @@ Template.AddGame_Page.events({
     const picture = event.target.imageURL.value;
     const about = event.target.about.value;
     const cancelled = false;
+    const start = date + ' ' + startTime;
 
     const defineObject = {
       title,
@@ -126,6 +126,7 @@ Template.AddGame_Page.events({
       picture,
       userID,
       cancelled,
+      start,
     };
 
     if (instance.context.isValid()) {
