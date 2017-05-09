@@ -21,6 +21,8 @@ Template.Games_Page.helpers({
       state = 'all';
     }
     if (state === 'all') {
+      console.log('browse');
+      console.log(Games.collection().find({ category: state }).collection._docs);
       return Games.collection().find();
     }
     return Games.collection().find({ category: state }, {});
