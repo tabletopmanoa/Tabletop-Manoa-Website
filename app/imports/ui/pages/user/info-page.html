@@ -109,6 +109,14 @@
               <br>
               <div class="item">
 
+                {{#if alreadyPlaying game._id}}
+                <button class="ui button red leaveGame" value="{{game._id}}" href="#" onclick="false"> Leave Game</button>
+                {{else if isOpen game._id}}
+                <button class="ui button blue joinGame" value="{{game._id}}" href="#" onclick="false"> Join Us!</button>
+                {{else}}
+                <button class="ui button red full" value="{{game._id}}" href="#" onclick="false"> Game Is Full</button>
+                {{/if}}
+
 
               </div>
               <br>
