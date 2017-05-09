@@ -56,42 +56,42 @@ Template.AddGame_Page.events({
         }
 
     if (rpgGameId.options[rpgGameId.selectedIndex].value === '7') {
-      let gameName = event.target.enterRPG.value;
-      if (!gameName) {
-        gameName = 'Role Playing Game';
+      let title = event.target.enterRPG.value;
+      if (!title) {
+        title = 'Role Playing Game';
       }
     } else
       if (rpgGameId.options[rpgGameId.selectedIndex].value > 0) {
-        gameName = rpgGameId.options[rpgGameId.selectedIndex].text;
+        title = rpgGameId.options[rpgGameId.selectedIndex].text;
       } else
         if (cardGameId.options[cardGameId.selectedIndex].value === '10') {
-          gameName = event.target.enterCard.value;
-          if (!gameName) {
-            gameName = 'Card Game';
+          title = event.target.enterCard.value;
+          if (!title) {
+            title = 'Card Game';
           }
         } else
           if (cardGameId.options[cardGameId.selectedIndex].value > 0) {
-            gameName = cardGameId.options[cardGameId.selectedIndex].text;
+            title = cardGameId.options[cardGameId.selectedIndex].text;
           } else
             if (boardGameId.options[boardGameId.selectedIndex].value === '7') {
-              gameName = event.target.enterBoard.value;
-              if (!gameName) {
-                gameName = 'Board Game';
+              title = event.target.enterBoard.value;
+              if (!title) {
+                title = 'Board Game';
               }
             } else
               if (boardGameId.options[boardGameId.selectedIndex].value > 0) {
-                gameName = boardGameId.options[boardGameId.selectedIndex].text;
+                title = boardGameId.options[boardGameId.selectedIndex].text;
               } else
                 if (miniGameId.options[miniGameId.selectedIndex].value === '5') {
-                  gameName = event.target.enterMini.value;
-                  if (!gameName) {
-                    gameName = 'Miniatures';
+                  title = event.target.enterMini.value;
+                  if (!title) {
+                    title = 'Miniatures';
                   }
                 } else
                   if (miniGameId.options[miniGameId.selectedIndex].value > 0) {
-                    gameName = miniGameId.options[miniGameId.selectedIndex].text;
+                    title = miniGameId.options[miniGameId.selectedIndex].text;
                   } else {
-                    gameName = 'Error';
+                    title = 'Error';
                   }
     console.log('broken');
 
@@ -110,7 +110,7 @@ Template.AddGame_Page.events({
     const cancelled = false;
 
     const defineObject = {
-      gameName,
+      title,
       category,
       maxPlayers,
       date,

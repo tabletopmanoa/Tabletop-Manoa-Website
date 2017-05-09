@@ -1,7 +1,7 @@
-import { Tracker } from 'meteor/tracker';
 import { Games } from '../../../api/games/GameCollection.js';
 import { Template } from 'meteor/templating';
 import { _ } from 'meteor/underscore';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 Template.Calendar_Page.onCreated(
     function bodyOnCreated() {
@@ -10,11 +10,9 @@ Template.Calendar_Page.onCreated(
     }
 );
 function listGames() {
-  var gameList = Games.collection().find({ category: 'all' });
-  var objects = gameList.collection._docs;
-  var list = _.toArray(objects._map);
-  console.log('calendar');
-  console.log(list);
+  const gameList = Games.collection().find({ category: 'all' });
+  const objects = gameList.collection._docs;
+  const list = _.toArray(objects._map);
   return list;
 }
 Template.Calendar_Page.onRendered(() => {
@@ -28,8 +26,5 @@ Template.Calendar_Page.onRendered(() => {
       right: 'today prev,next',
     },
     events: list,
-    eventClick: function (event) {
-      FlowRouter.go(FlowRouter.path('Manage_Page', FlowRouter.current().params));
-    }
   });
 });
