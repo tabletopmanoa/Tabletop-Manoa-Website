@@ -15,7 +15,7 @@ class GameSchema extends BaseCollection {
    */
   constructor() {
     super('Games', new SimpleSchema({
-      title: {
+      gameName: {
         label: 'Name of Game',
         type: String,
         optional: false,
@@ -38,13 +38,13 @@ class GameSchema extends BaseCollection {
         type: String,
         optional: false,
       },
-      start: {
+      startTime: {
         label: 'startTime',
         type: String,
         optional: false,
         max: 200,
       },
-      end: {
+      endTime: {
         label: 'endTime',
         type: String,
         optional: false,
@@ -105,12 +105,12 @@ class GameSchema extends BaseCollection {
   }
 
   define({
-      title = '',
+      gameName = '',
       category = '',
       maxPlayers = '',
       date = '',
-      start = '',
-      end = '',
+      startTime = '',
+      endTime = '',
       location = '',
       about = '',
       picture = '',
@@ -122,10 +122,10 @@ class GameSchema extends BaseCollection {
       userID,
   }) {
     const checkPattern = {
-      title: String,
+      gameName: String,
       maxPlayers: Number,
-      start: String,
-      end: String,
+      startTime: String,
+      endTime: String,
       about: String,
       date: String,
       location: String,
@@ -136,14 +136,14 @@ class GameSchema extends BaseCollection {
       contact: String,
     };
     check({
-      title,
+      gameName,
       maxPlayers,
       location,
       smoking,
       alcohol,
       recurring,
-      start,
-      end,
+      startTime,
+      endTime,
       date,
       about,
       picture,
@@ -151,15 +151,15 @@ class GameSchema extends BaseCollection {
     }, checkPattern);
 
     return this._collection.insert({
-      title,
+      gameName,
       category,
       location,
       smoking,
       alcohol,
       recurring,
       maxPlayers,
-      start,
-      end,
+      startTime,
+      endTime,
       date,
       about,
       picture,
@@ -176,12 +176,12 @@ class GameSchema extends BaseCollection {
    */
   dumpOne(docID) {
     const doc = this.findDoc(docID);
-    const title = doc.title;
-    // const title = gameName;
+    const gameName = doc.gameName;
+    const title = gameName;
     const category = doc.category;
     const maxPlayers = doc.maxPlayers;
-    const end = doc.end;
-    const start = doc.start;
+    const startTime = doc.startTime;
+    const endTime = doc.endTime;
     const date = doc.date;
     const startDate = date;
     const location = doc.location;
@@ -194,9 +194,9 @@ class GameSchema extends BaseCollection {
     const resources = doc.resources;
     const userID = doc.userID;
     const id = userID;
-    // const start = startTime;
-    // const end = endTime;
-    const allDay = false;
+    const start = startTime;
+    const end = endTime;
+    const allDay = '';
     // const ID = doc.ID;
     return {
       gameName,
@@ -224,5 +224,6 @@ class GameSchema extends BaseCollection {
 }
 
 export const Games = new GameSchema();
+Games.url = '/games/all';
 GamesTemplate.attachSchema(GameSchema);
 

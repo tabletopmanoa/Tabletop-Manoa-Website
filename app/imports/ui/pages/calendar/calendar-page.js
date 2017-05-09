@@ -1,36 +1,56 @@
 import { Tracker } from 'meteor/tracker';
-import { GamesTemplate, Games, GameCollection } from '../../../api/games/GameCollection.js';
+import { EventData } from '../../../api/eventdata/eventdata';
 import { Template } from 'meteor/templating';
-import { _ } from 'meteor/underscore';
+
+// Define a function that checks whether a moment has already passed.
+// let isPast = (date) => {
+//   let today = moment().format();
+//   return moment(today).isAfter(date);
+// };
 
 Template.Calendar_Page.onCreated(() => {
-  Template.instance().subscribe('Games');
-  Games.getSchema().namedContext('Games_Page');
-  Games.getPublicationName();
-  Games.publish();
+  Template.instance().subscribe('EventData');
 });
-function listGames() {
-  var gameList = Games.collection().find({ category: 'all' });
-  var objects = gameList.collection._docs;
-  var list = _.where(objects._map, {category: 'Role Playing'})
 
-  console.log('calendar');
-  console.log(list);
-  return list;
-}
 Template.Calendar_Page.onRendered(() => {
-  const list = listGames();
+
   // Initialize the calendar.
   $('#event-calendar').fullCalendar({
-    // Define the navigation buttons.    // Define the navigation buttos.
+    // Define the navigation buttons.
     header: {
       left: 'title',
       center: '',
       right: 'today prev,next',
     },
-    events: list
+    // Add events to the calendar.
+    events: {
+      url: 'games/all',
+      // cache: true,
+    },
 
+    // events: 'games/all',
+    //     (start, end, timezone, callback) {
+    //   const data = EventData.find().fetch().map((session) => {
+    //     // Don't allow already past study events to be editable.
+    //     // session.editable = !isPast(session.start);
+    //     return session;
+    //   });
+    //
+    //   if (data) {
+    //     if (callback) {
+    //       callback(data);
+    //     }
+    //   }
+    // },
 
+    // Configure the information displayed for an "event."
+    // eventRender(session, element) {
+    //   element.find('.fc-content').html(
+    //       `<h4 class="title">${session.title}</h4>
+    //       <p class="time">${session.startString}</p>
+    //       `
+    //   );
+    // },
 
     // // Triggered when a day is clicked on.
     // dayClick(date, session) {
@@ -68,7 +88,7 @@ Template.Calendar_Page.onRendered(() => {
 
   // Updates the calendar if there are changes.
   Tracker.autorun(() => {
-    Games.find().fetch();
+    EventData.find().fetch();
     $('#event-calendar').fullCalendar('refetchEvents');
   });
 });
