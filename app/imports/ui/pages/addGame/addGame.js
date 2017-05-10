@@ -3,7 +3,6 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { Games } from '/imports/api/games/GameCollection';
-import { EventData, EventDataSchema } from '../../../api/eventdata/eventdata.js';
 
 const displayErrorMessages = 'displayErrorMessages';
 
@@ -106,7 +105,7 @@ Template.AddGame_Page.events({
     const picture = event.target.imageURL.value;
     const about = event.target.about.value;
     const cancelled = false;
-    const start = date + ' ' + startTime;
+    const start = `${date}, ,${startTime}`;
 
     const defineObject = {
       title,
@@ -128,15 +127,12 @@ Template.AddGame_Page.events({
     };
 
     if (instance.context.isValid()) {
-      console.log('should be valid');
-
       Games.define(defineObject);
       Games.publish();
       instance.messageFlags.set(displayErrorMessages, false);
       window.alert('Your game group has been successfully added.');  // eslint-disable-line no-alert
       FlowRouter.go(FlowRouter.path('Manage_Page', FlowRouter.current().params));
     } else {
-
       instance.messageFlags.set(displayErrorMessages, true);
     }
   },
