@@ -1,8 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-// import { Categories } from '/imports/api/categories/CategoryCollection';
 import { check } from 'meteor/check';
-// import { Meteor } from 'meteor/meteor';
 import BaseCollection from '/imports/api/base/BaseCollection';
 
 
