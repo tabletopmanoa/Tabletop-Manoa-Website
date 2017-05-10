@@ -70,11 +70,15 @@ Template.Browse_Page.events({
   'click .joinGame'(event) {
     const ID = event.target.value;
     const UserID = FlowRouter.getParam('username');
+    const defineObject = { ID, UserID };
+    console.log(UserToGames.find({ ID,UserID }).fetch());
     if (UserToGames.find({ ID, UserID }).fetch().length > 0) {
       /**
        * This will trigger if there is a document that already exists for this user and game.
        */
     } else {
+      console.log(defineObject);
+      console.log(UserToGames.define(defineObject));
       UserToGames.publish();
     }
     return false;
@@ -82,6 +86,7 @@ Template.Browse_Page.events({
   'click .leaveGame'(event) {
     const ID = event.target.value;
     const UserID = FlowRouter.getParam('username');
+    console.log(UserToGames.find({ ID, UserID }).fetch());
     const list = UserToGames.find({ ID, UserID }).fetch();
     for (let i = 0; i < list.length; i++) {
       UserToGames.collection().remove(list[i]._id);

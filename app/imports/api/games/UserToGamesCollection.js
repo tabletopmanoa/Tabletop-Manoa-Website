@@ -30,7 +30,7 @@ class GameUserSchema extends BaseCollection {
     }));
   }
 
-  define({ ID = '', UserID = '' }) {
+  define({ ID='', UserID='' }) {
     const checkPattern = {
       ID: String,
       UserID: String,

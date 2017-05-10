@@ -35,7 +35,7 @@ class BaseCollection {
     return this._collection.find().count();
   }
 
-  collection() {
+  collection(){
     return this._collection;
   }
 

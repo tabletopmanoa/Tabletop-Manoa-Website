@@ -3,8 +3,6 @@ import { Games } from '../../../api/games/GameCollection.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { UserToGames } from '../../../api/games/UserToGamesCollection.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import { _ } from 'meteor/underscore';
-
 
 Template.Info_Page.onCreated(
     function bodyOnCreated() {
@@ -18,10 +16,12 @@ Template.Info_Page.onCreated(
 Template.Info_Page.helpers({
 
   gamesList() {
-    const state = location.pathname.split('/')[3];
-    const gameList = Games.collection().find({ category: 'all' });
+    const instance = Template.instance();
+    let state = location.pathname.split('/')[3];
+    const gameList = Games.collection().find({ category: 'all'});
     const objects = gameList.collection._docs._map;
-    const game = _.where(objects, { _id: state });
+    const game = _.where(objects, {  _id: state});
+    console.log(game);
     return game;
   },
   message() {
@@ -47,11 +47,31 @@ Template.Info_Page.events({
   'click .joinGame'(event) {
     const ID = event.target.value;
     const UserID = FlowRouter.getParam('username');
+    const defineObject = { ID, UserID };
+    console.log(UserToGames.find({ ID, UserID }).fetch());
     if (UserToGames.find({ ID, UserID }).fetch().length > 0) {
       /**
        * This will trigger if there is a document that already exists for this user and game.
        */
     } else {
+      console.log(defineObject);
+      console.log(UserToGames.define(defineObject));
+      UserToGames.publish();
+    }
+    return false;
+  },
+  'click .joinGame'(event) {
+    const ID = event.target.value;
+    const UserID = FlowRouter.getParam('username');
+    const defineObject = { ID, UserID };
+    console.log(UserToGames.find({ ID, UserID }).fetch());
+    if (UserToGames.find({ ID, UserID }).fetch().length > 0) {
+      /**
+       * This will trigger if there is a document that already exists for this user and game.
+       */
+    } else {
+      console.log(defineObject);
+      console.log(UserToGames.define(defineObject));
       UserToGames.publish();
     }
     return false;
@@ -59,6 +79,7 @@ Template.Info_Page.events({
   'click .leaveGame'(event) {
     const ID = event.target.value;
     const UserID = FlowRouter.getParam('username');
+    console.log(UserToGames.find({ ID, UserID }).fetch());
     const list = UserToGames.find({ ID, UserID }).fetch();
     for (let i = 0; i < list.length; i++) {
       UserToGames.collection().remove(list[i]._id);

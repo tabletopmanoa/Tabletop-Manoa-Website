@@ -1,6 +1,9 @@
 import { Meteor } from 'meteor/meteor';
-import { Games } from '/imports/api/games/GameCollection';
-import { UserToGames } from '/imports/api/games/UserToGamesCollection.js';
+import { Profiles } from '/imports/api/profile/ProfileCollection';
+// import { Interests } from '/imports/api/interest/InterestCollection';
+import { Categories } from '/imports/api/categories/CategoryCollection';
+// import { Games } from '/imports/api/games/GameCollection';
+// import { Listings, ListingsSchema } from '/imports/api/listings/listings.js';
 import { _ } from 'meteor/underscore';
 
 /* global Assets */
@@ -29,7 +32,7 @@ function restoreCollection(collection, restoreJSON) {
 
 Meteor.startup(() => {
   /** Only initialize database if it's empty. */
-  const collectionList = [Games, UserToGames];
+  const collectionList = [Categories, Profiles];
   const totalDocuments = _.reduce(collectionList, function reducer(memo, collection) {
     return memo + collection.count();
   }, 0);
