@@ -105,8 +105,8 @@ Template.AddGame_Page.events({
     const picture = event.target.imageURL.value;
     const about = event.target.about.value;
     const cancelled = false;
-    const start = `${date}, ,${startTime}`;
-
+    const start = `${date} ${startTime}`;
+    console.log(start);
     const defineObject = {
       title,
       category,
