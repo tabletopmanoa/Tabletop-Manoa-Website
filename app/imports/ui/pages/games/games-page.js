@@ -17,6 +17,7 @@ Template.Games_Page.helpers({
   gamesList() {
     const instance = Template.instance();
     let state = instance.state.get('category');
+    console.log(state);
     if (state === undefined) {
       state = 'all';
     }
@@ -85,15 +86,15 @@ Template.Games_Page.events({
   },
   'change #mini-games'(event, instance) {
     instance.state.set('mini-games', event.target.checked);
-    instance.state.set('category', 'mini');
+    instance.state.set('category', 'Miniatures');
   },
   'change #card-games'(event, instance) {
     instance.state.set('card-games', event.target.checked);
-    instance.state.set('category', 'card');
+    instance.state.set('category', 'Card');
   },
   'change #rp-games'(event, instance) {
     instance.state.set('rp-games', event.target.checked);
-    instance.state.set('category', 'roleplaying');
+    instance.state.set('category', 'Role Playing');
   },
   'change #all-games'(event, instance) {
     instance.state.set('all-games', event.target.checked);
@@ -101,7 +102,7 @@ Template.Games_Page.events({
   },
   'change #board-games'(event, instance) {
     instance.state.set('board-games', event.target.checked);
-    instance.state.set('category', 'board');
+    instance.state.set('category', 'Board');
     return false;
   },
   'click .joinGame'(event) {
@@ -123,7 +124,6 @@ Template.Games_Page.events({
   'click .leaveGame'(event) {
     const ID = event.target.value;
     const UserID = FlowRouter.getParam('username');
-    console.log(UserToGames.find({ ID, UserID }).fetch());
     const list = UserToGames.find({ ID, UserID }).fetch();
     for (let i = 0; i < list.length; i++) {
       UserToGames.collection().remove(list[i]._id);
@@ -133,7 +133,7 @@ Template.Games_Page.events({
   },
   'click .moreInfo'(event) {
     const ID = event.target.value;
-    FlowRouter.go(FlowRouter.path('info/' + ID, FlowRouter.current().params));
+    FlowRouter.go(FlowRouter.path(`info/${ID}`, FlowRouter.current().params));
     location.reload();
   },
 });

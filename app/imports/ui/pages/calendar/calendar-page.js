@@ -26,13 +26,10 @@ Template.Calendar_Page.onRendered(() => {
       right: 'today prev,next,basicWeek,month',
     },
     events: list,
-    eventClick: function (calEvent, jsEvent, view) {
-
-      alert('Event: ' + calEvent.title + ', Start Time: ' + calEvent.startTime + ', Location : ' + calEvent.location);
-
+    eventClick(calEvent) {
+      alert(`Event: ${calEvent.title}, Start Time: ${calEvent.startTime}, Location : ${calEvent.location}`);
       // change the border color just for fun
       $(this).css('border-color', 'red');
-
-    }
+    },
   });
 });
