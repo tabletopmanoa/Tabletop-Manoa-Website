@@ -1,7 +1,7 @@
-import { UserToGames } from '/imports/api/games/UserToGamesCollection.js';
-import { Games } from '/imports/api/games/GameCollection.js';
+import { Profiles } from '/imports/api/profile/ProfileCollection';
+import { Interests } from '/imports/api/interest/InterestCollection';
 
 export function removeAllEntities() {
-  UserToGames.removeAll();
-  Games.removeAll();
+  Profiles.removeAll();
+  Interests.removeAll();
 }

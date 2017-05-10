@@ -1,16 +1,16 @@
 import { Template } from 'meteor/templating';
-import { UserToGames } from '/imports/api/games/UserToGamesCollection.js';
+import { Profiles } from '/imports/api/profile/ProfileCollection';
 
 Template.Directory_Page.onCreated(function onCreated() {
-  this.subscribe(UserToGames.getPublicationName());
+  this.subscribe(Profiles.getPublicationName());
 });
 
 Template.Directory_Page.helpers({
 
   /**
-   * Returns a cursor to UserToGames, sorted by last name.
+   * Returns a cursor to profiles, sorted by last name.
    */
-  UserToGames() {
-    return UserToGames.find({}, { sort: { lastName: 1 } });
+  profiles() {
+    return Profiles.find({}, { sort: { lastName: 1 } });
   },
 });
