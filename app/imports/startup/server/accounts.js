@@ -1,5 +1,5 @@
 import { Accounts } from 'meteor/accounts-base';
-import { Profiles } from '/imports/api/profile/ProfileCollection';
+import { UserToGames } from '/imports/api/games/UserToGamesCollection.js';
 
 /* eslint-disable no-console */
 
@@ -7,8 +7,8 @@ import { Profiles } from '/imports/api/profile/ProfileCollection';
 Accounts.validateNewUser(function validate(user) {
   if (user) {
     const username = user.services.cas.id;
-    if (!Profiles.isDefined(username)) {
-      Profiles.define({ username });
+    if (!UserToGames.isDefined(username)) {
+      UserToGames.define({ username });
     }
   }
   // All UH users are valid for BowFolios.
